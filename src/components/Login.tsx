@@ -6,7 +6,7 @@ import {Box, Button, Card, Container, TextField} from "@material-ui/core";
 import {Translation} from "../Translations";
 import Cookies from "universal-cookie";
 
-export const Login: React.FC<{t: Translation}> = (props) => {
+export const Login: React.FC<{ t: Translation }> = (props) => {
 
     const classes = useStyles();
     const [username, setUsername] = useState("");
@@ -21,7 +21,9 @@ export const Login: React.FC<{t: Translation}> = (props) => {
                         e.preventDefault();
                         login(username, password)
                             .then((o) => {
-                                new Cookies().set("token", o.token);
+                                const c = new Cookies()
+                                c.set("token", o.token);
+                                c.set("owner", o.id);
                                 history.push("/dashboard");
                             })
                             .catch((e) => {
@@ -60,7 +62,7 @@ export const Login: React.FC<{t: Translation}> = (props) => {
     )
 }
 
-async function login(u: string, p: string): Promise<{token: string}> {
+async function login(u: string, p: string): Promise<{ token: string, id: string }> {
     const body = {username: u, password: p}
     return api("/login", {method: "POST", body: JSON.stringify(body)})
 

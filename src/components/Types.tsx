@@ -1,9 +1,15 @@
-export type Community = {
-    id: CommunityId
-}
+export type OwnerId = { id: string }
+export type CommunityId = { id: string }
+export type CommunityName = { value: string }
+export type Community = { id: CommunityId, name: CommunityName }
 
-export type CommunityId = {
-    id: string
+export type OwnerProfile = {
+    id: OwnerId,
+    username: string,
+    email: string,
+    phoneNumber: string,
+    address: string,
+    communities: Community[]
 }
 
 export type TopicId = { id: string }
@@ -26,4 +32,4 @@ export type Topic = {
 //     }
 // }
 
-export type Topics = { topics: Array<Topic>}
+export type Topics = { topics: Array<Topic> }

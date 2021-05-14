@@ -9,3 +9,14 @@ export type TopicResponse = {
 export type TopicsResponse = {
     topics: Array<TopicResponse>
 }
+
+export type OwnerProfileResponse = {
+    id: string,
+    username: string,
+    email: string,
+    phoneNumber: string,
+    address: string,
+    communities: CommunityResponse[]
+}
+
+export type CommunityResponse = { id: string, name: string }
