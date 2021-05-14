@@ -1,24 +1,22 @@
 import React, {FC, useState, useEffect} from 'react';
 import {render, screen} from '@testing-library/react';
 import App from '../App';
+import {Login} from "../components/Login";
 import {useLocale} from "../i18n";
-import {pl, en} from "../Translations";
+import {en} from "../Translations";
 
+const YoComponent: FC = () => {
 
-
-const TestCompnent: FC = () => {
-    const [locale, setLocale] = useLocale(en);
-
-    console.log(locale.login.attempts(3))
-    console.log(locale.login.attempts(2))
-    console.log(locale.login.attempts(1))
-    console.log(locale.login.attempts(0))
-
-    return (<div></div>)
+    return (
+        <div></div>
+    )
 }
 
 test('renders learn react link', () => {
+
     render(
-        <TestCompnent></TestCompnent>
-    )
+        <Login t={en}/>
+    );
+    const linkElement = screen.getByText(/login/i);
+    expect(linkElement).toBeInTheDocument();
 });

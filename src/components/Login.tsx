@@ -4,12 +4,9 @@ import {useStyles} from "../styles/UseStyles";
 import {useHistory} from "react-router-dom";
 import {Box, Button, Card, Container, TextField} from "@material-ui/core";
 import {Translation} from "../Translations";
+import Cookies from "universal-cookie";
 
 export const Login: React.FC<{t: Translation}> = (props) => {
-    async function login(u: string, p: string): Promise<string> {
-        const body = {username: u, password: p}
-        return api<string>("/login", {method: "POST", body: JSON.stringify(body)})
-    }
 
     const classes = useStyles();
     const [username, setUsername] = useState("");
@@ -19,17 +16,21 @@ export const Login: React.FC<{t: Translation}> = (props) => {
     return (
         <Container className={classes.login}>
             <Card className={classes.yo}>
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                    login(username, password)
-                        .then((o) => {
-                            history.push("/dashboard");
-                        })
-                        .catch((e) => {
-                            // HANDLE FAILURE
-                        })
-                    console.log("submitting");
-                }}>
+                <form onSubmit={
+                    (e) => {
+                        e.preventDefault();
+                        login(username, password)
+                            .then((o) => {
+                                new Cookies().set("token", o.token);
+                                history.push("/dashboard");
+                            })
+                            .catch((e) => {
+                                console.log(e);
+                                // HANDLE FAILURE
+                            })
+                        console.log("submitting");
+                    }
+                }>
                     <TextField
                         id="email"
                         label={props.t.login.email}
@@ -57,4 +58,10 @@ export const Login: React.FC<{t: Translation}> = (props) => {
             </Card>
         </Container>
     )
+}
+
+async function login(u: string, p: string): Promise<{token: string}> {
+    const body = {username: u, password: p}
+    return api("/login", {method: "POST", body: JSON.stringify(body)})
+
 }

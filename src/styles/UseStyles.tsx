@@ -1,5 +1,12 @@
 import {makeStyles} from "@material-ui/core";
 
+export const grid =  {
+    margin: {
+        small: '8px',
+        medium: '16px',
+    }
+}
+
 export const useStyles = makeStyles({
     yo: {
         background: 'white',
@@ -23,5 +30,9 @@ export const useStyles = makeStyles({
     background: {
         background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
         height: '100%'
-    }
+    },
+    topicListItem: {
+        marginTop: grid.margin.medium,
+        marginBottom: grid.margin.medium
+    },
 });

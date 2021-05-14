@@ -1,6 +1,9 @@
 import {plural} from "./i18n";
 
 export const en = {
+    forums: {
+        create: "Create"
+    },
     login: {
         loginButton: "Login",
         email: "Email",
@@ -10,6 +13,9 @@ export const en = {
 }
 
 export const pl: typeof en = {
+    forums: {
+        create: "Stwórz"
+    },
     login: {
         loginButton: "Zaloguj",
         email: "Email",
