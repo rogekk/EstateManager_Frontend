@@ -25,51 +25,22 @@ export const Forums: React.FC<{ t: Translation, community: Community }> = (props
     const [topics, setTopics] = useState<Topics | null>(null);
     const [newTopic, setNewTopic] = useState("")
 
-    const makeRequest = async () => {
-        getTopics(props.community.id)
-            .then((o) => {
-                    console.log(o);
-                    setTopics(o);
-                }
-            )
-    }
+    const makeRequest = async () => getTopics(props.community.id).then((o) => setTopics(o));
 
     if (topics === null) {
         makeRequest();
     }
 
-    const topicList = () => {
-        if (topics !== null) {
-            return topics.topics.map((topic) => {
-                return <TopicListItem topic={topic}/>
-            });
-        }
-    else
-        {
-            return <ListItem/>;
-        }
-    }
+    const topicList = () => topics !== null ? topics.topics.map((topic) => <TopicListItem topic={topic}/>) : <ListItem/>
 
     const [open, setOpen] = useState(false)
-    const handleClickOpen = () =>
-        {
-            setOpen(true);
-        }
-    ;
 
-    const handleClose = () =>
-        {
-            setOpen(false);
-        }
-    ;
+    const handleClickOpen = () => setOpen(true);
+    const handleClose = () => setOpen(false);
 
     return (
-        <Container className={classes.login}>
+        <Container className={classes.login} style={{maxHeight:"100%", overflow: "auto"}}>
 
-            <Fab variant='extended' onClick={() => setOpen(true)}>
-                <Add/>
-                {props.t.forums.create}
-            </Fab>
             <Dialog open={open} onClose={handleClose}>
                 <form onSubmit={(e) => {
                     e.preventDefault();
@@ -96,10 +67,16 @@ export const Forums: React.FC<{ t: Translation, community: Community }> = (props
                     </Button>
                 </form>
             </Dialog>
-            <List dense>
-                {topicList()}
-            </List>
+            <div style={{maxHeight: "100%"}}>
+                <List style={{}}>
+                    {topicList()}
+                </List>
+                </div>
+            <Fab variant='extended' onClick={() => setOpen(true)} className={classes.fab} color={"secondary"}>
+                <Add/>
+                {props.t.forums.create}
+            </Fab>
         </Container>
     );
-    }
+}
 

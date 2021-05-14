@@ -1,6 +1,7 @@
 export type TopicResponse = {
     id: string,
     subject: string,
+    description: string,
     createdBy: string,
     createdAt: string
 }

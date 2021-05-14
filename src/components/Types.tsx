@@ -11,6 +11,7 @@ export type TopicId = { id: string }
 export type Topic = {
     id: TopicId,
     subject: string,
+    description: string,
     createdBy: string,
     createdAt: string
 }

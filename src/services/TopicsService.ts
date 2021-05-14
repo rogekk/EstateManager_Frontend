@@ -9,6 +9,7 @@ export async function getTopics(communityId: CommunityId): Promise<Topics> {
     const topics: Topic[] = topicsResponse.topics.map(t => <Topic>{
         id: {id: t.id},
         subject: t.subject,
+        description: t.description,
         createdAt: t.createdAt,
         createdBy: t.createdBy
     });
