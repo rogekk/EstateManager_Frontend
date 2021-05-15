@@ -7,7 +7,7 @@ export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
     const styles = useStyles()
 
     return (<Paper className={styles.topicListItem} elevation={8} key={topic.id.id}>
-            <ListItem button>
+            <ListItem button alignItems={'flex-start'}>
                 <ListItemAvatar>
                     <Avatar variant={'rounded'} src={topic.createdBy.profileImageUrl}/>
                 </ListItemAvatar>
