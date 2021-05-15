@@ -8,11 +8,11 @@ import {
     IconButton, List, ListItem, ListItemIcon,
     ListItemText,
     Menu,
-    Paper,
+    Paper, SvgIcon,
     Toolbar,
     Typography
 } from '@material-ui/core';
-import {BrowserRouter, Route, useHistory} from "react-router-dom";
+import {BrowserRouter, Route, useHistory, useLocation} from "react-router-dom";
 import {useStyles} from "./styles/UseStyles";
 import {Dashboard} from "./components/Dashboard";
 import {Login} from "./components/Login";
@@ -20,21 +20,46 @@ import {useLocale} from "./i18n";
 import {en, pl, Translation} from "./Translations";
 import {Forums} from "./components/Forums";
 import {Community, OwnerProfile} from "./components/Types";
-import {Forum, Dashboard as DashboardIcon, HowToVote} from "@material-ui/icons";
+import {Forum, Dashboard as DashboardIcon, HowToVote, InsertDriveFile} from "@material-ui/icons";
 import Cookies from "universal-cookie";
 import {getProfile} from "./services/TopicsService";
-import { History, LocationState } from 'history';
+import {History, LocationState} from 'history';
 
 export const getToken = () => new Cookies().get("token");
 export const getOwner = () => new Cookies().get("owner");
 
 export type Page = 'dashboard' | 'forums' | 'resolutions';
 
+export const NavigationItem: FC<{
+    icon: typeof SvgIcon,
+    t: Translation,
+    page: [Page, string, string],
+    setPage: React.Dispatch<SetStateAction<Page>>,
+}> = ({icon, t, page, setPage}) => {
+    const location = useLocation();
+    const history = useHistory();
+    const[p, path, name] = page
+
+    return (<ListItem selected={location.pathname === path } button onClick={() => {
+        setPage(p);
+        history.push(path);
+    }}>
+        <ListItemIcon>
+            {React.createElement(icon)}
+        </ListItemIcon>
+        <ListItemText>
+            {name}
+        </ListItemText>
+    </ListItem>)
+
+}
+
 export const CustomAppBar: FC<{
     t: Translation,
-    setTranslation: Dispatch<SetStateAction<Translation>>}> = ({t, setTranslation}) => {
+    setTranslation: Dispatch<SetStateAction<Translation>>
+}> = ({t, setTranslation}) => {
     const classes = useStyles();
-    const history = useHistory();
+    const location = useLocation();
     return (
         <AppBar position="fixed" style={{marginLeft: '200px', width: 'calc(100% - 200px)'}}>
             <Toolbar>
@@ -42,7 +67,7 @@ export const CustomAppBar: FC<{
                     <Menu open={false}/>
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    {history.location.pathname}
+                    {location.pathname}
                 </Typography>
                 <Button color="inherit" onClick={(e) => {
                     console.log("clicking");
@@ -96,18 +121,19 @@ function App() {
 export default App;
 
 
-
 export const SideDrawer: FC<{
     t: Translation,
     page: Page,
     setPage: React.Dispatch<SetStateAction<Page>>
 }> = ({t, page, setPage}) => {
     const history = useHistory();
+    const location = useLocation();
     return (
         <Paper style={{flexShrink: 0, width: "200px", paddingTop: "96px"}}>
             <Typography>
                 <List>
-                    <ListItem selected={history.location.pathname === '/forums'} button onClick={() => {
+                    <NavigationItem icon={InsertDriveFile} t={t} page={[page, "/documents", "Documents"]} setPage={setPage}/>
+                    <ListItem selected={location.pathname === '/forums'} button onClick={() => {
                         setPage('forums');
                         history.push("/forums");
                     }}>
@@ -118,7 +144,7 @@ export const SideDrawer: FC<{
                             Forum
                         </ListItemText>
                     </ListItem>
-                    <ListItem selected={history.location.pathname === '/dashboard'} button onClick={() => {
+                    <ListItem selected={location.pathname === '/dashboard'} button onClick={() => {
                         setPage('dashboard');
                         history.push("/dashboard");
                     }}>
@@ -129,7 +155,7 @@ export const SideDrawer: FC<{
                             Dashboard
                         </ListItemText>
                     </ListItem>
-                    <ListItem selected={history.location.pathname === '/resolutions'} button onClick={() => {
+                    <ListItem selected={location.pathname === '/resolutions'} button onClick={() => {
                         setPage('resolutions');
                         history.push("/resolutions");
                     }}>
