@@ -18,8 +18,14 @@ export type Topic = {
     id: TopicId,
     subject: string,
     description: string,
-    createdBy: string,
+    createdBy: TopicCreator,
     createdAt: string
+}
+
+export type TopicCreator = {
+    id: OwnerId,
+    username: string,
+    profileImageUrl?: string,
 }
 
 // export class Topic {

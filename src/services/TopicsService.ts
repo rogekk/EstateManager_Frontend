@@ -14,7 +14,11 @@ export async function getTopics(communityId: CommunityId): Promise<Topics> {
         subject: t.subject,
         description: t.description,
         createdAt: t.createdAt,
-        createdBy: t.createdBy
+        createdBy: {
+            id: {id: t.createdBy.id},
+            username: t.createdBy.username,
+            profileImageUrl: t.createdBy.profileImageUrl,
+        }
     });
 
     return {topics: topics};

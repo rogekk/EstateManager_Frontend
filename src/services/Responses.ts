@@ -2,8 +2,14 @@ export type TopicResponse = {
     id: string,
     subject: string,
     description: string,
-    createdBy: string,
+    createdBy: TopicCreatorResponse,
     createdAt: string
+}
+
+export type TopicCreatorResponse = {
+    id: string,
+    username: string,
+    profileImageUrl?: string
 }
 
 export type TopicsResponse = {
