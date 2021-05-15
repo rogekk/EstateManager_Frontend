@@ -19,8 +19,10 @@ import {getTopics, postTopic} from "../services/TopicsService";
 import {Add, FolderOpen} from "@material-ui/icons";
 import {TopicListItem} from "./TopicListItem";
 
-
-export const Forums: React.FC<{ t: Translation, community: Community }> = (props) => {
+export const Forums: React.FC<{
+    t: Translation,
+    community: Community
+}> = (props) => {
     const classes = useStyles();
     const [topics, setTopics] = useState<Topics | null>(null);
     const [newTopic, setNewTopic] = useState("")
@@ -39,7 +41,7 @@ export const Forums: React.FC<{ t: Translation, community: Community }> = (props
     const handleClose = () => setOpen(false);
 
     return (
-        <Container className={classes.login} style={{maxHeight:"100%", overflow: "auto"}}>
+        <Container className={classes.login} style={{maxHeight: "100%", overflow: "auto"}}>
 
             <Dialog open={open} onClose={handleClose}>
                 <form onSubmit={(e) => {
@@ -71,7 +73,7 @@ export const Forums: React.FC<{ t: Translation, community: Community }> = (props
                 <List style={{}}>
                     {topicList()}
                 </List>
-                </div>
+            </div>
             <Fab variant='extended' onClick={() => setOpen(true)} className={classes.fab} color={"secondary"}>
                 <Add/>
                 {props.t.forums.create}

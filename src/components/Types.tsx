@@ -33,3 +33,4 @@ export type Topic = {
 // }
 
 export type Topics = { topics: Array<Topic> }
+export type Page = 'dashboard' | 'forums' | 'resolutions';

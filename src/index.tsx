@@ -19,7 +19,7 @@ import {red} from "@material-ui/core/colors";
 
 ReactDOM.render(
     <React.StrictMode>
-            <App/>
+        <App/>
     </React.StrictMode>,
     document.getElementById('root')
 );

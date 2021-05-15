@@ -65,5 +65,4 @@ export const Login: React.FC<{ t: Translation }> = (props) => {
 async function login(u: string, p: string): Promise<{ token: string, id: string }> {
     const body = {username: u, password: p}
     return api("/login", {method: "POST", body: JSON.stringify(body)})
-
 }

@@ -9,7 +9,7 @@ export const TopicListItem: FC<{topic: Topic}> = ({topic}) => {
     return (<Paper className={styles.topicListItem} elevation={8} key={topic.id.id.big()}>
             <ListItem button>
                 <ListItemAvatar>
-                    <Avatar variant={'rounded'}></Avatar>
+                    <Avatar variant={'rounded'}/>
                 </ListItemAvatar>
                 <ListItemText>
                     <Typography variant='h6'>
