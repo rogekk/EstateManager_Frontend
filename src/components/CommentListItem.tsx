@@ -7,7 +7,9 @@ import {timeAgo} from "./tools/TimeAgo";
 export const CommentListItem: FC<{ comment: Comment }> = ({comment}) => {
     const history = useHistory();
 
-    return (<div  key={comment.id.id} onClick={
+    return (<div  key={comment.id.id}
+                  style={{maxWidth: "600px"}}
+                  onClick={
             () => history.push(`/forums/${comment.id.id}`)
         }>
             <ListItem button alignItems={'flex-start'}>

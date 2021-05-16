@@ -19,7 +19,7 @@ export const useStyles = makeStyles({
     },
     login: {
         paddingTop: '100px',
-        flexGrow:1,
+        flexGrow: 1,
     },
 
     cardButtonControl: {
@@ -29,6 +29,10 @@ export const useStyles = makeStyles({
 
     background: {
         // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
+
+        backgroundPosition: "center",
+        backgroundImage: "url(https://www.heersmanagement.com/wp-content/uploads/2018/09/modern-apartments.jpg)",
+        backgroundSize: 'cover',
         background: "#eee",
         height: '100%',
         display: 'flex',

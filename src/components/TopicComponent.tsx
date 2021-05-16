@@ -4,10 +4,11 @@ import {useStyles} from "../styles/UseStyles";
 import {useParams} from "react-router-dom";
 import {Comments} from "./Types";
 import {getComments} from "../services/TopicsService";
-import {Container, Fab, List, Typography} from "@material-ui/core";
+import {Container, Fab, List, Paper, Typography} from "@material-ui/core";
 import {CreateNewComment} from "./CreateNewComment";
-import {Add} from "@material-ui/icons";
+import {Add, Forum} from "@material-ui/icons";
 import {CommentListItem} from "./CommentListItem";
+import {BackgroundIcon} from "./BackgroundIcon";
 
 export const TopicComponent: FC<{
     t: Translation,
@@ -35,10 +36,13 @@ export const TopicComponent: FC<{
 
     return (
         <Container style={{maxHeight: "100%", overflow: "auto", paddingTop: '96px'}}>
+            <BackgroundIcon icon={Forum}/>
             <Typography>
-                <List>
-                    {comments.comments.map(c => <CommentListItem comment={c}/>) }
-                </List>
+                <Paper style={{maxWidth: "600px"}}>
+                    <List>
+                        {comments.comments.map(c => <CommentListItem comment={c}/>)}
+                    </List>
+                </Paper>
             </Typography>
 
             <CreateNewComment t={t} open={open} setOpen={setOpen} communityId={

@@ -4,9 +4,10 @@ import {Container, Fab, List, ListItem} from "@material-ui/core";
 import {Translation} from "../Translations";
 import {Community, Topics} from "./Types";
 import {getTopics} from "../services/TopicsService";
-import {Add} from "@material-ui/icons";
+import {Add, Forum} from "@material-ui/icons";
 import {TopicListItem} from "./TopicListItem";
 import {CreateNewTopic} from "./CreateNewTopic";
+import {BackgroundIcon} from "./BackgroundIcon";
 
 export const Forums: React.FC<{
     t: Translation,
@@ -30,6 +31,7 @@ export const Forums: React.FC<{
 
     return (
         <Container className={classes.login} style={{maxHeight: "100%", overflow: "auto"}}>
+            <BackgroundIcon icon={Forum}/>
             <CreateNewTopic
                 t={t}
                 open={open}
