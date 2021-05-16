@@ -26,7 +26,6 @@ export const Forums: React.FC<{
 
     const topicList = () => topics !== null ? topics.topics.map((topic) => <TopicListItem topic={topic}/>) : <ListItem/>
 
-    const handleClickOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     return (

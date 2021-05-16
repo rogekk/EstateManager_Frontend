@@ -41,7 +41,7 @@ function App() {
         <Box className={classes.background}>
             <BrowserRouter>
                 <CustomAppBar t={t} setTranslation={setTranslation}/>
-                <SideDrawer t={t} page={currentPage} setPage={setPage}/>
+                <SideDrawer t={t} community={community} ownerProfile={owner} page={currentPage} setPage={setPage}/>
                 <Route exact path="/login" render={() => <Login t={t}/>}/>
                 <Route exact path="/dashboard" render={() => <Dashboard t={t} profile={owner}/>}/>
                 <Route exact path="/forums" render={() => <Forums t={t} community={community}/>}/>

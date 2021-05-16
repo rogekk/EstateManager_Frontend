@@ -2,7 +2,7 @@ import React, {Dispatch, FC, SetStateAction, useState} from "react";
 import {Translation} from "../Translations";
 import {CommunityId, TopicId} from "./Types";
 import {Button, Dialog, DialogTitle, TextField} from "@material-ui/core";
-import {postComment, postTopic} from "../services/TopicsService";
+import {postComment} from "../services/TopicsService";
 
 export const CreateNewComment: FC<{
     t: Translation,

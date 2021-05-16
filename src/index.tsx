@@ -1,20 +1,8 @@
-import React, {FC} from 'react';
+import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
-import {
-    Button,
-    Container,
-    createMuiTheme,
-    MuiThemeProvider,
-    styled,
-    StylesProvider,
-    ThemeProvider
-} from "@material-ui/core";
-import {makeStyles} from "@material-ui/styles";
-import {createUseStyles} from "react-jss";
-import {red} from "@material-ui/core/colors";
 
 
 ReactDOM.render(

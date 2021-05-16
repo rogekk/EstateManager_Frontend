@@ -1,59 +1,36 @@
 import React, {FC, SetStateAction} from "react";
 import {Translation} from "./Translations";
-import {useHistory, useLocation} from "react-router-dom";
-import {List, ListItem, ListItemIcon, ListItemText, Paper, Typography} from "@material-ui/core";
+import {List, Paper, Typography} from "@material-ui/core";
 import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@material-ui/icons";
-import {Page} from "./components/Types";
+import {Community, OwnerProfile, Page} from "./components/Types";
 import {NavigationItem} from "./components/NavigationItem";
 
 export const SideDrawer: FC<{
     t: Translation,
+    community: Community,
+    ownerProfile: OwnerProfile | undefined,
     page: Page,
     setPage: React.Dispatch<SetStateAction<Page>>
-}> = ({t, page, setPage}) => {
-    const history = useHistory();
-    const location = useLocation();
+}> = ({t, community, ownerProfile, page, setPage}) => {
     return (
-        <Paper style={{flexShrink: 0, width: "200px", paddingTop: "96px"}}>
+        <Paper style={{flexShrink: 0, width: "200px"}}>
             <Typography>
-                <List>
-                    <NavigationItem icon={InsertDriveFile} t={t} page={[page, "/documents", "Documents"]}
-                                    setPage={setPage}/>
-                    <ListItem selected={location.pathname === '/forums'} button onClick={() => {
-                        setPage('forums');
-                        history.push("/forums");
-                    }}>
-                        <ListItemIcon>
-                            <Forum/>
-                        </ListItemIcon>
-                        <ListItemText>
-                            Forum
-                        </ListItemText>
-                    </ListItem>
-                    <ListItem selected={location.pathname === '/dashboard'} button onClick={() => {
-                        setPage('dashboard');
-                        history.push("/dashboard");
-                    }}>
-                        <ListItemIcon>
-                            <DashboardIcon/>
-                        </ListItemIcon>
-                        <ListItemText>
-                            Dashboard
-                        </ListItemText>
-                    </ListItem>
-                    <ListItem selected={location.pathname === '/resolutions'} button onClick={() => {
-                        setPage('resolutions');
-                        history.push("/resolutions");
-                    }}>
-                        <ListItemIcon>
-                            <HowToVote/>
-                        </ListItemIcon>
-                        <ListItemText>
-                            Resolutions
-                        </ListItemText>
-                    </ListItem>
-                </List>
+                {ownerProfile?.username}
             </Typography>
+
+            <Typography>
+                {!!ownerProfile && ownerProfile.communities[0].name.value}
+            </Typography>
+            <List>
+                <NavigationItem key='docs' icon={InsertDriveFile} t={t} page={[page, "/documents", "Documents"]}
+                                setPage={setPage}/>
+                <NavigationItem key='forums' icon={Forum} t={t} page={[page, "/forums", "Forums"]}
+                                setPage={setPage}/>
+                <NavigationItem key='dash' icon={DashboardIcon} t={t} page={[page, "/dashboard", "Dashboard"]}
+                                setPage={setPage}/>
+                <NavigationItem key='resolutions' icon={HowToVote} t={t} page={[page, "/resolutions", "Resolutions"]}
+                                setPage={setPage}/>
+            </List>
         </Paper>
     );
 }

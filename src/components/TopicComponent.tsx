@@ -4,7 +4,7 @@ import {useStyles} from "../styles/UseStyles";
 import {useParams} from "react-router-dom";
 import {Comments} from "./Types";
 import {getComments} from "../services/TopicsService";
-import {Container, Fab, List, ListItem, Paper, Typography} from "@material-ui/core";
+import {Container, Fab, List, Typography} from "@material-ui/core";
 import {CreateNewComment} from "./CreateNewComment";
 import {Add} from "@material-ui/icons";
 import {CommentListItem} from "./CommentListItem";
@@ -16,7 +16,6 @@ export const TopicComponent: FC<{
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
-    const handleClickOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     const {topicId} = useParams<{ topicId: string, communityId: string }>();

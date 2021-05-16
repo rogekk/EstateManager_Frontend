@@ -1,12 +1,10 @@
 import {FC} from "react";
-import {Avatar, ListItem, ListItemAvatar, ListItemText, Paper, Typography} from "@material-ui/core";
+import {Avatar, ListItem, ListItemAvatar, ListItemText, Typography} from "@material-ui/core";
 import {Comment} from "./Types";
-import {useStyles} from "../styles/UseStyles";
 import {useHistory} from "react-router-dom";
 import {timeAgo} from "./tools/TimeAgo";
 
 export const CommentListItem: FC<{ comment: Comment }> = ({comment}) => {
-    const styles = useStyles();
     const history = useHistory();
 
     return (<div  key={comment.id.id} onClick={

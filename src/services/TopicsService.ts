@@ -1,25 +1,36 @@
-import {Comment, Comments, CommunityId, OwnerId, OwnerProfile, Topic, TopicId, Topics} from "../components/Types";
+import {
+    Comment,
+    Comments,
+    CommunityId,
+    OwnerId,
+    OwnerProfile,
+    Topic,
+    TopicId,
+    Topics
+} from "../components/Types";
 import {get, post} from "./Api";
-import {CommentResponse, CommentsResponse, OwnerProfileResponse, TopicsResponse} from "./Responses";
+import {CommentsResponse, OwnerProfileResponse, TopicsResponse} from "./Responses";
 
 export async function getTopics(communityId: CommunityId): Promise<Topics> {
-    const topicsResponse = await get<TopicsResponse>(`/communities/${communityId.id}/topics`)
+    const topicsResponse: TopicsResponse = await get<TopicsResponse>(`/communities/${communityId.id}/topics`)
         .catch((e) => {
             console.log(e);
-            return <TopicsResponse>{topics: []}
+            return {topics: []}
         });
 
-    const topics: Topic[] = topicsResponse.topics.map(t => <Topic>{
-        id: {id: t.id},
-        subject: t.subject,
-        description: t.description,
-        createdAt: t.createdAt,
-        createdBy: {
-            id: {id: t.createdBy.id},
-            username: t.createdBy.username,
-            profileImageUrl: t.createdBy.profileImageUrl,
-        },
-        commentCount: t.commentCount,
+    const topics: Topic[] = topicsResponse.topics.map(t => {
+        return {
+            id: {id: t.id},
+            subject: t.subject,
+            description: t.description,
+            createdAt: t.createdAt,
+            createdBy: {
+                id: {id: t.createdBy.id},
+                username: t.createdBy.username,
+                profileImageUrl: t.createdBy.profileImageUrl,
+            },
+            commentCount: t.commentCount,
+        }
     });
 
     return {topics: topics};
@@ -54,27 +65,36 @@ export async function getProfile(ownerId: OwnerId): Promise<OwnerProfile> {
         email: r.email,
         phoneNumber: r.phoneNumber,
         address: r.address,
-        communities: []
+        communities:
+            r.communities.map(c => {
+                return {
+                    id: {id: c.id},
+                    name: {value: c.name}
+                }
+            })
+
     };
 }
 
 export async function getComments(
     communityId: CommunityId,
     topicId: TopicId): Promise<Comments> {
-    const commentsResponse = await get<CommentsResponse>(`/communities/${communityId.id}/topics/${topicId.id}/comments`)
+    const commentsResponse: CommentsResponse = await get<CommentsResponse>(`/communities/${communityId.id}/topics/${topicId.id}/comments`)
         .catch((e) => {
             console.log(e);
-            return <CommentsResponse>{comments: []}
+            return {comments: []}
         });
 
-    const comments: Comment[] = commentsResponse.comments.map(t => <Comment>{
-        id: {id: t.id},
-        content: t.content,
-        createdAt: t.createdAt,
-        createdBy: {
-            id: {id: t.createdBy.id},
-            username: t.createdBy.username,
-            profileImageUrl: t.createdBy.profileImageUrl,
+    const comments: Comment[] = commentsResponse.comments.map(t => {
+        return {
+            id: {id: t.id},
+            content: t.content,
+            createdAt: t.createdAt,
+            createdBy: {
+                id: {id: t.createdBy.id},
+                username: t.createdBy.username,
+                profileImageUrl: t.createdBy.profileImageUrl,
+            }
         }
     });
 
