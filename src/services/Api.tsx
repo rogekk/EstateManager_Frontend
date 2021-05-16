@@ -11,6 +11,9 @@ export async function api<T>(
         ...opts, headers: {"X-Auth-Token": token}
     });
 
+    if (!response.ok && response.status == 401) {
+        window.location.replace("/login")
+    }
     if (!response.ok && response.status >= 400) {
         throw new Error("api request failed.");
     }

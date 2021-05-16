@@ -26,9 +26,9 @@ export async function getTopics(communityId: CommunityId): Promise<Topics> {
 }
 
 export async function postComment(communityId: CommunityId,
-                                topicId: TopicId,
-                                content: string,
-                                ): Promise<any> {
+                                  topicId: TopicId,
+                                  content: string,
+): Promise<any> {
     let path = `/communities/${communityId.id}/topics/${topicId.id}/comments`;
     console.log(path);
     return await post(path, {

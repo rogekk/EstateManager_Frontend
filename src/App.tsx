@@ -1,24 +1,19 @@
-import React, {FC, useEffect, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import './App.css';
-import {Box, Container, Fab, List, ListItem, Typography, Paper} from '@material-ui/core';
-import {BrowserRouter, Route, useHistory, useLocation, useParams} from "react-router-dom";
+import {Box} from '@material-ui/core';
+import {BrowserRouter, Route} from "react-router-dom";
 import {useStyles} from "./styles/UseStyles";
 import {Dashboard} from "./components/Dashboard";
 import {Login} from "./components/Login";
 import {useLocale} from "./i18n";
-import {en, Translation} from "./Translations";
+import {en} from "./Translations";
 import {Forums} from "./components/Forums";
-import {Comments, Community, CommunityId, OwnerProfile, Page, Topic} from "./components/Types";
+import {Community, OwnerProfile, Page} from "./components/Types";
 import Cookies from "universal-cookie";
-import {getComments, getProfile} from "./services/TopicsService";
+import {getProfile} from "./services/TopicsService";
 import {SideDrawer} from "./SideDrawer";
 import {CustomAppBar} from "./components/CustomAppBar";
-import {Add} from "@material-ui/icons";
-import {CreateNewComment} from "./components/CreateNewComment";
-import {
-    TransitionGroup,
-    CSSTransition
-} from "react-transition-group";
+import {TopicComponent} from "./components/TopicComponent";
 
 export const getToken = () => new Cookies().get("token");
 export const getOwner = () => new Cookies().get("owner");
@@ -58,48 +53,3 @@ function App() {
 }
 
 export default App;
-
-export const TopicComponent: FC<{
-    t: Translation,
-    communityId: string
-}> = ({t, communityId}) => {
-
-    const classes = useStyles();
-    const [open, setOpen] = useState(false);
-    const handleClickOpen = () => setOpen(true);
-    const handleClose = () => setOpen(false);
-
-    const {topicId} = useParams<{ topicId: string, communityId: string }>();
-
-    const [comments, setComments] = useState<Comments>({comments: []});
-    const [retrieved, setRetrieved] = useState(false)
-
-    useEffect(() => {
-        if (!retrieved) {
-            getComments({id: communityId}, {id: topicId}).then((r) => {
-                setComments(r);
-                setRetrieved(true);
-            });
-        }
-
-    });
-
-    return (
-        <Container style={{maxHeight: "100%", overflow: "auto", paddingTop: '96px'}}>
-            <Typography>
-                <List>
-                    {comments.comments.map(c => <Paper> <ListItem>{c.content}</ListItem></Paper>)}
-                </List>
-            </Typography>
-
-            <CreateNewComment t={t} open={open} setOpen={setOpen} communityId={
-                {id: communityId}} topicId={{id: topicId}} onCreated={() =>
-                getComments({id: communityId}, {id: topicId}).then((r) => setComments(r))
-            } handleClose={handleClose}/>
-
-            <Fab variant='extended' onClick={() => setOpen(true)} className={classes.fab} color={"secondary"}>
-                <Add/>
-                {t.forums.create}
-            </Fab>
-        </Container>);
-}
