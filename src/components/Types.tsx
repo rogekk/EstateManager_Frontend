@@ -14,6 +14,7 @@ export type OwnerProfile = {
 
 export type TopicId = { id: string }
 export type CommentId = { id: string }
+export type ResolutionId = { id: string }
 
 export type Comment = {
     id: CommentId,
@@ -37,16 +38,21 @@ export type TopicCreator = {
     profileImageUrl?: string,
 }
 
-// export class Topic {
-//     constructor(
-//         readonly id: TopicId,
-//         readonly subject: string,
-//         readonly createdBy: string,
-//         readonly createdAt: string
-//     ) {
-//     }
-// }
-
 export type Topics = { topics: Array<Topic> }
+
+export type Resolutions = { resolutions: Array<Resolution> }
+
+export type Resolution = {
+    id: ResolutionId,
+    number: string,
+    subject: string,
+    createdAt: string,
+    description: string
+}
+
+export enum Vote {
+    pro, against, abstained
+}
+
 export type Comments = { comments: Array<Comment> }
 export type Page = 'dashboard' | 'forums' | 'resolutions';

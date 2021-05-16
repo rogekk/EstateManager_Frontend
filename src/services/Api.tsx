@@ -6,7 +6,7 @@ export async function api<T>(
 ): Promise<T> {
 
     const token = new Cookies().get("token")
-    const url = "http://localhost:9999/v1" + path;
+    const url = "http://77.254.69.179:9999/v1" + path;
     const response = await fetch(url, {
         ...opts, headers: {"X-Auth-Token": token}
     });

@@ -34,6 +34,19 @@ export type CommentCreatorResponse = {
     profileImageUrl?: string
 }
 
+export type ResolutionsResponse = {
+    resolutions: Array<ResolutionResponse>
+}
+
+export type ResolutionResponse = {
+      id: string,
+      number: string,
+      subject: string,
+      createdAt: string,
+      description: string
+}
+
+
 export type OwnerProfileResponse = {
     id: string,
     username: string,

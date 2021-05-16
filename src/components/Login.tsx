@@ -38,7 +38,7 @@ export const Login: React.FC<{ t: Translation }> = (props) => {
                         label={props.t.login.email}
                         margin={'normal'}
                         fullWidth={true}
-                        type={'email'}
+                        type={'string'}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />

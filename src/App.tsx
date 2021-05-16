@@ -14,7 +14,7 @@ import {getProfile} from "./services/TopicsService";
 import {SideDrawer} from "./SideDrawer";
 import {CustomAppBar} from "./components/CustomAppBar";
 import {TopicComponent} from "./components/TopicComponent";
-import {Resolutions} from "./components/Resolutions";
+import {ResolutionsComponent} from "./components/Resolutions";
 import {Documents} from "./components/Documents";
 
 export const getToken = () => new Cookies().get("token");
@@ -23,7 +23,7 @@ export const getOwner = () => new Cookies().get("owner");
 function App() {
     const classes = useStyles();
     const [t, setTranslation] = useLocale(en);
-    const [community] = useState<Community>({id: {id: "id1"}, name: {value: ""}});
+    const [community, setCommunity] = useState<Community>({id: {id: "one"}, name: {value: ""}});
     const [owner, setOwner] = useState<OwnerProfile>();
     const [currentPage, setPage] = useState<Page>('forums');
 
@@ -34,7 +34,11 @@ function App() {
             }
 
             if (owner == null && getOwner() != null) {
-                getProfile(getOwner()).then(r => setOwner(r))
+                getProfile(getOwner())
+                    .then(r => {
+                        setOwner(r);
+                        // setCommunity(r.communities[0]);
+                    })
             }
         }
     )
@@ -58,7 +62,7 @@ function App() {
                 <SideDrawer t={t} community={community} ownerProfile={owner} page={currentPage} setPage={setPage}/>
                 <Route exact path="/login" render={() => <Login t={t}/>}/>
                 <Route exact path="/dashboard" render={() => <Dashboard t={t} profile={owner}/>}/>
-                <Route exact path="/resolutions" render={() => <Resolutions/>}/>
+                <Route exact path="/resolutions" render={() => <ResolutionsComponent communityId={community.id} />}/>
                 <Route exact path="/documents" render={() => <Documents/>}/>
                 <Route exact path="/forums" render={() => <Forums t={t} community={community}/>}/>
                 <Route exact path="/forums/:topicId"
