@@ -3,7 +3,7 @@ import {Avatar, ListItem, ListItemAvatar, ListItemText, Paper, Typography} from 
 import {Topic} from "./Types";
 import {useStyles} from "../styles/UseStyles";
 import {useHistory} from "react-router-dom";
-import {timeAgo} from "./tools/TimeAgo";
+import {renderText, timeAgo} from "./tools/TimeAgo";
 
 export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
     const styles = useStyles();
@@ -24,7 +24,7 @@ export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
                         {topic.subject}
                     </Typography>
                     <Typography>
-                        {topic.description}
+                        {renderText(topic.description)}
                     </Typography>
                     <Typography>
                         Comments: {topic.commentCount}

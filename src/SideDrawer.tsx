@@ -13,8 +13,8 @@ export const SideDrawer: FC<{
     setPage: React.Dispatch<SetStateAction<Page>>
 }> = ({t, community, ownerProfile, page, setPage}) => {
     return (
-        <Paper style={{flexShrink: 0, width: "200px"}}>
-            <Typography>
+        <Paper style={{flexShrink: 0, width: "200px", padding: "16px"}}>
+            <Typography variant={"h4"}>
                 {ownerProfile?.username}
             </Typography>
 

@@ -11,7 +11,7 @@ export const CustomAppBar: FC<{
     const classes = useStyles();
     const location = useLocation();
     return (
-        <AppBar position="fixed" style={{marginLeft: '200px', width: 'calc(100% - 200px)'}}>
+        <AppBar position="fixed" style={{marginLeft: '200px', width: 'calc(100% - 232px)'}}>
             <Toolbar>
                 <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
                     <Menu open={false}/>

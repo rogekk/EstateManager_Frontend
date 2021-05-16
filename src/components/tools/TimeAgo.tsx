@@ -23,3 +23,11 @@ export const timeAgo = (prevDate: number) => {
             return "";
     }
 };
+
+const URL_REGEX = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)/;
+export const renderText = (txt: string) =>
+    txt
+        .split(" ")
+        .map(part =>
+            URL_REGEX.test(part) ? <a href={part}>{part} </a> : part + " "
+        );
