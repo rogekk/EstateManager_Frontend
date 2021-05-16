@@ -13,13 +13,22 @@ export type OwnerProfile = {
 }
 
 export type TopicId = { id: string }
+export type CommentId = { id: string }
+
+export type Comment = {
+    id: CommentId,
+    content: string,
+    createdAt: string,
+    createdBy: TopicCreator
+}
 
 export type Topic = {
     id: TopicId,
     subject: string,
     description: string,
     createdBy: TopicCreator,
-    createdAt: string
+    createdAt: string,
+    commentCount: number,
 }
 
 export type TopicCreator = {
@@ -39,4 +48,5 @@ export type TopicCreator = {
 // }
 
 export type Topics = { topics: Array<Topic> }
+export type Comments = { comments: Array<Comment> }
 export type Page = 'dashboard' | 'forums' | 'resolutions';

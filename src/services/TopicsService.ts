@@ -1,6 +1,6 @@
-import {CommunityId, OwnerId, OwnerProfile, Topic, Topics} from "../components/Types";
+import {Comment, Comments, CommunityId, OwnerId, OwnerProfile, Topic, TopicId, Topics} from "../components/Types";
 import {get, post} from "./Api";
-import {OwnerProfileResponse, TopicsResponse} from "./Responses";
+import {CommentResponse, CommentsResponse, OwnerProfileResponse, TopicsResponse} from "./Responses";
 
 export async function getTopics(communityId: CommunityId): Promise<Topics> {
     const topicsResponse = await get<TopicsResponse>(`/communities/${communityId.id}/topics`)
@@ -18,10 +18,22 @@ export async function getTopics(communityId: CommunityId): Promise<Topics> {
             id: {id: t.createdBy.id},
             username: t.createdBy.username,
             profileImageUrl: t.createdBy.profileImageUrl,
-        }
+        },
+        commentCount: t.commentCount,
     });
 
     return {topics: topics};
+}
+
+export async function postComment(communityId: CommunityId,
+                                topicId: TopicId,
+                                content: string,
+                                ): Promise<any> {
+    let path = `/communities/${communityId.id}/topics/${topicId.id}/comments`;
+    console.log(path);
+    return await post(path, {
+        content: content
+    });
 }
 
 export async function postTopic(communityId: CommunityId,
@@ -44,4 +56,27 @@ export async function getProfile(ownerId: OwnerId): Promise<OwnerProfile> {
         address: r.address,
         communities: []
     };
+}
+
+export async function getComments(
+    communityId: CommunityId,
+    topicId: TopicId): Promise<Comments> {
+    const commentsResponse = await get<CommentsResponse>(`/communities/${communityId.id}/topics/${topicId.id}/comments`)
+        .catch((e) => {
+            console.log(e);
+            return <CommentsResponse>{comments: []}
+        });
+
+    const comments: Comment[] = commentsResponse.comments.map(t => <Comment>{
+        id: {id: t.id},
+        content: t.content,
+        createdAt: t.createdAt,
+        createdBy: {
+            id: {id: t.createdBy.id},
+            username: t.createdBy.username,
+            profileImageUrl: t.createdBy.profileImageUrl,
+        }
+    });
+
+    return {comments: comments};
 }

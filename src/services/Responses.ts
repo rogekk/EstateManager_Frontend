@@ -3,7 +3,8 @@ export type TopicResponse = {
     subject: string,
     description: string,
     createdBy: TopicCreatorResponse,
-    createdAt: string
+    createdAt: string,
+    commentCount: number
 }
 
 export type TopicCreatorResponse = {
@@ -14,6 +15,23 @@ export type TopicCreatorResponse = {
 
 export type TopicsResponse = {
     topics: Array<TopicResponse>
+}
+
+export type CommentsResponse = {
+    comments: Array<CommentResponse>
+}
+
+export type CommentResponse = {
+    id: string,
+    content: string,
+    createdBy: CommentCreatorResponse,
+    createdAt: string
+}
+
+export type CommentCreatorResponse = {
+    id: string,
+    username: string,
+    profileImageUrl?: string
 }
 
 export type OwnerProfileResponse = {

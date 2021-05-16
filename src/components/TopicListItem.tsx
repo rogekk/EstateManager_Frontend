@@ -2,11 +2,15 @@ import {FC} from "react";
 import {Avatar, ListItem, ListItemAvatar, ListItemText, Paper, Typography} from "@material-ui/core";
 import {Topic} from "./Types";
 import {useStyles} from "../styles/UseStyles";
+import {useHistory} from "react-router-dom";
 
 export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
-    const styles = useStyles()
+    const styles = useStyles();
+    const history = useHistory();
 
-    return (<Paper className={styles.topicListItem} elevation={8} key={topic.id.id}>
+    return (<Paper className={styles.topicListItem} elevation={8} key={topic.id.id} onClick={
+            () => history.push(`/forums/${topic.id.id}`)
+        }>
             <ListItem button alignItems={'flex-start'}>
                 <ListItemAvatar>
                     <Avatar variant={'rounded'} src={topic.createdBy.profileImageUrl}/>
@@ -20,6 +24,9 @@ export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
                     </Typography>
                     <Typography>
                         {topic.description}
+                    </Typography>
+                    <Typography>
+                        Comments: {topic.commentCount}
                     </Typography>
                 </ListItemText>
             </ListItem>
