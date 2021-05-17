@@ -15,6 +15,8 @@ export async function getResolutions(communityId: CommunityId): Promise<Resoluti
             subject: t.subject,
             description: t.description,
             createdAt: t.createdAt,
+            sharesPro: t.sharesPro,
+            sharesAgainst: t.sharesAgainst,
         } as Resolution
     });
 
@@ -29,12 +31,13 @@ export async function getResolution(communityId: CommunityId, resolutionId: Reso
         subject: resolutionResponse.subject,
         description: resolutionResponse.description,
         createdAt: resolutionResponse.createdAt,
+        sharesPro: resolutionResponse.sharesPro,
+        sharesAgainst: resolutionResponse.sharesAgainst,
     } as Resolution;
 }
 
 export async function postVote(communityId: CommunityId,
                                resolutionId: ResolutionId,
-                               ownerId: OwnerId,
                                vote: Vote,
 ): Promise<any> {
     let path = `/communities/${communityId.id}/resolutions/${resolutionId.id}/votes`;

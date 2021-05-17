@@ -47,12 +47,12 @@ export type Resolution = {
     number: string,
     subject: string,
     createdAt: string,
-    description: string
+    description: string,
+    sharesPro: number,
+    sharesAgainst: number,
 }
 
-export enum Vote {
-    pro, against, abstained
-}
+export type Vote = 'pro' | 'against'
 
 export type Comments = { comments: Array<Comment> }
 export type Page = 'dashboard' | 'forums' | 'resolutions';

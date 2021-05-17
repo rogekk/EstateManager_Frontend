@@ -14,7 +14,7 @@ import {getProfile} from "./services/TopicsService";
 import {SideDrawer} from "./SideDrawer";
 import {CustomAppBar} from "./components/CustomAppBar";
 import {TopicComponent} from "./components/TopicComponent";
-import {ResolutionsComponent} from "./components/Resolutions";
+import {ResolutionComponent, ResolutionsComponent} from "./components/Resolutions";
 import {Documents} from "./components/Documents";
 
 export const getToken = () => new Cookies().get("token");
@@ -63,6 +63,8 @@ function App() {
                 <Route exact path="/login" render={() => <Login t={t}/>}/>
                 <Route exact path="/dashboard" render={() => <Dashboard t={t} profile={owner}/>}/>
                 <Route exact path="/resolutions" render={() => <ResolutionsComponent communityId={community.id} />}/>
+                <Route exact path="/resolutions/:resolutionId"
+                       render={() => <ResolutionComponent communityId={community.id}/>}/>
                 <Route exact path="/documents" render={() => <Documents/>}/>
                 <Route exact path="/forums" render={() => <Forums t={t} community={community}/>}/>
                 <Route exact path="/forums/:topicId"

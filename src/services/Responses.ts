@@ -39,11 +39,13 @@ export type ResolutionsResponse = {
 }
 
 export type ResolutionResponse = {
-      id: string,
-      number: string,
-      subject: string,
-      createdAt: string,
-      description: string
+    id: string,
+    number: string,
+    subject: string,
+    createdAt: string,
+    description: string,
+    sharesPro: number,
+    sharesAgainst: number,
 }
 
 
