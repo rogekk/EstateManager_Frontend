@@ -24,13 +24,17 @@ export const Forums: React.FC<{
         }
     });
 
+    console.log(topics);
 
-    const topicList = () => topics !== null ? topics.topics.map((topic) => <TopicListItem topic={topic}/>) : <ListItem/>
+
+    const topicList = () => topics !== null ? topics.topics.map((topic) =>
+        <TopicListItem topic={topic}/>) : <ListItem/>
 
     const handleClose = () => setOpen(false);
 
     return (
-        <Container className={classes.login} style={{maxHeight: "100%", overflow: "auto"}}>
+        <Container className={classes.login} style={{maxHeight: "100%",
+            overflow: "auto"}}>
             <BackgroundIcon icon={Forum}/>
             <CreateNewTopic
                 t={t}

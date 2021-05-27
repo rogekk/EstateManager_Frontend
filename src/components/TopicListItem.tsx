@@ -9,10 +9,12 @@ export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
     const styles = useStyles();
     const history = useHistory();
 
+    console.log(topic.subject);
+
     return (<Paper className={styles.topicListItem}
                    style={{maxWidth: '600px'}}
                    elevation={8} key={topic.id.id} onClick={
-            () => history.push(`/forums/${topic.id.id}`)
+            () => history.push(`/o/forums/${topic.id.id}`)
         }>
             <ListItem button alignItems={'flex-start'}>
                 <ListItemAvatar>

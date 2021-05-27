@@ -59,6 +59,8 @@ export async function postTopic(communityId: CommunityId,
 
 export async function getProfile(ownerId: OwnerId): Promise<OwnerProfile> {
     const r = await get<OwnerProfileResponse>(`/owners/${ownerId.id}`);
+
+    console.log(r);
     return {
         id: {id: r.id},
         username: r.username,
@@ -68,7 +70,7 @@ export async function getProfile(ownerId: OwnerId): Promise<OwnerProfile> {
         communities:
             r.communities.map(c => {
                 return {
-                    id: {id: c.id},
+                    id: {id: c.communityId},
                     name: {value: c.name}
                 }
             })

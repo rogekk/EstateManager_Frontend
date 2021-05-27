@@ -13,7 +13,12 @@ export const SideDrawer: FC<{
     setPage: React.Dispatch<SetStateAction<Page>>
 }> = ({t, community, ownerProfile, page, setPage}) => {
     return (
-        <Paper style={{flexShrink: 0, width: "200px", padding: "16px"}}>
+        <Paper style={{
+            flexShrink: 0,
+            height: '100%',
+            width: "200px",
+            padding: "16px"
+        }}>
             <Typography variant={"h4"}>
                 {ownerProfile?.username}
             </Typography>
@@ -22,13 +27,13 @@ export const SideDrawer: FC<{
                 {!!ownerProfile && ownerProfile.communities[0].name.value}
             </Typography>
             <List>
-                <NavigationItem key='docs' icon={InsertDriveFile} t={t} page={[page, "/documents", "Documents"]}
+                <NavigationItem key='docs' icon={InsertDriveFile} t={t} page={[page, "/o/documents", "Documents"]}
                                 setPage={setPage}/>
-                <NavigationItem key='forums' icon={Forum} t={t} page={[page, "/forums", "Forums"]}
+                <NavigationItem key='forums' icon={Forum} t={t} page={[page, "/o/forums", "Forums"]}
                                 setPage={setPage}/>
-                <NavigationItem key='dash' icon={DashboardIcon} t={t} page={[page, "/dashboard", "Dashboard"]}
+                <NavigationItem key='dash' icon={DashboardIcon} t={t} page={[page, "/o/dashboard", "Dashboard"]}
                                 setPage={setPage}/>
-                <NavigationItem key='resolutions' icon={HowToVote} t={t} page={[page, "/resolutions", "Resolutions"]}
+                <NavigationItem key='resolutions' icon={HowToVote} t={t} page={[page, "/o/resolutions", "Resolutions"]}
                                 setPage={setPage}/>
             </List>
         </Paper>

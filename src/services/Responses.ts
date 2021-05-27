@@ -58,4 +58,4 @@ export type OwnerProfileResponse = {
     communities: CommunityResponse[]
 }
 
-export type CommunityResponse = { id: string, name: string }
+export type CommunityResponse = { communityId: string, name: string }

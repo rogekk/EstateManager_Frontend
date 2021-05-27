@@ -84,5 +84,4 @@ export const ResolutionComponent: React.FC<{
         <Button onClick={() => postVote(communityId, {id: resolutionId}, 'pro')}>PRO</Button>
         <Button onClick={() => postVote(communityId, {id: resolutionId}, 'against')}>AGAINST</Button>
     </Container>
-
 }

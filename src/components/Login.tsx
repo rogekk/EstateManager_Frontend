@@ -24,7 +24,7 @@ export const Login: React.FC<{ t: Translation }> = (props) => {
                                 const c = new Cookies()
                                 c.set("token", o.token);
                                 c.set("owner", o.id);
-                                history.push("/dashboard");
+                                history.push("/o/dashboard");
                             })
                             .catch((e) => {
                                 console.log(e);
