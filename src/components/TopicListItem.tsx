@@ -38,3 +38,4 @@ export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
         </Paper>
     );
 }
+

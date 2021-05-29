@@ -1,7 +1,7 @@
 import React, {FC, SetStateAction, useEffect, useState} from 'react';
 import './App.css';
 import {Box, Typography} from '@material-ui/core';
-import {BrowserRouter, Route, Switch} from "react-router-dom";
+import {BrowserRouter, Route, Switch, useHistory} from "react-router-dom";
 import {useStyles} from "./styles/UseStyles";
 import {Dashboard} from "./components/Dashboard";
 import {Login} from "./components/Login";
@@ -10,7 +10,7 @@ import {en, Translation} from "./Translations";
 import {Forums} from "./components/Forums";
 import {Community, OwnerId, OwnerProfile, Page} from "./components/Types";
 import Cookies from "universal-cookie";
-import {SideDrawer} from "./SideDrawer";
+import {NavigationPage, Pages, SideDrawer} from "./SideDrawer";
 import {CustomAppBar} from "./components/CustomAppBar";
 import {TopicComponent} from "./components/TopicComponent";
 import {ResolutionComponent, ResolutionsComponent} from "./components/Resolutions";
@@ -72,9 +72,13 @@ export const OwnerPortal: FC<{}> = () => {
     const [t, setTranslation] = useLocale(en);
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
     const [owner, setOwner] = useState<OwnerProfile>();
-    const [currentPage, setPage] = useState<Page>('forums');
-
+    const [currentPage, setPage] = useState<NavigationPage>(Pages.forums);
     const [done, setDone] = useState<boolean>(false);
+    const history = useHistory();
+
+    useEffect(() =>{
+        history.push(currentPage.url);
+    }, [currentPage])
 
     useEffect(
         () => {
@@ -89,8 +93,6 @@ export const OwnerPortal: FC<{}> = () => {
             if (!done) {
                 getProfile(getOwner())
                     .then(r => {
-                        console.log("=====================")
-                        console.log(r.communities)
                         setOwner(r);
                         setCommunity(r.communities[0]);
                         setDone(true);
@@ -108,15 +110,15 @@ export const OwnerPortal: FC<{}> = () => {
             maxHeight: '100%',
             overflow: 'hidden',
         }}>
-            <CustomAppBar t={t} setTranslation={setTranslation}/>
+            <CustomAppBar t={t} setTranslation={setTranslation} page={currentPage}/>
             <SideDrawer t={t} community={community} ownerProfile={owner} page={currentPage} setPage={setPage}/>
             <Switch>
-                <Route exact path="/o/dashboard" render={() => <Dashboard t={t} profile={owner}/>}/>
-                <Route exact path="/o/resolutions" render={() => <ResolutionsComponent communityId={community.id}/>}/>
-                <Route exact path="/o/resolutions/:resolutionId"
+                <Route exact path={Pages.dahshboard.url} render={() => <Dashboard t={t} profile={owner}/>}/>
+                <Route exact path={Pages.resolutions.url} render={() => <ResolutionsComponent communityId={community.id}/>}/>
+                <Route exact path={Pages.resolution.url}
                        render={() => <ResolutionComponent communityId={community.id}/>}/>
-                <Route exact path="/o/documents" render={() => <Documents/>}/>
-                <Route exact path="/o/forums" render={() => <Forums t={t} community={community}/>}/>
+                <Route exact path={Pages.documents.url} render={() => <Documents/>}/>
+                <Route exact path={Pages.forums.url} render={() => <Forums t={t} community={community}/>}/>
                 <Route exact path="/o/forums/:topicId"
                        render={() => <TopicComponent t={t} communityId={community.id.id}/>}/>
             </Switch>

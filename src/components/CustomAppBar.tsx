@@ -1,9 +1,9 @@
 import React, {Dispatch, FC, SetStateAction} from "react";
 import {en, pl, Translation} from "../Translations";
 import {useStyles} from "../styles/UseStyles";
-import {useLocation} from "react-router-dom";
 import {AppBar, Button, IconButton, Menu, Toolbar, Typography} from "@material-ui/core";
 import {Debugger} from "inspector";
+import {NavigationPage} from "../SideDrawer";
 
 function locationToTitle(location: string): string {
     if (location.includes("dashboard")) {
@@ -20,10 +20,10 @@ function locationToTitle(location: string): string {
 
 export const CustomAppBar: FC<{
     t: Translation,
+    page: NavigationPage,
     setTranslation: Dispatch<SetStateAction<Translation>>
-}> = ({t, setTranslation}) => {
+}> = ({t, setTranslation, page}) => {
     const classes = useStyles();
-    const location = useLocation();
     return (
         <AppBar position="fixed" style={{marginLeft: '200px', width: 'calc(100% - 232px)',
             color: "#333",
@@ -33,7 +33,7 @@ export const CustomAppBar: FC<{
                     <Menu open={false}/>
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    {locationToTitle(location.pathname)}
+                    {page.name}
                 </Typography>
                 <Button color="inherit" onClick={() => {
                     if (t === en) {
