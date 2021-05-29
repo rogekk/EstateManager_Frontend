@@ -1,9 +1,9 @@
 import {FC} from "react";
 import {Avatar, ListItem, ListItemAvatar, ListItemText, Paper, Typography} from "@material-ui/core";
-import {Topic} from "./Types";
+import {Topic} from "../common/models/Types";
 import {useStyles} from "../styles/UseStyles";
 import {useHistory} from "react-router-dom";
-import {renderText, timeAgo} from "./tools/TimeAgo";
+import {renderText, timeAgo} from "../common/tools/TimeAgo";
 
 export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
     const styles = useStyles();

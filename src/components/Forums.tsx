@@ -1,13 +1,13 @@
 import React, {useEffect, useState} from "react";
 import {useStyles} from "../styles/UseStyles";
 import {Container, Fab, List, ListItem} from "@material-ui/core";
-import {Translation} from "../Translations";
-import {Community, Topics} from "./Types";
-import {getTopics} from "../services/TopicsService";
 import {Add, Forum} from "@material-ui/icons";
 import {TopicListItem} from "./TopicListItem";
 import {CreateNewTopic} from "./CreateNewTopic";
 import {BackgroundIcon} from "./BackgroundIcon";
+import {Translation} from "../common/i18n/Translations";
+import {Community, Topics} from "../common/models/Types";
+import {getTopics} from "../owners/services/TopicsService";
 
 export const Forums: React.FC<{
     t: Translation,
@@ -48,7 +48,7 @@ export const Forums: React.FC<{
             </List>
             <Fab variant='extended' onClick={() => setOpen(true)} className={classes.fab} color={"secondary"}>
                 <Add/>
-                {t.forums.create}
+                {t.owner.forums.create}
             </Fab>
         </Container>
     );

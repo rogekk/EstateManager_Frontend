@@ -1,8 +1,8 @@
 import {FC} from "react";
 import {Avatar, ListItem, ListItemAvatar, ListItemText, Typography} from "@material-ui/core";
-import {Comment} from "./Types";
+import {Comment} from "../common/models/Types";
 import {useHistory} from "react-router-dom";
-import {timeAgo} from "./tools/TimeAgo";
+import {timeAgo} from "../common/tools/TimeAgo";
 
 export const CommentListItem: FC<{ comment: Comment }> = ({comment}) => {
     const history = useHistory();

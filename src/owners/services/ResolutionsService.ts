@@ -1,6 +1,6 @@
-import {CommunityId, OwnerId, Resolution, ResolutionId, Resolutions, Vote} from "../components/Types";
+import {CommunityId, OwnerId, Resolution, ResolutionId, Resolutions, Vote} from "../../common/models/Types";
 import {ResolutionResponse, ResolutionsResponse} from "./Responses";
-import {get, post} from "./Api";
+import {get, post} from "../../common/network/Api";
 
 export async function getResolutions(communityId: CommunityId): Promise<Resolutions> {
     const resolutionsResponse: ResolutionsResponse = await get<ResolutionsResponse>(`/communities/${communityId.id}/resolutions`)

@@ -1,6 +1,6 @@
-import {Community, OwnerId, OwnerProfile} from "../components/Types";
+import {Community, OwnerId, OwnerProfile} from "../../common/models/Types";
 import {OwnerProfileResponse} from "./Responses";
-import {get} from "./Api";
+import {get} from "../../common/network/Api";
 
 export async function getOwnerProfile(ownerId: OwnerId): Promise<OwnerProfile> {
     const ownerProfile: OwnerProfileResponse = await get<OwnerProfileResponse>(`/owner/${ownerId.id}`)

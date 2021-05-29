@@ -1,9 +1,9 @@
 import React, {Dispatch, FC, SetStateAction} from "react";
-import {en, pl, Translation} from "../Translations";
+import {en, Translation} from "../common/i18n/Translations";
 import {useStyles} from "../styles/UseStyles";
 import {AppBar, Button, IconButton, Menu, Toolbar, Typography} from "@material-ui/core";
 import {Debugger} from "inspector";
-import {NavigationPage} from "../SideDrawer";
+import {NavigationPage} from "../common/components/SideDrawer";
 
 function locationToTitle(location: string): string {
     if (location.includes("dashboard")) {
@@ -37,7 +37,7 @@ export const CustomAppBar: FC<{
                 </Typography>
                 <Button color="inherit" onClick={() => {
                     if (t === en) {
-                        setTranslation(pl);
+                        setTranslation(en);
                     } else {
                         setTranslation(en);
                     }

@@ -1,9 +1,9 @@
 import React, {FC, SetStateAction} from "react";
 import {ListItem, ListItemIcon, ListItemText, SvgIcon} from "@material-ui/core";
-import {Translation} from "../Translations";
-import {Page} from "./Types";
+import {Translation} from "../common/i18n/Translations";
+import {Page} from "../common/models/Types";
 import {useHistory, useLocation} from "react-router-dom";
-import {NavigationPage} from "../SideDrawer";
+import {NavigationPage} from "../common/components/SideDrawer";
 
 export const NavigationItem: FC<{
     icon: typeof SvgIcon,

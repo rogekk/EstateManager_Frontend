@@ -5,22 +5,22 @@ import {BrowserRouter, Route, Switch, useHistory} from "react-router-dom";
 import {useStyles} from "./styles/UseStyles";
 import {Dashboard} from "./components/Dashboard";
 import {Login} from "./components/Login";
-import {useLocale} from "./i18n";
-import {en, Translation} from "./Translations";
+import {useLocale} from "./common/i18n/i18n";
+import {en, Translation} from "./common/i18n/Translations";
 import {Forums} from "./components/Forums";
-import {Community, OwnerId, OwnerProfile, Page} from "./components/Types";
-import Cookies from "universal-cookie";
-import {NavigationPage, Pages, SideDrawer} from "./SideDrawer";
+import {Community, OwnerId, OwnerProfile, Page} from "./common/models/Types";
+import {NavigationPage, Pages, SideDrawer} from "./common/components/SideDrawer";
 import {CustomAppBar} from "./components/CustomAppBar";
 import {TopicComponent} from "./components/TopicComponent";
 import {ResolutionComponent, ResolutionsComponent} from "./components/Resolutions";
 import {Documents} from "./components/Documents";
-import {getProfile} from "./services/TopicsService";
+import {getProfile} from "./owners/services/TopicsService";
+import {getPersistedToken, getPersistedUser} from "./common/persistance/Persistance";
 // import {getOwnerProfile} from "./services/OwnerService";
 
-export const getToken = () => new Cookies().get("token");
+export const getToken = () => getPersistedToken()
 export const getOwner: () => OwnerId = () => {
-    return {id: new Cookies().get("owner")};
+    return {id: getPersistedUser()};
 }
 
 // export const getProfile: () => Promise<OwnerProfile> = async () => {
@@ -53,7 +53,7 @@ function App() {
             </Typography>
             <BrowserRouter>
                 <Switch>
-                    <Route exact path="/login" render={() => <Login t={t}/>}/>
+                    <Route exact path={Pages.login.url} render={() => <Login t={t}/>}/>
                     <Route path="/o/*" render={() => <OwnerPortal/>}/>
                 </Switch>
             </BrowserRouter>
@@ -76,7 +76,7 @@ export const OwnerPortal: FC<{}> = () => {
     const [done, setDone] = useState<boolean>(false);
     const history = useHistory();
 
-    useEffect(() =>{
+    useEffect(() => {
         history.push(currentPage.url);
     }, [currentPage])
 
@@ -114,7 +114,8 @@ export const OwnerPortal: FC<{}> = () => {
             <SideDrawer t={t} community={community} ownerProfile={owner} page={currentPage} setPage={setPage}/>
             <Switch>
                 <Route exact path={Pages.dahshboard.url} render={() => <Dashboard t={t} profile={owner}/>}/>
-                <Route exact path={Pages.resolutions.url} render={() => <ResolutionsComponent communityId={community.id}/>}/>
+                <Route exact path={Pages.resolutions.url}
+                       render={() => <ResolutionsComponent communityId={community.id}/>}/>
                 <Route exact path={Pages.resolution.url}
                        render={() => <ResolutionComponent communityId={community.id}/>}/>
                 <Route exact path={Pages.documents.url} render={() => <Documents/>}/>

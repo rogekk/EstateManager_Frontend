@@ -7,9 +7,9 @@ import {
     Topic,
     TopicId,
     Topics
-} from "../components/Types";
-import {get, post} from "./Api";
+} from "../../common/models/Types";
 import {CommentsResponse, OwnerProfileResponse, TopicsResponse} from "./Responses";
+import {get, post} from "../../common/network/Api";
 
 export async function getTopics(communityId: CommunityId): Promise<Topics> {
     const topicsResponse: TopicsResponse = await get<TopicsResponse>(`/communities/${communityId.id}/topics`)

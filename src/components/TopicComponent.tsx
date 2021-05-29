@@ -1,9 +1,9 @@
 import React, {FC, useEffect, useState} from "react";
-import {Translation} from "../Translations";
+import {Translation} from "../common/i18n/Translations";
 import {useStyles} from "../styles/UseStyles";
 import {useParams} from "react-router-dom";
-import {Comments} from "./Types";
-import {getComments} from "../services/TopicsService";
+import {Comments} from "../common/models/Types";
+import {getComments} from "../owners/services/TopicsService";
 import {Container, Fab, List, Paper, Typography} from "@material-ui/core";
 import {CreateNewComment} from "./CreateNewComment";
 import {Add, Forum} from "@material-ui/icons";
@@ -52,7 +52,7 @@ export const TopicComponent: FC<{
 
             <Fab variant='extended' onClick={() => setOpen(true)} className={classes.fab} color={"secondary"}>
                 <Add/>
-                {t.forums.create}
+                {t.owner.forums.create}
             </Fab>
         </Container>);
 }

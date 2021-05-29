@@ -1,17 +1,20 @@
 import React, {FC, SetStateAction} from "react";
-import {Translation} from "./Translations";
+import {Translation} from "../i18n/Translations";
 import {List, Paper, Typography} from "@material-ui/core";
 import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@material-ui/icons";
-import {Community, OwnerProfile, Page} from "./components/Types";
-import {NavigationItem} from "./components/NavigationItem";
+import {Community, OwnerProfile} from "../models/Types";
+import {NavigationItem} from "../../components/NavigationItem";
 import {useHistory, useLocation} from "react-router-dom";
+import {LogoutButton} from "./LogoutButton";
+
+export type SetPage = React.Dispatch<SetStateAction<NavigationPage>>
 
 export const SideDrawer: FC<{
     t: Translation,
     community: Community,
     ownerProfile: OwnerProfile | undefined,
     page: NavigationPage,
-    setPage: React.Dispatch<SetStateAction<NavigationPage>>
+    setPage: SetPage
 }> = ({t, community, ownerProfile, page, setPage}) => {
     return (
         <Paper style={{
@@ -33,6 +36,18 @@ export const SideDrawer: FC<{
                 <NavigationItem key='dash' icon={DashboardIcon} t={t} page={Pages.dahshboard} setPage={setPage}/>
                 <NavigationItem key='resolutions' icon={HowToVote} t={t} page={Pages.resolutions} setPage={setPage}/>
             </List>
+            <div style={{
+                display: "flex",
+                width: "100%",
+                height: "100%",
+            }}>
+                <div style={{flexGrow: 1}}>
+
+                </div>
+                <LogoutButton
+                    t={t} setPage={setPage}>
+                </LogoutButton>
+            </div>
         </Paper>
     );
 }
@@ -49,12 +64,12 @@ export const Pages = {
     },
     forums: {
         name: "Topics",
-        url: "o/topics"
+        url: "/o/topics"
     },
     documents: {
         name: "Documents",
         url: "/o/documents",
-},
+    },
     dahshboard: {
         name: "Dashboard",
         url: "/o/dashboard",

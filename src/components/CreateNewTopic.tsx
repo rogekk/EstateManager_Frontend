@@ -1,8 +1,8 @@
 import React, {Dispatch, FC, SetStateAction, useState} from "react";
-import {Translation} from "../Translations";
-import {CommunityId} from "./Types";
+import {Translation} from "../common/i18n/Translations";
+import {CommunityId} from "../common/models/Types";
 import {Button, Dialog, DialogTitle, TextField} from "@material-ui/core";
-import {postTopic} from "../services/TopicsService";
+import {postTopic} from "../owners/services/TopicsService";
 
 export const CreateNewTopic: FC<{
     t: Translation,
@@ -55,7 +55,7 @@ export const CreateNewTopic: FC<{
                 onChange={(e) => setDescription(e.target.value)}
                 required/>
             <Button type='submit' style={{marginLeft: 'auto'}}>
-                {t.forums.create}
+                {t.owner.forums.create}
             </Button>
         </form>
     </Dialog>

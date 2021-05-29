@@ -1,8 +1,8 @@
 import React, {Dispatch, FC, SetStateAction, useState} from "react";
-import {Translation} from "../Translations";
-import {CommunityId, TopicId} from "./Types";
+import {Translation} from "../common/i18n/Translations";
+import {CommunityId, TopicId} from "../common/models/Types";
 import {Button, Dialog, DialogTitle, TextField} from "@material-ui/core";
-import {postComment} from "../services/TopicsService";
+import {postComment} from "../owners/services/TopicsService";
 
 export const CreateNewComment: FC<{
     t: Translation,
@@ -48,7 +48,7 @@ export const CreateNewComment: FC<{
                 onChange={(e) => setContent(e.target.value)}
                 required/>
             <Button type='submit' style={{marginLeft: 'auto'}}>
-                {t.forums.create}
+                {t.owner.forums.create}
             </Button>
         </form>
     </Dialog>

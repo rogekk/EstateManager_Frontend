@@ -1,7 +1,7 @@
 import React from "react";
 import {Container} from "@material-ui/core";
-import {Translation} from "../Translations";
-import {OwnerProfile} from "./Types";
+import {Translation} from "../common/i18n/Translations";
+import {OwnerProfile} from "../common/models/Types";
 import {Dashboard as DashboardIcon} from "@material-ui/icons"
 import {BackgroundIcon} from "./BackgroundIcon";
 
