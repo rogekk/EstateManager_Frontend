@@ -9,7 +9,7 @@ import {useLocale} from "./common/i18n/i18n";
 import {en, Translation} from "./common/i18n/Translations";
 import {Forums} from "./components/Forums";
 import {Community, OwnerId, OwnerProfile, Page} from "./common/models/Types";
-import {NavigationPage, Pages, SideDrawer} from "./common/components/SideDrawer";
+import {NavigationPage, getPages, SideDrawer} from "./common/components/SideDrawer";
 import {CustomAppBar} from "./components/CustomAppBar";
 import {TopicComponent} from "./components/TopicComponent";
 import {ResolutionComponent, ResolutionsComponent} from "./components/Resolutions";
@@ -35,6 +35,7 @@ export const getOwner: () => OwnerId = () => {
 function App() {
     const classes = useStyles();
     const [t, setTranslation] = useLocale(en);
+    const Pages = getPages(t);
 
     return (
         <Box className={classes.background}>
@@ -72,6 +73,7 @@ export const OwnerPortal: FC<{}> = () => {
     const [t, setTranslation] = useLocale(en);
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
     const [owner, setOwner] = useState<OwnerProfile>();
+    const Pages = getPages(t);
     const [currentPage, setPage] = useState<NavigationPage>(Pages.forums);
     const [done, setDone] = useState<boolean>(false);
     const history = useHistory();

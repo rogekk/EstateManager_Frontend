@@ -1,22 +1,10 @@
 import React, {Dispatch, FC, SetStateAction} from "react";
-import {en, Translation} from "../common/i18n/Translations";
+import {en, it, Translation} from "../common/i18n/Translations";
 import {useStyles} from "../styles/UseStyles";
 import {AppBar, Button, IconButton, Menu, Toolbar, Typography} from "@material-ui/core";
 import {Debugger} from "inspector";
 import {NavigationPage} from "../common/components/SideDrawer";
 
-function locationToTitle(location: string): string {
-    if (location.includes("dashboard")) {
-        return "Dashboard";
-    } else if (location.includes("documents")) {
-        return "Documents"
-    } else if (location.includes("resolutions")) {
-        return "Resolutions"
-    } else if (location.includes("forums")) {
-        return "Forums"
-    }
-    return "";
-}
 
 export const CustomAppBar: FC<{
     t: Translation,
@@ -37,12 +25,12 @@ export const CustomAppBar: FC<{
                 </Typography>
                 <Button color="inherit" onClick={() => {
                     if (t === en) {
-                        setTranslation(en);
+                        setTranslation(it);
                     } else {
                         setTranslation(en);
                     }
                 }
-                }>Toggle language</Button>
+                }>{t.common.toggleLanguage}</Button>
             </Toolbar>
         </AppBar>
     );

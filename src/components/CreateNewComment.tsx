@@ -36,8 +36,7 @@ export const CreateNewComment: FC<{
                         setOpen(false);
                     })
             }}>
-            <DialogTitle id="form-dialog-title">Create new topic</DialogTitle>
-
+            <DialogTitle id="form-dialog-title">{t.common.createTopic}</DialogTitle>
 
             <TextField
                 id="content"

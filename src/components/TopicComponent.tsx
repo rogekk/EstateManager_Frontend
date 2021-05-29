@@ -40,7 +40,7 @@ export const TopicComponent: FC<{
             <Typography>
                 <Paper style={{maxWidth: "600px"}}>
                     <List>
-                        {comments.comments.map(c => <CommentListItem comment={c}/>)}
+                        {comments.comments.map(c => <CommentListItem t={t} comment={c}/>)}
                     </List>
                 </Paper>
             </Typography>

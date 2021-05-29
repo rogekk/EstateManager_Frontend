@@ -3,8 +3,9 @@ import {Avatar, ListItem, ListItemAvatar, ListItemText, Typography} from "@mater
 import {Comment} from "../common/models/Types";
 import {useHistory} from "react-router-dom";
 import {timeAgo} from "../common/tools/TimeAgo";
+import {Translation} from "../common/i18n/Translations";
 
-export const CommentListItem: FC<{ comment: Comment }> = ({comment}) => {
+export const CommentListItem: FC<{ t: Translation, comment: Comment }> = ({t, comment}) => {
     const history = useHistory();
 
     return (<div  key={comment.id.id}
@@ -18,7 +19,7 @@ export const CommentListItem: FC<{ comment: Comment }> = ({comment}) => {
                 </ListItemAvatar>
                 <ListItemText>
                     <Typography variant='subtitle2'>
-                        {comment.createdBy.username} | {timeAgo(Date.parse(comment.createdAt))}
+                        {comment.createdBy.username} | {timeAgo(t,Date.parse(comment.createdAt))}
                     </Typography>
                     <Typography>
                         {comment.content}

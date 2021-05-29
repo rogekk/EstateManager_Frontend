@@ -35,12 +35,12 @@ export const CreateNewTopic: FC<{
                     setOpen(false);
                 })
         }}>
-            <DialogTitle id="form-dialog-title">Create new topic</DialogTitle>
+            <DialogTitle id="form-dialog-title">{t.common.createTopic}</DialogTitle>
 
             <TextField
                 id="subject"
                 margin={'normal'}
-                label={"subject"}
+                label={t.common.topicCreation.subject}
                 fullWidth={true}
                 multiline={true}
                 onChange={(e) => setSubject(e.target.value)}
@@ -51,7 +51,7 @@ export const CreateNewTopic: FC<{
                 margin={'normal'}
                 fullWidth={true}
                 multiline={true}
-                label={"description"}
+                label={t.common.topicCreation.description}
                 onChange={(e) => setDescription(e.target.value)}
                 required/>
             <Button type='submit' style={{marginLeft: 'auto'}}>

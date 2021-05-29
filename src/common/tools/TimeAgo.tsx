@@ -1,4 +1,6 @@
-export const timeAgo = (prevDate: number) => {
+import {Translation} from "../i18n/Translations";
+
+export const timeAgo = (t: Translation, prevDate: number) => {
     const diff = Number(new Date()) - prevDate;
     const minute = 60 * 1000;
     const hour = minute * 60;
@@ -8,17 +10,17 @@ export const timeAgo = (prevDate: number) => {
     switch (true) {
         case diff < minute:
             const seconds = Math.round(diff / 1000);
-            return `${seconds} ${seconds > 1 ? 'seconds' : 'second'} ago`
+            return t.common.timeAgo.seconds(seconds);
         case diff < hour:
-            return Math.round(diff / minute) + ' minutes ago';
+            return t.common.timeAgo.minutes(Math.round(diff / minute));
         case diff < day:
-            return Math.round(diff / hour) + ' hours ago';
+            return t.common.timeAgo.hours(Math.round(diff / hour));
         case diff < month:
-            return Math.round(diff / day) + ' days ago';
+            return t.common.timeAgo.days(Math.round(diff / day));
         case diff < year:
-            return Math.round(diff / month) + ' months ago';
+            return t.common.timeAgo.months(Math.round(diff / month));
         case diff > year:
-            return Math.round(diff / year) + ' years ago';
+            return t.common.timeAgo.years(Math.round(diff / year));
         default:
             return "";
     }

@@ -28,7 +28,7 @@ export const Forums: React.FC<{
 
 
     const topicList = () => topics !== null ? topics.topics.map((topic) =>
-        <TopicListItem topic={topic}/>) : <ListItem/>
+        <TopicListItem t={t} topic={topic}/>) : <ListItem/>
 
     const handleClose = () => setOpen(false);
 

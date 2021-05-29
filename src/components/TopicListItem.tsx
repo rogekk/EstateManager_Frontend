@@ -4,8 +4,11 @@ import {Topic} from "../common/models/Types";
 import {useStyles} from "../styles/UseStyles";
 import {useHistory} from "react-router-dom";
 import {renderText, timeAgo} from "../common/tools/TimeAgo";
+import {Translation} from "../common/i18n/Translations";
 
-export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
+export const TopicListItem: FC<{
+    t: Translation,
+    topic: Topic }> = ({t, topic}) => {
     const styles = useStyles();
     const history = useHistory();
 
@@ -22,7 +25,7 @@ export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
                 </ListItemAvatar>
                 <ListItemText>
                     <Typography variant='subtitle2'>
-                        {topic.createdBy.username} | {timeAgo(Date.parse(topic.createdAt))}
+                        {topic.createdBy.username} | {timeAgo(t, Date.parse(topic.createdAt))}
                     </Typography>
                     <Typography variant='h6'>
                         {topic.subject}
@@ -31,7 +34,7 @@ export const TopicListItem: FC<{ topic: Topic }> = ({topic}) => {
                         {renderText(topic.description)}
                     </Typography>
                     <Typography>
-                        Comments: {topic.commentCount}
+                        {t.common.topics.comments}: {topic.commentCount}
                     </Typography>
                 </ListItemText>
             </ListItem>

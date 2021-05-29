@@ -16,6 +16,9 @@ export const SideDrawer: FC<{
     page: NavigationPage,
     setPage: SetPage
 }> = ({t, community, ownerProfile, page, setPage}) => {
+
+    const Pages = getPages(t);
+
     return (
         <Paper style={{
             flexShrink: 0,
@@ -30,6 +33,7 @@ export const SideDrawer: FC<{
             <Typography>
                 {!!ownerProfile && ownerProfile.communities[0].name.value}
             </Typography>
+
             <List>
                 <NavigationItem key='docs' icon={InsertDriveFile} t={t} page={Pages.documents} setPage={setPage}/>
                 <NavigationItem key='forums' icon={Forum} t={t} page={Pages.forums} setPage={setPage}/>
@@ -39,9 +43,10 @@ export const SideDrawer: FC<{
             <div style={{
                 display: "flex",
                 width: "100%",
+                flexFlow: "row",
                 height: "100%",
             }}>
-                <div style={{flexGrow: 1}}>
+                <div style={{flexShrink: 1}}>
 
                 </div>
                 <LogoutButton
@@ -57,31 +62,34 @@ export type NavigationPage = {
     url: string
 }
 
-export const Pages = {
-    login: {
-        name: "Login",
-        url: "/login"
-    },
-    forums: {
-        name: "Topics",
-        url: "/o/topics"
-    },
-    documents: {
-        name: "Documents",
-        url: "/o/documents",
-    },
-    dahshboard: {
-        name: "Dashboard",
-        url: "/o/dashboard",
-    },
-    resolutions: {
-        name: "Resolutions",
-        url: "/o/resolutions",
-    },
-    resolution: {
-        name: "Resolution",
-        url: "/o/resolutions/:resolutionId"
-    },
+export const getPages = (t: Translation) => {
+    const n = t.common.navigation
+    return {
+        login: {
+            name: n.login,
+            url: "/login"
+        },
+        forums: {
+            name: n.topics,
+            url: "/o/topics"
+        },
+        documents: {
+            name: n.documents,
+            url: "/o/documents",
+        },
+        dahshboard: {
+            name: n.dashboard,
+            url: "/o/dashboard",
+        },
+        resolutions: {
+            name: n.resolutions,
+            url: "/o/resolutions",
+        },
+        resolution: {
+            name: n.resolution,
+            url: "/o/resolutions/:resolutionId"
+        },
+    }
 }
 
 export function useNavigation() {
