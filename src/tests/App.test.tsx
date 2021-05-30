@@ -1,7 +1,6 @@
 import React, {FC} from 'react';
 import {render, screen} from '@testing-library/react';
 import {Login} from "../components/Login";
-import {en} from "../Translations";
 
 const YoComponent: FC = () => {
 
@@ -13,7 +12,7 @@ const YoComponent: FC = () => {
 test('renders learn react link', () => {
 
     render(
-        <Login t={en}/>
+        <Login />
     );
     const linkElement = screen.getByText(/login/i);
     expect(linkElement).toBeInTheDocument();

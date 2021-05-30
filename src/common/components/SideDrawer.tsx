@@ -15,7 +15,7 @@ export const SideDrawer: FC<{
     ownerProfile: OwnerProfile | undefined,
     page: NavigationPage,
     setPage: SetPage
-}> = ({community, ownerProfile, page, setPage}) => {
+}> = ({community, ownerProfile, page, setPage, children}) => {
     const {t} = useTranslation();
 
     return (
@@ -34,10 +34,7 @@ export const SideDrawer: FC<{
             </Typography>
 
             <List>
-                <NavigationItem key='docs' icon={InsertDriveFile}  page={Pages.documents} setPage={setPage}/>
-                <NavigationItem key='forums' icon={Forum}  page={Pages.forums} setPage={setPage}/>
-                <NavigationItem key='dash' icon={DashboardIcon}  page={Pages.dahshboard} setPage={setPage}/>
-                <NavigationItem key='resolutions' icon={HowToVote}  page={Pages.resolutions} setPage={setPage}/>
+                {children}
             </List>
             <div style={{
                 display: "flex",
@@ -62,30 +59,30 @@ export type NavigationPage = {
 }
 
 export const Pages = {
-        login: {
-            name: (t: Translation) => t.common.navigation.login,
-            url: "/login"
-        },
-        forums: {
-            name: (t: Translation) => t.common.navigation.topics,
-            url: "/o/topics"
-        },
-        documents: {
-            name: (t: Translation) => t.common.navigation.documents,
-            url: "/o/documents",
-        },
-        dahshboard: {
-            name: (t: Translation) => t.common.navigation.dashboard,
-            url: "/o/dashboard",
-        },
-        resolutions: {
-            name: (t: Translation) => t.common.navigation.resolutions,
-            url: "/o/resolutions",
-        },
-        resolution: {
-            name: (t: Translation) => t.common.navigation.resolution,
-            url: "/o/resolutions/:resolutionId"
-        },
+    login: {
+        name: (t: Translation) => t.common.navigation.login,
+        url: "/login"
+    },
+    forums: {
+        name: (t: Translation) => t.common.navigation.topics,
+        url: "/o/topics"
+    },
+    documents: {
+        name: (t: Translation) => t.common.navigation.documents,
+        url: "/o/documents",
+    },
+    dahshboard: {
+        name: (t: Translation) => t.common.navigation.dashboard,
+        url: "/o/dashboard",
+    },
+    resolutions: {
+        name: (t: Translation) => t.common.navigation.resolutions,
+        url: "/o/resolutions",
+    },
+    resolution: {
+        name: (t: Translation) => t.common.navigation.resolution,
+        url: "/o/resolutions/:resolutionId"
+    },
 }
 
 export function useNavigation() {

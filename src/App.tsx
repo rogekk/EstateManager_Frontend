@@ -17,6 +17,8 @@ import {Documents} from "./components/Documents";
 import {getProfile} from "./owners/services/TopicsService";
 import {getPersistedToken, getPersistedUser} from "./common/persistance/Persistance";
 import {TranslationContext, TranslationProvider, useTranslation} from "./common/i18n/UseTranslation";
+import {NavigationItem} from "./components/NavigationItem";
+import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@material-ui/icons";
 // import {getOwnerProfile} from "./services/OwnerService";
 
 export const getToken = () => getPersistedToken()
@@ -27,6 +29,7 @@ export const getOwner: () => OwnerId = () => {
 // export const getProfile: () => Promise<OwnerProfile> = async () => {
 //     const profile = JSON.parse(new Cookies().get("profile")) as OwnerProfile;
 //     if (profile == null) {
+
 //         return await getOwnerProfile(getOwner());
 //     } else {
 //         return profile;
@@ -99,7 +102,12 @@ export const OwnerPortal: FC<{}> = () => {
             overflow: 'hidden',
         }}>
             <CustomAppBar page={currentPage}/>
-            <SideDrawer community={community} ownerProfile={owner} page={currentPage} setPage={setPage}/>
+            <SideDrawer community={community} ownerProfile={owner} page={currentPage} setPage={setPage}>
+                <NavigationItem key='docs' icon={InsertDriveFile} page={Pages.documents} setPage={setPage}/>
+                <NavigationItem key='forums' icon={Forum} page={Pages.forums} setPage={setPage}/>
+                <NavigationItem key='dash' icon={DashboardIcon} page={Pages.dahshboard} setPage={setPage}/>
+                <NavigationItem key='resolutions' icon={HowToVote} page={Pages.resolutions} setPage={setPage}/>
+            </SideDrawer>
             <Switch>
                 <Route exact path={Pages.dahshboard.url} render={() => <Dashboard profile={owner}/>}/>
                 <Route exact path={Pages.resolutions.url}
