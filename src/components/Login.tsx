@@ -3,11 +3,12 @@ import {api} from "../common/network/Api";
 import {useStyles} from "../styles/UseStyles";
 import {useHistory} from "react-router-dom";
 import {Box, Button, Card, Container, TextField} from "@material-ui/core";
-import {Translation} from "../common/i18n/Translations";
 import {persistToken, persistUser} from "../common/persistance/Persistance";
+import {useTranslation} from "../common/i18n/UseTranslation";
 
-export const Login: React.FC<{ t: Translation }> = ({t}) => {
+export const Login: React.FC<{ }> = () => {
 
+    const {t} = useTranslation();
     const classes = useStyles();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");

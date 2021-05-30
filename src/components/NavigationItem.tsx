@@ -1,18 +1,18 @@
 import React, {FC, SetStateAction} from "react";
 import {ListItem, ListItemIcon, ListItemText, SvgIcon} from "@material-ui/core";
-import {Translation} from "../common/i18n/Translations";
 import {Page} from "../common/models/Types";
 import {useHistory, useLocation} from "react-router-dom";
 import {NavigationPage} from "../common/components/SideDrawer";
+import {useTranslation} from "../common/i18n/UseTranslation";
 
 export const NavigationItem: FC<{
     icon: typeof SvgIcon,
-    t: Translation,
     page: NavigationPage,
     setPage: React.Dispatch<SetStateAction<NavigationPage>>,
-}> = ({icon, t, page, setPage}) => {
+}> = ({icon, page, setPage}) => {
     const location = useLocation();
     const history = useHistory();
+    const {t} = useTranslation();
     // const [p, path, name] = page
 
     return (<ListItem selected={location.pathname === page.url} button onClick={() => {
@@ -22,7 +22,7 @@ export const NavigationItem: FC<{
             {React.createElement(icon)}
         </ListItemIcon>
         <ListItemText>
-            {page.name}
+            {page.name(t)}
         </ListItemText>
     </ListItem>)
 }

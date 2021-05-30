@@ -3,9 +3,9 @@ import {Translation} from "../common/i18n/Translations";
 import {CommunityId, TopicId} from "../common/models/Types";
 import {Button, Dialog, DialogTitle, TextField} from "@material-ui/core";
 import {postComment} from "../owners/services/TopicsService";
+import {useTranslation} from "../common/i18n/UseTranslation";
 
 export const CreateNewComment: FC<{
-    t: Translation,
     open: boolean,
     setOpen: Dispatch<SetStateAction<boolean>>
     communityId: CommunityId,
@@ -13,7 +13,6 @@ export const CreateNewComment: FC<{
     onCreated: () => any,
     handleClose: () => any,
 }> = ({
-          t,
           open,
           setOpen,
           communityId,
@@ -22,6 +21,7 @@ export const CreateNewComment: FC<{
           handleClose,
       }) => {
     const [content, setContent] = useState("")
+    const {t} = useTranslation();
 
     return <Dialog open={open} onClose={handleClose}>
         <form

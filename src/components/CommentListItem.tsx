@@ -4,9 +4,11 @@ import {Comment} from "../common/models/Types";
 import {useHistory} from "react-router-dom";
 import {timeAgo} from "../common/tools/TimeAgo";
 import {Translation} from "../common/i18n/Translations";
+import {useTranslation} from "../common/i18n/UseTranslation";
 
-export const CommentListItem: FC<{ t: Translation, comment: Comment }> = ({t, comment}) => {
+export const CommentListItem: FC<{comment: Comment }> = ({comment}) => {
     const history = useHistory();
+    const {t} = useTranslation();
 
     return (<div  key={comment.id.id}
                   style={{maxWidth: "600px"}}

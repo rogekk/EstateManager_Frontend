@@ -6,18 +6,17 @@ import {Community, OwnerProfile} from "../models/Types";
 import {NavigationItem} from "../../components/NavigationItem";
 import {useHistory, useLocation} from "react-router-dom";
 import {LogoutButton} from "./LogoutButton";
+import {useTranslation} from "../i18n/UseTranslation";
 
 export type SetPage = React.Dispatch<SetStateAction<NavigationPage>>
 
 export const SideDrawer: FC<{
-    t: Translation,
     community: Community,
     ownerProfile: OwnerProfile | undefined,
     page: NavigationPage,
     setPage: SetPage
-}> = ({t, community, ownerProfile, page, setPage}) => {
-
-    const Pages = getPages(t);
+}> = ({community, ownerProfile, page, setPage}) => {
+    const {t} = useTranslation();
 
     return (
         <Paper style={{
@@ -35,10 +34,10 @@ export const SideDrawer: FC<{
             </Typography>
 
             <List>
-                <NavigationItem key='docs' icon={InsertDriveFile} t={t} page={Pages.documents} setPage={setPage}/>
-                <NavigationItem key='forums' icon={Forum} t={t} page={Pages.forums} setPage={setPage}/>
-                <NavigationItem key='dash' icon={DashboardIcon} t={t} page={Pages.dahshboard} setPage={setPage}/>
-                <NavigationItem key='resolutions' icon={HowToVote} t={t} page={Pages.resolutions} setPage={setPage}/>
+                <NavigationItem key='docs' icon={InsertDriveFile}  page={Pages.documents} setPage={setPage}/>
+                <NavigationItem key='forums' icon={Forum}  page={Pages.forums} setPage={setPage}/>
+                <NavigationItem key='dash' icon={DashboardIcon}  page={Pages.dahshboard} setPage={setPage}/>
+                <NavigationItem key='resolutions' icon={HowToVote}  page={Pages.resolutions} setPage={setPage}/>
             </List>
             <div style={{
                 display: "flex",
@@ -50,7 +49,7 @@ export const SideDrawer: FC<{
 
                 </div>
                 <LogoutButton
-                    t={t} setPage={setPage}>
+                    setPage={setPage}>
                 </LogoutButton>
             </div>
         </Paper>
@@ -58,38 +57,35 @@ export const SideDrawer: FC<{
 }
 
 export type NavigationPage = {
-    name: string,
+    name: (t: Translation) => string,
     url: string
 }
 
-export const getPages = (t: Translation) => {
-    const n = t.common.navigation
-    return {
+export const Pages = {
         login: {
-            name: n.login,
+            name: (t: Translation) => t.common.navigation.login,
             url: "/login"
         },
         forums: {
-            name: n.topics,
+            name: (t: Translation) => t.common.navigation.topics,
             url: "/o/topics"
         },
         documents: {
-            name: n.documents,
+            name: (t: Translation) => t.common.navigation.documents,
             url: "/o/documents",
         },
         dahshboard: {
-            name: n.dashboard,
+            name: (t: Translation) => t.common.navigation.dashboard,
             url: "/o/dashboard",
         },
         resolutions: {
-            name: n.resolutions,
+            name: (t: Translation) => t.common.navigation.resolutions,
             url: "/o/resolutions",
         },
         resolution: {
-            name: n.resolution,
+            name: (t: Translation) => t.common.navigation.resolution,
             url: "/o/resolutions/:resolutionId"
         },
-    }
 }
 
 export function useNavigation() {

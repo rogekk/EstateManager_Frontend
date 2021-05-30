@@ -3,10 +3,11 @@ import {Translation} from "../i18n/Translations";
 import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
 import {removePersistedToken, removePersistedUser} from "../persistance/Persistance";
 import {ExitToApp} from "@material-ui/icons";
-import {getPages, SetPage} from "./SideDrawer";
+import {Pages, SetPage} from "./SideDrawer";
+import {useTranslation} from "../i18n/UseTranslation";
 
-export const LogoutButton: FC<{ t: Translation, setPage: SetPage }> = ({t, setPage}) => {
-    const Pages = getPages(t);
+export const LogoutButton: FC<{setPage: SetPage }> = ({setPage}) => {
+    const {t} = useTranslation();
     return <ListItem
         style={{flexShrink: 1}}
         button

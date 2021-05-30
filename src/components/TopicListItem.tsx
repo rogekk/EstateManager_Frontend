@@ -4,13 +4,13 @@ import {Topic} from "../common/models/Types";
 import {useStyles} from "../styles/UseStyles";
 import {useHistory} from "react-router-dom";
 import {renderText, timeAgo} from "../common/tools/TimeAgo";
-import {Translation} from "../common/i18n/Translations";
+import {useTranslation} from "../common/i18n/UseTranslation";
 
 export const TopicListItem: FC<{
-    t: Translation,
-    topic: Topic }> = ({t, topic}) => {
+    topic: Topic }> = ({topic}) => {
     const styles = useStyles();
     const history = useHistory();
+    const {t} = useTranslation();
 
     console.log(topic.subject);
 

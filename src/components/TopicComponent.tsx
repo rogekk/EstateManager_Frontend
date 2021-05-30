@@ -9,15 +9,16 @@ import {CreateNewComment} from "./CreateNewComment";
 import {Add, Forum} from "@material-ui/icons";
 import {CommentListItem} from "./CommentListItem";
 import {BackgroundIcon} from "./BackgroundIcon";
+import {useTranslation} from "../common/i18n/UseTranslation";
 
 export const TopicComponent: FC<{
-    t: Translation,
     communityId: string
-}> = ({t, communityId}) => {
+}> = ({communityId}) => {
 
     const classes = useStyles();
     const [open, setOpen] = useState(false);
     const handleClose = () => setOpen(false);
+    const {t} = useTranslation();
 
     const {topicId} = useParams<{ topicId: string, communityId: string }>();
 
@@ -40,12 +41,12 @@ export const TopicComponent: FC<{
             <Typography>
                 <Paper style={{maxWidth: "600px"}}>
                     <List>
-                        {comments.comments.map(c => <CommentListItem t={t} comment={c}/>)}
+                        {comments.comments.map(c => <CommentListItem comment={c}/>)}
                     </List>
                 </Paper>
             </Typography>
 
-            <CreateNewComment t={t} open={open} setOpen={setOpen} communityId={
+            <CreateNewComment open={open} setOpen={setOpen} communityId={
                 {id: communityId}} topicId={{id: topicId}} onCreated={() =>
                 getComments({id: communityId}, {id: topicId}).then((r) => setComments(r))
             } handleClose={handleClose}/>

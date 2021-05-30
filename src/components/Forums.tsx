@@ -8,11 +8,12 @@ import {BackgroundIcon} from "./BackgroundIcon";
 import {Translation} from "../common/i18n/Translations";
 import {Community, Topics} from "../common/models/Types";
 import {getTopics} from "../owners/services/TopicsService";
+import {useTranslation} from "../common/i18n/UseTranslation";
 
 export const Forums: React.FC<{
-    t: Translation,
     community: Community
-}> = ({t, community}) => {
+}> = ({community}) => {
+    const {t} = useTranslation();
     const classes = useStyles();
     const [topics, setTopics] = useState<Topics | null>(null);
     const [open, setOpen] = useState(false);
@@ -28,7 +29,7 @@ export const Forums: React.FC<{
 
 
     const topicList = () => topics !== null ? topics.topics.map((topic) =>
-        <TopicListItem t={t} topic={topic}/>) : <ListItem/>
+        <TopicListItem topic={topic}/>) : <ListItem/>
 
     const handleClose = () => setOpen(false);
 
@@ -37,7 +38,6 @@ export const Forums: React.FC<{
             overflow: "auto"}}>
             <BackgroundIcon icon={Forum}/>
             <CreateNewTopic
-                t={t}
                 open={open}
                 setOpen={setOpen}
                 communityId={community.id}
