@@ -16,7 +16,7 @@ import {ResolutionComponent, ResolutionsComponent} from "./components/Resolution
 import {Documents} from "./components/Documents";
 import {getProfile} from "./owners/services/TopicsService";
 import {getPersistedToken, getPersistedUser} from "./common/persistance/Persistance";
-import {TranslationContext, TranslationProvider} from "./common/i18n/UseTranslation";
+import {TranslationContext, TranslationProvider, useTranslation} from "./common/i18n/UseTranslation";
 // import {getOwnerProfile} from "./services/OwnerService";
 
 export const getToken = () => getPersistedToken()
@@ -35,29 +35,18 @@ export const getOwner: () => OwnerId = () => {
 
 function App() {
     const classes = useStyles();
-    const [t, setTranslation] = useLocale(en);
     return (
-        <Box className={classes.background}>
-            <Typography style={{
-                color: '#fff',
-                position: 'absolute',
-                width: '100%',
-                textAlign: 'center',
-                top: '95%',
-                marginLeft: '100px',
-                zIndex: 0,
-                textShadow: '1px 1px 4px #000'
-            }} variant={'subtitle2'}>
-                ©Copyright 2021 The Estate Manager Inc | Terms and Conditions | Privacy Policy | Careers | About |
-                Contact
-            </Typography>
-            <BrowserRouter>
-                <Switch>
-                    <Route exact path={Pages.login.url} render={() => <Login />}/>
-                    <Route path="/o/*" render={() => <OwnerPortal/>}/>
-                </Switch>
-            </BrowserRouter>
-        </Box>
+        <TranslationProvider>
+            <Box className={classes.background}>
+                <Footer></Footer>
+                <BrowserRouter>
+                    <Switch>
+                        <Route exact path={Pages.login.url} render={() => <Login/>}/>
+                        <Route path="/o/*" render={() => <OwnerPortal/>}/>
+                    </Switch>
+                </BrowserRouter>
+            </Box>
+        </TranslationProvider>
     );
 }
 
@@ -69,7 +58,6 @@ export const ManagerPortal: FC<{}> = () => {
     return (<div></div>);
 }
 export const OwnerPortal: FC<{}> = () => {
-    const [t, setTranslation] = useLocale(en);
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
     const [owner, setOwner] = useState<OwnerProfile>();
     const [currentPage, setPage] = useState<NavigationPage>(Pages.forums);
@@ -103,30 +91,47 @@ export const OwnerPortal: FC<{}> = () => {
     )
 
     return (
-        <TranslationProvider>
-            <Box style={{
-                height: '100%',
-                display: 'flex',
-                width: '100%',
-                maxHeight: '100%',
-                overflow: 'hidden',
-            }}>
-                <CustomAppBar page={currentPage}/>
-                <SideDrawer community={community} ownerProfile={owner} page={currentPage} setPage={setPage}/>
-                <Switch>
-                    <Route exact path={Pages.dahshboard.url} render={() => <Dashboard  profile={owner}/>}/>
-                    <Route exact path={Pages.resolutions.url}
-                           render={() => <ResolutionsComponent communityId={community.id}/>}/>
-                    <Route exact path={Pages.resolution.url}
-                           render={() => <ResolutionComponent communityId={community.id}/>}/>
-                    <Route exact path={Pages.documents.url} render={() => <Documents/>}/>
-                    <Route exact path={Pages.forums.url} render={() => <Forums community={community}/>}/>
-                    <Route exact path="/o/forums/:topicId"
-                           render={() => <TopicComponent communityId={community.id.id}/>}/>
-                </Switch>
-            </Box>
-        </TranslationProvider>
+        <Box style={{
+            height: '100%',
+            display: 'flex',
+            width: '100%',
+            maxHeight: '100%',
+            overflow: 'hidden',
+        }}>
+            <CustomAppBar page={currentPage}/>
+            <SideDrawer community={community} ownerProfile={owner} page={currentPage} setPage={setPage}/>
+            <Switch>
+                <Route exact path={Pages.dahshboard.url} render={() => <Dashboard profile={owner}/>}/>
+                <Route exact path={Pages.resolutions.url}
+                       render={() => <ResolutionsComponent communityId={community.id}/>}/>
+                <Route exact path={Pages.resolution.url}
+                       render={() => <ResolutionComponent communityId={community.id}/>}/>
+                <Route exact path={Pages.documents.url} render={() => <Documents/>}/>
+                <Route exact path={Pages.forums.url} render={() => <Forums community={community}/>}/>
+                <Route exact path="/o/forums/:topicId"
+                       render={() => <TopicComponent communityId={community.id.id}/>}/>
+            </Switch>
+        </Box>
     )
+
+}
+
+export const Footer: FC<{}> = () => {
+    const {t} = useTranslation();
+
+    return (<Typography style={{
+        color: '#fff',
+        position: 'absolute',
+        width: '100%',
+        textAlign: 'center',
+        top: '95%',
+        marginLeft: '100px',
+        zIndex: 0,
+        textShadow: '1px 1px 4px #000'
+    }} variant={'subtitle2'}>
+        {t.common.footer.text}
+    </Typography>)
+
 }
 
 export default App;

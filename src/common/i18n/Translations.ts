@@ -34,7 +34,12 @@ export const en = {
             years: (n: number) =>  plural(`a year ago|${n} years ago`, n),
         },
         logout: "Logout",
-
+        dashboard: {
+            title: (name: string ) => `Hello ${name}`
+        },
+        footer: {
+            text: "©Copyright 2021 The Estate Manager Inc | Terms and Conditions | Privacy Policy | Careers | About | Contact"
+        },
     },
     owner: {
         forums: {
@@ -78,7 +83,14 @@ export const it: typeof en = {
             resolutions: "Risoluzioni",
             resolution: "Risoluzione",
         },
-        logout: "Uscita"
+        logout: "Uscita",
+
+        dashboard: {
+            title: (name: string ) => `Ciao ${name}`
+        },
+        footer: {
+            text: "©Copyright 2021 The Estate Manager Inc | Termine e Condizioni | Pratiche della Privacy | Carriere | Chi Siamo | Contatti"
+        },
     },
     owner: {
         forums: {
