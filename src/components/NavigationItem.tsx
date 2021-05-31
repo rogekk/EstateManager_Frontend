@@ -7,22 +7,22 @@ import {useTranslation} from "../common/i18n/UseTranslation";
 
 export const NavigationItem: FC<{
     icon: typeof SvgIcon,
-    page: NavigationPage,
-    setPage: React.Dispatch<SetStateAction<NavigationPage>>,
-}> = ({icon, page, setPage}) => {
+    name: string,
+    url: string,
+}> = ({icon, name, url}) => {
     const location = useLocation();
     const history = useHistory();
     const {t} = useTranslation();
     // const [p, path, name] = page
 
-    return (<ListItem selected={location.pathname === page.url} button onClick={() => {
-        setPage(page)
+    return (<ListItem selected={location.pathname === url} button onClick={() => {
+        history.push(url);
     }}>
         <ListItemIcon>
             {React.createElement(icon)}
         </ListItemIcon>
         <ListItemText>
-            {page.name(t)}
+            {name}
         </ListItemText>
     </ListItem>)
 }

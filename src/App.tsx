@@ -8,7 +8,7 @@ import {Login} from "./components/Login";
 import {useLocale} from "./common/i18n/i18n";
 import {en, Translation} from "./common/i18n/Translations";
 import {Forums} from "./components/Forums";
-import {Community, OwnerId, OwnerProfile, Page} from "./common/models/Types";
+import {Community, OwnerId, UserProfile, Page} from "./common/models/Types";
 import {NavigationPage, SideDrawer, Pages} from "./common/components/SideDrawer";
 import {CustomAppBar} from "./components/CustomAppBar";
 import {TopicComponent} from "./components/TopicComponent";
@@ -22,30 +22,22 @@ import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@ma
 // import {getOwnerProfile} from "./services/OwnerService";
 
 export const getToken = () => getPersistedToken()
-export const getOwner: () => OwnerId = () => {
+export const getUser: () => OwnerId = () => {
     return {id: getPersistedUser()};
 }
-
-// export const getProfile: () => Promise<OwnerProfile> = async () => {
-//     const profile = JSON.parse(new Cookies().get("profile")) as OwnerProfile;
-//     if (profile == null) {
-
-//         return await getOwnerProfile(getOwner());
-//     } else {
-//         return profile;
-//     }
-// }
 
 function App() {
     const classes = useStyles();
     return (
         <TranslationProvider>
             <Box className={classes.background}>
-                <Footer></Footer>
+                <Footer/>
                 <BrowserRouter>
                     <Switch>
                         <Route exact path={Pages.login.url} render={() => <Login/>}/>
                         <Route path="/o/*" render={() => <OwnerPortal/>}/>
+                        <Route path="/a/*" render={() => <AdminPortal/>}/>
+                        <Route path="/m/*" render={() => <ManagerPortal/>}/>
                     </Switch>
                 </BrowserRouter>
             </Box>
@@ -58,18 +50,10 @@ export const AdminPortal: FC<{}> = () => {
 }
 
 export const ManagerPortal: FC<{}> = () => {
-    return (<div></div>);
-}
-export const OwnerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
-    const [owner, setOwner] = useState<OwnerProfile>();
-    const [currentPage, setPage] = useState<NavigationPage>(Pages.forums);
-    const [done, setDone] = useState<boolean>(false);
+    const [user, setUser] = useState<UserProfile>();
     const history = useHistory();
-
-    useEffect(() => {
-        history.push(currentPage.url);
-    }, [currentPage])
+    const {t} = useTranslation();
 
     useEffect(
         () => {
@@ -77,21 +61,13 @@ export const OwnerPortal: FC<{}> = () => {
                 window.location.replace("/login");
             }
 
-            if (owner == null && getOwner() != null) {
-                console.log("doing it$$$$ " + getOwner());
-            }
-
-            if (!done) {
-                getProfile(getOwner())
-                    .then(r => {
-                        setOwner(r);
-                        setCommunity(r.communities[0]);
-                        setDone(true);
-                    })
-
-            }
+            getProfile(getUser())
+                .then(r => {
+                    setUser(r);
+                    setCommunity(r.communities[0]);
+                })
         }
-    )
+        , [])
 
     return (
         <Box style={{
@@ -101,12 +77,55 @@ export const OwnerPortal: FC<{}> = () => {
             maxHeight: '100%',
             overflow: 'hidden',
         }}>
-            <CustomAppBar page={currentPage}/>
-            <SideDrawer community={community} ownerProfile={owner} page={currentPage} setPage={setPage}>
-                <NavigationItem key='docs' icon={InsertDriveFile} page={Pages.documents} setPage={setPage}/>
-                <NavigationItem key='forums' icon={Forum} page={Pages.forums} setPage={setPage}/>
-                <NavigationItem key='dash' icon={DashboardIcon} page={Pages.dahshboard} setPage={setPage}/>
-                <NavigationItem key='resolutions' icon={HowToVote} page={Pages.resolutions} setPage={setPage}/>
+            <CustomAppBar />
+            <SideDrawer community={community} ownerProfile={undefined} >
+                <NavigationItem key='docs' icon={InsertDriveFile} name={t.common.navigation.documents} url={'/m/documents'}/>
+                <NavigationItem key='dash' icon={DashboardIcon} name={t.common.navigation.dashboard} url={'/m/dashboard'}/>
+                <NavigationItem key='resolutions' icon={HowToVote} name={t.common.navigation.resolutions} url={'/m/resolutions'}/>
+            </SideDrawer>
+            <Switch>
+                <Route exact path={'/m/dashboard'} render={() => <Dashboard profile={undefined}/>}/>
+                <Route exact path={'/m/resolutions'}
+                       render={() => <ResolutionsComponent communityId={community.id}/>}/>
+                <Route exact path={'/m/documents'} render={() => <Documents/>}/>
+            </Switch>
+        </Box>
+    )
+}
+export const OwnerPortal: FC<{}> = () => {
+    const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
+    const [owner, setOwner] = useState<UserProfile>();
+    const history = useHistory();
+    const {t} = useTranslation();
+
+    useEffect(
+        () => {
+            if (getToken() == null && window.location.pathname !== "/login") {
+                window.location.replace("/login");
+            }
+
+            getProfile(getUser())
+                .then(r => {
+                    setOwner(r);
+                    setCommunity(r.communities[0]);
+                })
+        }
+        , [])
+
+    return (
+        <Box style={{
+            height: '100%',
+            display: 'flex',
+            width: '100%',
+            maxHeight: '100%',
+            overflow: 'hidden',
+        }}>
+            <CustomAppBar />
+            <SideDrawer community={community} ownerProfile={owner} >
+                <NavigationItem key='docs' icon={InsertDriveFile} url={'/o/documents'} name={t.common.navigation.documents}/>
+                <NavigationItem key='forums' icon={Forum} url={'/o/topics'} name={t.common.navigation.topics}/>
+                <NavigationItem key='dash' icon={DashboardIcon} url={'/o/dashboard'} name={t.common.navigation.dashboard}/>
+                <NavigationItem key='resolutions' icon={HowToVote} url={'/o/resolutions'} name={t.common.navigation.resolutions}/>
             </SideDrawer>
             <Switch>
                 <Route exact path={Pages.dahshboard.url} render={() => <Dashboard profile={owner}/>}/>

@@ -8,8 +8,7 @@ import {useTranslation} from "../common/i18n/UseTranslation";
 
 
 export const CustomAppBar: FC<{
-    page: NavigationPage,
-}> = ({page}) => {
+}> = ({}) => {
     const classes = useStyles();
     const {t, setT} = useTranslation();
     return (
@@ -21,7 +20,7 @@ export const CustomAppBar: FC<{
                     <Menu open={false}/>
                 </IconButton>
                 <Typography variant="h6" className={classes.title}>
-                    {page.name(t)}
+                    {"========="}
                 </Typography>
                 <Button color="inherit" onClick={() => {
                     if (t === en) {

@@ -5,16 +5,18 @@ import {removePersistedToken, removePersistedUser} from "../persistance/Persista
 import {ExitToApp} from "@material-ui/icons";
 import {Pages, SetPage} from "./SideDrawer";
 import {useTranslation} from "../i18n/UseTranslation";
+import {useHistory} from "react-router-dom";
 
-export const LogoutButton: FC<{setPage: SetPage }> = ({setPage}) => {
+export const LogoutButton: FC<{}> = ({}) => {
     const {t} = useTranslation();
+    const history = useHistory();
     return <ListItem
         style={{flexShrink: 1}}
         button
         onClick={() => {
             removePersistedUser();
             removePersistedToken();
-            setPage(Pages.login);
+            history.push("/login");
         }}>
         <ListItemIcon>
             <ExitToApp/>

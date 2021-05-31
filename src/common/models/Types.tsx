@@ -3,7 +3,7 @@ export type CommunityId = { id: string }
 export type CommunityName = { value: string }
 export type Community = { id: CommunityId, name: CommunityName }
 
-export type OwnerProfile = {
+export type UserProfile = {
     id: OwnerId,
     username: string,
     email: string,

@@ -2,7 +2,7 @@ import React, {FC, SetStateAction} from "react";
 import {Translation} from "../i18n/Translations";
 import {List, Paper, Typography} from "@material-ui/core";
 import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@material-ui/icons";
-import {Community, OwnerProfile} from "../models/Types";
+import {Community, UserProfile} from "../models/Types";
 import {NavigationItem} from "../../components/NavigationItem";
 import {useHistory, useLocation} from "react-router-dom";
 import {LogoutButton} from "./LogoutButton";
@@ -12,10 +12,8 @@ export type SetPage = React.Dispatch<SetStateAction<NavigationPage>>
 
 export const SideDrawer: FC<{
     community: Community,
-    ownerProfile: OwnerProfile | undefined,
-    page: NavigationPage,
-    setPage: SetPage
-}> = ({community, ownerProfile, page, setPage, children}) => {
+    ownerProfile: UserProfile | undefined,
+}> = ({community, ownerProfile, children}) => {
     const {t} = useTranslation();
 
     return (
@@ -45,8 +43,7 @@ export const SideDrawer: FC<{
                 <div style={{flexShrink: 1}}>
 
                 </div>
-                <LogoutButton
-                    setPage={setPage}>
+                <LogoutButton>
                 </LogoutButton>
             </div>
         </Paper>

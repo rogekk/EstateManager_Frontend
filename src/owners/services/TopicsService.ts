@@ -3,10 +3,9 @@ import {
     Comments,
     CommunityId,
     OwnerId,
-    OwnerProfile,
     Topic,
     TopicId,
-    Topics
+    Topics, UserProfile
 } from "../../common/models/Types";
 import {CommentsResponse, OwnerProfileResponse, TopicsResponse} from "./Responses";
 import {get, post} from "../../common/network/Api";
@@ -57,7 +56,7 @@ export async function postTopic(communityId: CommunityId,
     });
 }
 
-export async function getProfile(ownerId: OwnerId): Promise<OwnerProfile> {
+export async function getProfile(ownerId: OwnerId): Promise<UserProfile> {
     const r = await get<OwnerProfileResponse>(`/owners/${ownerId.id}`);
 
     console.log(r);
