@@ -1,5 +1,6 @@
 import React, {Dispatch, FC, SetStateAction, useContext, useState} from "react";
-import {en, Translation} from "./Translations";
+import {Translation} from "./Translations";
+import {en} from "./En";
 
 export const TranslationContext = React.createContext<
     [Translation, Dispatch<SetStateAction<Translation>>]>(["", ""] as unknown as [Translation, Dispatch<SetStateAction<Translation>>]);

@@ -1,10 +1,11 @@
 import React, {Dispatch, FC, SetStateAction} from "react";
-import {en, it, } from "../common/i18n/Translations";
 import {useStyles} from "../styles/UseStyles";
 import {AppBar, Button, IconButton, Menu, Toolbar, Typography} from "@material-ui/core";
 import {Debugger} from "inspector";
 import {NavigationPage} from "../common/components/SideDrawer";
 import {useTranslation} from "../common/i18n/UseTranslation";
+import {en} from "../common/i18n/En";
+import {it} from "../common/i18n/It";
 
 
 export const CustomAppBar: FC<{

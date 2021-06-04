@@ -1,24 +1,25 @@
-import React, {FC, SetStateAction, useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import './App.css';
 import {Box, Typography} from '@material-ui/core';
 import {BrowserRouter, Route, Switch, useHistory} from "react-router-dom";
 import {useStyles} from "./styles/UseStyles";
 import {Dashboard} from "./components/Dashboard";
 import {Login} from "./components/Login";
-import {useLocale} from "./common/i18n/i18n";
-import {en, Translation} from "./common/i18n/Translations";
 import {Forums} from "./components/Forums";
-import {Community, OwnerId, UserProfile, Page} from "./common/models/Types";
-import {NavigationPage, SideDrawer, Pages} from "./common/components/SideDrawer";
+import {Community, OwnerId, UserProfile} from "./common/models/Types";
+import {Pages, SideDrawer} from "./common/components/SideDrawer";
 import {CustomAppBar} from "./components/CustomAppBar";
 import {TopicComponent} from "./components/TopicComponent";
 import {ResolutionComponent, ResolutionsComponent} from "./components/Resolutions";
 import {Documents} from "./components/Documents";
 import {getProfile} from "./owners/services/TopicsService";
 import {getPersistedToken, getPersistedUser} from "./common/persistance/Persistance";
-import {TranslationContext, TranslationProvider, useTranslation} from "./common/i18n/UseTranslation";
+import {TranslationProvider, useTranslation} from "./common/i18n/UseTranslation";
 import {NavigationItem} from "./components/NavigationItem";
 import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@material-ui/icons";
+import {AdminPortal} from "./AdminPortal";
+import {ManagerPortal} from "./manager/ManagerPortal";
+import {OwnerIssues} from "./owners/components/issues/OwnerIssues";
 // import {getOwnerProfile} from "./services/OwnerService";
 
 export const getToken = () => getPersistedToken()
@@ -45,53 +46,6 @@ function App() {
     );
 }
 
-export const AdminPortal: FC<{}> = () => {
-    return (<div></div>);
-}
-
-export const ManagerPortal: FC<{}> = () => {
-    const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
-    const [user, setUser] = useState<UserProfile>();
-    const history = useHistory();
-    const {t} = useTranslation();
-
-    useEffect(
-        () => {
-            if (getToken() == null && window.location.pathname !== "/login") {
-                window.location.replace("/login");
-            }
-
-            getProfile(getUser())
-                .then(r => {
-                    setUser(r);
-                    setCommunity(r.communities[0]);
-                })
-        }
-        , [])
-
-    return (
-        <Box style={{
-            height: '100%',
-            display: 'flex',
-            width: '100%',
-            maxHeight: '100%',
-            overflow: 'hidden',
-        }}>
-            <CustomAppBar />
-            <SideDrawer community={community} ownerProfile={undefined} >
-                <NavigationItem key='docs' icon={InsertDriveFile} name={t.common.navigation.documents} url={'/m/documents'}/>
-                <NavigationItem key='dash' icon={DashboardIcon} name={t.common.navigation.dashboard} url={'/m/dashboard'}/>
-                <NavigationItem key='resolutions' icon={HowToVote} name={t.common.navigation.resolutions} url={'/m/resolutions'}/>
-            </SideDrawer>
-            <Switch>
-                <Route exact path={'/m/dashboard'} render={() => <Dashboard profile={undefined}/>}/>
-                <Route exact path={'/m/resolutions'}
-                       render={() => <ResolutionsComponent communityId={community.id}/>}/>
-                <Route exact path={'/m/documents'} render={() => <Documents/>}/>
-            </Switch>
-        </Box>
-    )
-}
 export const OwnerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
     const [owner, setOwner] = useState<UserProfile>();
@@ -126,6 +80,7 @@ export const OwnerPortal: FC<{}> = () => {
                 <NavigationItem key='forums' icon={Forum} url={'/o/topics'} name={t.common.navigation.topics}/>
                 <NavigationItem key='dash' icon={DashboardIcon} url={'/o/dashboard'} name={t.common.navigation.dashboard}/>
                 <NavigationItem key='resolutions' icon={HowToVote} url={'/o/resolutions'} name={t.common.navigation.resolutions}/>
+                <NavigationItem key='issues' icon={HowToVote} url={'/o/issues'} name={t.common.navigation.issues}/>
             </SideDrawer>
             <Switch>
                 <Route exact path={Pages.dahshboard.url} render={() => <Dashboard profile={owner}/>}/>
@@ -135,6 +90,7 @@ export const OwnerPortal: FC<{}> = () => {
                        render={() => <ResolutionComponent communityId={community.id}/>}/>
                 <Route exact path={Pages.documents.url} render={() => <Documents/>}/>
                 <Route exact path={Pages.forums.url} render={() => <Forums community={community}/>}/>
+                <Route exact path="/o/issues" render={() => <OwnerIssues community={community}/>}/>
                 <Route exact path="/o/forums/:topicId"
                        render={() => <TopicComponent communityId={community.id.id}/>}/>
             </Switch>

@@ -1,5 +1,6 @@
 import {Dispatch, SetStateAction, useState} from "react";
-import {en, Translation} from "./Translations";
+import {Translation} from "./Translations";
+import {en} from "./En";
 
 export function plural(string: string, number: number): string {
     const [singular, plural, zero] = string.split("|")

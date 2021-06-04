@@ -36,7 +36,11 @@ export const TopicComponent: FC<{
     });
 
     return (
-        <Container style={{maxHeight: "100%", overflow: "auto", paddingTop: '96px'}}>
+        <Container style={{
+            maxHeight: "100%",
+            overflow: "auto",
+            paddingTop: '96px'
+        }}>
             <BackgroundIcon icon={Forum}/>
             <Typography>
                 <Paper style={{maxWidth: "600px"}}>
