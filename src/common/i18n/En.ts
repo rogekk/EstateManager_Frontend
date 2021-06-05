@@ -24,6 +24,7 @@ export const en = {
             dashboard: "Dashboard",
             issues: "Issues",
             resolutions: "Resolutions",
+            communites: "Communities",
             resolution: "Resolution",
         },
         timeAgo: {

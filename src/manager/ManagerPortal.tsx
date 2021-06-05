@@ -13,6 +13,8 @@ import {ResolutionsComponent} from "../components/Resolutions";
 import {Documents} from "../components/Documents";
 import {getToken, getUser} from "../App";
 import {ManagerDashboard} from "./components/ManagerDashboard";
+import {ManagerCommunities} from "./components/ManagerCommunities";
+import {ManagerCommunity} from "./components/ManagerCommunity";
 
 export const ManagerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
@@ -48,6 +50,8 @@ export const ManagerPortal: FC<{}> = () => {
                                 url={'/m/documents'}/>
                 <NavigationItem key='dash' icon={DashboardIcon} name={t.common.navigation.dashboard}
                                 url={'/m/dashboard'}/>
+                <NavigationItem key='communities' icon={HowToVote} name={t.common.navigation.communites}
+                                url={'/m/communities'}/>
                 <NavigationItem key='resolutions' icon={HowToVote} name={t.common.navigation.resolutions}
                                 url={'/m/resolutions'}/>
             </SideDrawer>
@@ -56,6 +60,8 @@ export const ManagerPortal: FC<{}> = () => {
                 <Route exact path={'/m/resolutions'}
                        render={() => <ResolutionsComponent communityId={community.id}/>}/>
                 <Route exact path={'/m/documents'} render={() => <Documents/>}/>
+                <Route exact path={'/m/communities'} render={() => <ManagerCommunities/>}/>
+                <Route exact path={'/m/communities/:communityId'} render={() => <ManagerCommunity/>}/>
             </Switch>
         </Box>
     )
