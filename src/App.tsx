@@ -28,6 +28,7 @@ export const getUser: () => OwnerId = () => {
 }
 
 function App() {
+    document.body.classList.toggle("light")
     const classes = useStyles();
     return (
         <TranslationProvider>

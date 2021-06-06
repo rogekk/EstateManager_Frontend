@@ -1,7 +1,37 @@
+@import "./styles/Common.css";
+
 .mariella {
     font-size: xxx-large;
 }
 
 root {
     height: 100%;
+}
+
+.dark {
+    --bg: var(--dark-gray);
+    --secondary: var(--medium-gray);
+    --surface: var(--black);
+    --hover: var(--almost-white);
+    --on-bg: var(--almost-white);
+    --accent: var(--deep-purple);
+}
+
+.light {
+    --bg: var(--almost-white);
+    --surface: var(--white);
+    --secondary: var(--light-gray);
+    --on-bg: var(--dark-gray);
+    --hover: var(--light-gray);
+    --accent: var(--deep-purple);
+}
+
+:root {
+    --white: #fff;
+    --black: #111;
+    --dark-gray: #333;
+    --medium-gray: #555;
+    --almost-white: #efefef;
+    --light-gray: #ddd;
+    --deep-purple: #7733de;
 }

@@ -9,7 +9,6 @@ export const grid = {
 
 export const useStyles = makeStyles({
     yo: {
-        background: 'white',
         border: 0,
         borderRadius: 3,
         color: 'white',
@@ -28,15 +27,12 @@ export const useStyles = makeStyles({
 
     background: {
         // background: 'linear-gradient(45deg, #FE6B8B 30%, #FF8E53 90%)',
-
         backgroundPosition: "center",
-        backgroundImage: "url(https://www.heersmanagement.com/wp-content/uploads/2018/09/modern-apartments.jpg)",
-        backgroundSize: 'cover',
-        background: "#eee",
+        background: "var(--bg)",
         height: '100%',
         display: 'flex',
         maxHeight: '100%',
-        overflow: 'hidden'
+        overflow: 'hidden',
     },
     topicListItem: {
         marginTop: grid.margin.medium,
@@ -56,4 +52,8 @@ export const useStyles = makeStyles({
     title: {
         flexGrow: 1,
     },
+    column: {
+        flex: 1
+
+    }
 });
