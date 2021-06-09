@@ -50,6 +50,7 @@ export type Resolution = {
     description: string,
     sharesPro: number,
     sharesAgainst: number,
+    result: 'approved' | 'rejected' | 'open_for_voting' | 'canceled'
 }
 
 export type Vote = 'pro' | 'against'

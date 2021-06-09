@@ -1,6 +1,6 @@
 import {get} from "../../common/network/Api";
 import {CommunitiesResponse, OwnersResponse} from "../models/responses/Responses";
-import {OwnerSearch} from "../components/ManagerCommunity";
+import {OwnerSearch} from "../components/community/ManagerCommunity";
 import {ownerWindow} from "@material-ui/core";
 
 export async function getCommunities(): Promise<CommunitiesResponse> {

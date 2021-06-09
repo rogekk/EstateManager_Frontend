@@ -46,6 +46,7 @@ export type ResolutionResponse = {
     description: string,
     sharesPro: number,
     sharesAgainst: number,
+    result: 'approved' | 'rejected' | 'open_for_voting' | 'canceled'
 }
 
 

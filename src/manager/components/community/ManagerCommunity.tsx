@@ -1,11 +1,11 @@
 import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
-import {getOwners} from "../services/ManagerCommunitiesService";
-import {OwnersResponse} from "../models/responses/Responses";
-import {Divider, List} from "@material-ui/core";
+import {getOwners} from "../../services/ManagerCommunitiesService";
+import {OwnersResponse} from "../../models/responses/Responses";
+import {Divider} from "@material-ui/core";
 import './ManagerCommunity.css'
-import {OwnerListItem} from "./OwnerListItem";
-import {ListHeader} from "./ListHeader";
+import {OwnerListItem} from "../OwnerListItem";
+import {ListHeader} from "../ListHeader";
 
 export type OwnerSearch = {
     email: string,

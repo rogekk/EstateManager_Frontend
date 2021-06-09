@@ -1,5 +1,5 @@
 import {FC, useEffect, useState} from "react";
-import {Button, Container, List, ListItem, Paper, Typography} from "@material-ui/core";
+import {Button, ButtonBase, Container, List, ListItem, Paper, Typography} from "@material-ui/core";
 import {BackgroundIcon} from "./BackgroundIcon";
 import {HowToVote} from "@material-ui/icons";
 import {getResolution, getResolutions, postVote} from "../owners/services/ResolutionsService";
@@ -25,22 +25,32 @@ export const ResolutionsComponent: React.FC<{
         }
     );
 
-    return <Container style={{marginTop: "96px"}}>
-        <BackgroundIcon icon={HowToVote}></BackgroundIcon>
-        <List style={{width: '600px'}}>
-            {resolutions.resolutions.map(r =>
-                <ListItem button onClick={() => history.push(`/resolutions/${r.id.id}`)}>
-                    <Paper>
-                    <Typography>
+    return <Container className={'page-appbar'}>
+        <BackgroundIcon icon={HowToVote}/>
+        {resolutions.resolutions.map(r =>
+            <ButtonBase key={r.id.id} className={'air row'} onClick={() => history.push(`/resolutions/${r.id.id}`)}>
+                <div className={'wrapper'}>
+                    <Typography className={'column air air-padding'} noWrap>
+                        {r.number}
+                    </Typography>
+                    <Typography className={'column air air-padding'} noWrap>
                         {r.subject}
                     </Typography>
-                    <Typography>
-                        {r.description}
+                    <Typography className={'column air air-padding'} noWrap>
+                        {r.sharesAgainst}
                     </Typography>
-                </Paper>
-                </ListItem>
-            )}
-        </List>
+                    <Typography className={'column air air-padding'} noWrap>
+                        {r.sharesPro}
+                    </Typography>
+                    <Typography className={'column air air-padding'} noWrap>
+                        {r.result}
+                    </Typography>
+                    <Typography className={'column air air-padding'} noWrap>
+                        {r.createdAt}
+                    </Typography>
+                </div>
+            </ButtonBase>
+        )}
     </Container>
 
 }
@@ -49,7 +59,7 @@ export const ResolutionComponent: React.FC<{
     communityId: CommunityId,
 }> = ({communityId}) => {
     const [resolution, setResolution] = useState<Resolution>();
-    const {resolutionId} = useParams<{resolutionId: string}>();
+    const {resolutionId} = useParams<{ resolutionId: string }>();
 
     useEffect(
         () => {
@@ -64,21 +74,21 @@ export const ResolutionComponent: React.FC<{
 
     return <Container style={{marginTop: "96px"}}>
         <BackgroundIcon icon={HowToVote}></BackgroundIcon>
-        { resolution ?
-                    <Paper>
-                        <Typography>
-                            {resolution.subject}
-                        </Typography>
-                        <Typography>
-                            {resolution.description}
-                        </Typography>
-                        <Typography>
-                            PRO: {resolution.sharesPro}
-                        </Typography>
-                        <Typography>
-                            Against: {resolution.sharesAgainst}
-                        </Typography>
-                    </Paper>
+        {resolution ?
+            <Paper>
+                <Typography>
+                    {resolution.subject}
+                </Typography>
+                <Typography>
+                    {resolution.description}
+                </Typography>
+                <Typography>
+                    PRO: {resolution.sharesPro}
+                </Typography>
+                <Typography>
+                    Against: {resolution.sharesAgainst}
+                </Typography>
+            </Paper>
             : <div></div>
         }
         <Button onClick={() => postVote(communityId, {id: resolutionId}, 'pro')}>PRO</Button>

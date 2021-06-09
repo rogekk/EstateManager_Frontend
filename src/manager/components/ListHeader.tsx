@@ -1,6 +1,6 @@
 import {InputAdornment, TextField, Typography} from "@material-ui/core";
 import {FilterList} from "@material-ui/icons";
-import {OwnerSearch} from "./ManagerCommunity";
+import {OwnerSearch} from "./community/ManagerCommunity";
 
 export const ListHeader = (
     {

@@ -32,7 +32,7 @@ export const it: typeof en = {
             documents: "Documenti",
             dashboard: "Console",
             resolutions: "Risoluzioni",
-            communites: "Communita'",
+            communities: "Communita'",
             resolution: "Risoluzione",
             issues: "Problemi",
         },

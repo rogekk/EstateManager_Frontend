@@ -17,6 +17,15 @@
     flex: 1;
 }
 
+.colunHalf {
+    flex: 0.5;
+}
+
+.align-start {
+    text-align: start;
+    width: 100%;
+}
+
 .row {
     width: 100%;
     background: var(--surface) !important;
