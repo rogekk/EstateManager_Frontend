@@ -46,6 +46,7 @@ export async function postVote(communityId: CommunityId,
 ): Promise<any> {
     let path = `/communities/${communityId.id}/resolutions/${resolutionId.id}/votes`;
     return await post(path, {
-        vote: vote
+        vote: vote,
+        votingMethod: 'portal'
     });
 }

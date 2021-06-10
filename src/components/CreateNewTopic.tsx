@@ -18,9 +18,9 @@ export const CreateNewTopic: FC<{
           onTopicCreated,
           handleClose,
       }) => {
-    const [subject, setSubject] = useState("");
-    const [description, setDescription] = useState("");
-    const {t} = useTranslation();
+    const [subject, setSubject] = useState("")
+    const [description, setDescription] = useState("")
+    const {t} = useTranslation()
 
     return <Dialog open={open} onClose={handleClose}>
         <form
@@ -31,8 +31,8 @@ export const CreateNewTopic: FC<{
                 .then(() => onTopicCreated())
                 .catch((e) => console.log(e))
                 .finally(() => {
-                    console.log("done");
-                    setOpen(false);
+                    console.log("done")
+                    setOpen(false)
                 })
         }}>
             <DialogTitle id="form-dialog-title">{t.common.createTopic}</DialogTitle>

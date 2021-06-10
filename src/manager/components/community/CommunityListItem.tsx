@@ -6,7 +6,7 @@ import {useHistory} from "react-router-dom";
 export const CommunityListItem = ({community}: { community: CommunityResponse }) => {
     const history = useHistory();
 
-    return <ListItem button key={community.id} onClick={() => (history.push(`/m/communities/${community.id}`))}>
+    return <ListItem button key={community.id} onClick={() => (history.push(`/m/communities/${community.id}/users`))}>
         <Typography>
             {community.name}
         </Typography>

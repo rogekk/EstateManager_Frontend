@@ -14,6 +14,7 @@ import {getToken, getUser} from "../App";
 import {ManagerDashboard} from "./components/ManagerDashboard";
 import {ManagerCommunities} from "./components/community/ManagerCommunities";
 import {ManagerCommunity} from "./components/community/ManagerCommunity";
+import {ManagerResolutions} from "./resolutions/Resolutions";
 
 export const ManagerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
@@ -56,10 +57,10 @@ export const ManagerPortal: FC<{}> = () => {
             <Switch>
                 <Route exact path={'/m/dashboard'} render={() => <ManagerDashboard/>}/>
                 <Route exact path={'/m/resolutions'}
-                       render={() => <ResolutionsComponent communityId={community.id}/>}/>
+                       render={() => <ManagerResolutions communityId={community.id}/>}/>
                 <Route exact path={'/m/documents'} render={() => <Documents/>}/>
                 <Route exact path={'/m/communities'} render={() => <ManagerCommunities/>}/>
-                <Route exact path={'/m/communities/:communityId'} render={() => <ManagerCommunity/>}/>
+                <Route exact path={'/m/communities/:communityId/*'} render={() => <ManagerCommunity/>}/>
             </Switch>
         </Box>
     )

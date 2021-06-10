@@ -32,7 +32,6 @@ export const TopicComponent: FC<{
                 setRetrieved(true);
             });
         }
-
     });
 
     return (

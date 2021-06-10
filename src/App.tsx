@@ -23,7 +23,6 @@ function App() {
     return (
         <TranslationProvider>
             <Box className={'background'}>
-                <Footer/>
                 <BrowserRouter>
                     <Switch>
                         <Route exact path={Pages.login.url} render={() => <Login/>}/>

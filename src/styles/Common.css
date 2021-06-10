@@ -4,3 +4,9 @@
     margin-right: 16px;
     width: 100%;
 }
+
+.fab {
+    position: absolute !important;
+    bottom: 16px !important;
+    right: 16px !important;
+}
