@@ -11,7 +11,6 @@ import {CreateNewResolution} from "./CreateNewResolution";
 export const ManagerResolutions = ({communityId}: { communityId: CommunityId }) => {
     const [resolutions, setResolutions] = useState<Resolutions>({resolutions: []})
     const [hasFetched, setHasFetched] = useState(false)
-    const [open, setOpen] = useState(false)
     const history = useHistory()
     const {t} = useTranslation()
 
@@ -30,15 +29,10 @@ export const ManagerResolutions = ({communityId}: { communityId: CommunityId }) 
 
     return <Container className={'page-appbar'}>
         <BackgroundIcon icon={HowToVote}/>
-        <Fab variant='extended' onClick={() => setOpen(true)} className={'fab'} color={"secondary"}>
+        <Fab variant='extended' onClick={() => history.push('newresolution')} className={'fab'} color={"secondary"}>
             <Add/>
             {t.owner.forums.create}
         </Fab>
-        <CreateNewResolution open={open} setOpen={setOpen} communityId={communityId} onResolutionsCreated={() => {
-            getIt()
-        }} handleClose={() => {
-            setOpen(false)
-        }}/>
         {resolutions.resolutions.map(r =>
             <ButtonBase key={r.id.id} className={'air row'} onClick={() => history.push(`/resolutions/${r.id.id}`)}>
                 <div className={'wrapper'}>

@@ -4,27 +4,23 @@ import {useTranslation} from "../../common/i18n/UseTranslation";
 import {Button, Dialog, DialogTitle, TextField} from "@material-ui/core";
 import {postTopic} from "../../owners/services/TopicsService";
 import {createResolution, VoteCountingMethod} from "../services/ManagerRepositoryService";
+import {useHistory} from "react-router-dom";
 
 export const CreateNewResolution = ({
-                                        open,
-                                        setOpen,
                                         communityId,
-                                        onResolutionsCreated,
-                                        handleClose,
                                     }: {
-    open: boolean,
-    setOpen: Dispatch<SetStateAction<boolean>>
     communityId: CommunityId,
-    onResolutionsCreated: () => any,
-    handleClose: () => any,
 }) => {
     const [number, setNumber] = useState("")
     const [subject, setSubject] = useState("")
     const [description, setDescription] = useState("")
     const [voteCountingMethod, setVoteCountingMethod] = useState<VoteCountingMethod>('shares_based')
     const {t} = useTranslation()
+    const history = useHistory()
 
-    return <Dialog open={open} onClose={handleClose}>
+    console.log("-------------------------")
+
+    return <div className={'page-appbar'}>
         <form
             style={{display: "flex", flexDirection: "column", padding: "16px", width: "500px"}}
             onSubmit={(e) => {
@@ -35,14 +31,12 @@ export const CreateNewResolution = ({
                     description: description,
                     voteCountingMethod: voteCountingMethod,
                 })
-                    .then(() => onResolutionsCreated())
+                    .then(() => history.goBack())
                     .catch((e) => console.log(e))
                     .finally(() => {
                         console.log("done")
-                        setOpen(false)
                     })
             }}>
-            <DialogTitle id="form-dialog-title">{t.common.createTopic}</DialogTitle>
 
             <TextField
                 id="number"
@@ -74,5 +68,5 @@ export const CreateNewResolution = ({
                 {t.owner.forums.create}
             </Button>
         </form>
-    </Dialog>
+    </div>
 }
