@@ -18,6 +18,7 @@ export const SideDrawer: FC<{
 
     return (
         <Paper style={{
+            marginTop: 72,
             flexShrink: 0,
             height: '100%',
             width: "200px",

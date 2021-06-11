@@ -17,20 +17,21 @@ import {ManagerCommunity} from "./components/community/ManagerCommunity";
 import {ManagerResolutions} from "./resolutions/Resolutions";
 
 export const ManagerPortal: FC<{}> = () => {
-    const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
-    const [user, setUser] = useState<UserProfile>();
-    const {t} = useTranslation();
+    const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}})
+    const [user, setUser] = useState<UserProfile>()
+    const {t} = useTranslation()
+    const [showDrawer, setShowDrawer] = useState(false)
 
     useEffect(
         () => {
             if (getToken() == null && window.location.pathname !== "/login") {
-                window.location.replace("/login");
+                window.location.replace("/login")
             }
 
             getProfile(getUser())
                 .then(r => {
-                    setUser(r);
-                    setCommunity(r.communities[0]);
+                    setUser(r)
+                    setCommunity(r.communities[0])
                 })
         }
         , [])
@@ -43,8 +44,9 @@ export const ManagerPortal: FC<{}> = () => {
             maxHeight: '100%',
             overflow: 'hidden',
         }}>
-            <CustomAppBar/>
-            <SideDrawer community={community} ownerProfile={undefined}>
+            <CustomAppBar menuClicked={() => setShowDrawer((state) => !state)}/>
+            {showDrawer && <SideDrawer
+                community={community} ownerProfile={undefined}>
                 <NavigationItem key='docs' icon={InsertDriveFile} name={t.common.navigation.documents}
                                 url={'/m/documents'}/>
                 <NavigationItem key='dash' icon={DashboardIcon} name={t.common.navigation.dashboard}
@@ -53,7 +55,7 @@ export const ManagerPortal: FC<{}> = () => {
                                 url={'/m/communities'}/>
                 <NavigationItem key='resolutions' icon={HowToVote} name={t.common.navigation.resolutions}
                                 url={'/m/resolutions'}/>
-            </SideDrawer>
+            </SideDrawer>}
             <Switch>
                 <Route exact path={'/m/dashboard'} render={() => <ManagerDashboard/>}/>
                 <Route exact path={'/m/resolutions'}

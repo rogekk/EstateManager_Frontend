@@ -2,6 +2,7 @@ import {Route, Switch, useParams} from "react-router-dom";
 import './ManagerCommunity.css'
 import {CommunityUsers} from "./CommunityUsers";
 import {ManagerResolutions} from "../../resolutions/Resolutions";
+import {TabItem, TabsComponent} from "../../../common/components/TabsComponent";
 
 export type OwnerSearch = {
     email: string,
@@ -15,6 +16,10 @@ export const ManagerCommunity = () => {
     const {communityId} = useParams<{ communityId: string }>();
 
     return <div className={'page-appbar'}>
+        <TabsComponent>
+            <TabItem name={'users'} destination={'users'} matcher={'users'}/>
+            <TabItem name={'resolutions'} destination={'resolutions'} matcher={'resolutions'}/>
+        </TabsComponent>
         <Switch>
             <Route exact path={'/m/communities/:communityId/users'}
                    render={() => <CommunityUsers communityId={{id: communityId}}/>}/>
