@@ -22,7 +22,6 @@ function App() {
     document.body.classList.toggle("light")
     return (
         <TranslationProvider>
-            <Box className={'background'}>
                 <BrowserRouter>
                     <Switch>
                         <Route exact path={Pages.login.url} render={() => <Login/>}/>
@@ -31,7 +30,6 @@ function App() {
                         <Route path="/m/*" render={() => <ManagerPortal/>}/>
                     </Switch>
                 </BrowserRouter>
-            </Box>
         </TranslationProvider>
     );
 }

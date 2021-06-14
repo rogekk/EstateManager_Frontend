@@ -6,11 +6,7 @@ import {postTopic} from "../../owners/services/TopicsService";
 import {createResolution, VoteCountingMethod} from "../services/ManagerRepositoryService";
 import {useHistory} from "react-router-dom";
 
-export const CreateNewResolution = ({
-                                        communityId,
-                                    }: {
-    communityId: CommunityId,
-}) => {
+export const CreateNewResolution = ({communityId,}: {communityId: CommunityId,}) => {
     const [number, setNumber] = useState("")
     const [subject, setSubject] = useState("")
     const [description, setDescription] = useState("")

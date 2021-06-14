@@ -15,6 +15,7 @@ import {ManagerDashboard} from "./components/ManagerDashboard";
 import {ManagerCommunities} from "./components/community/ManagerCommunities";
 import {ManagerCommunity} from "./components/community/ManagerCommunity";
 import {ManagerResolutions} from "./resolutions/Resolutions";
+import { IssuesCommunities } from "./components/issues/CommunityIssues";
 
 export const ManagerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}})
@@ -45,8 +46,7 @@ export const ManagerPortal: FC<{}> = () => {
             overflow: 'hidden',
         }}>
             <CustomAppBar menuClicked={() => setShowDrawer((state) => !state)}/>
-            {showDrawer && <SideDrawer
-                community={community} ownerProfile={undefined}>
+            {showDrawer && <SideDrawer community={community} ownerProfile={undefined}>
                 <NavigationItem key='docs' icon={InsertDriveFile} name={t.common.navigation.documents}
                                 url={'/m/documents'}/>
                 <NavigationItem key='dash' icon={DashboardIcon} name={t.common.navigation.dashboard}
@@ -55,14 +55,16 @@ export const ManagerPortal: FC<{}> = () => {
                                 url={'/m/communities'}/>
                 <NavigationItem key='resolutions' icon={HowToVote} name={t.common.navigation.resolutions}
                                 url={'/m/resolutions'}/>
+                <NavigationItem key='issues' icon={DashboardIcon} name={t.common.navigation.issues}
+                                url={'/m/issues'}/>
             </SideDrawer>}
             <Switch>
                 <Route exact path={'/m/dashboard'} render={() => <ManagerDashboard/>}/>
-                <Route exact path={'/m/resolutions'}
-                       render={() => <ManagerResolutions communityId={community.id}/>}/>
+                <Route exact path={'/m/resolutions'} render={() => <ManagerResolutions communityId={community.id}/>}/>
                 <Route exact path={'/m/documents'} render={() => <Documents/>}/>
                 <Route exact path={'/m/communities'} render={() => <ManagerCommunities/>}/>
                 <Route exact path={'/m/communities/:communityId/*'} render={() => <ManagerCommunity/>}/>
+                <Route exact path={'/m/issues'} render={() => <IssuesCommunities/>}/>
             </Switch>
         </Box>
     )

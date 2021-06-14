@@ -15,6 +15,7 @@ export type UserProfile = {
 export type TopicId = { id: string }
 export type CommentId = { id: string }
 export type ResolutionId = { id: string }
+export type IssueId = { id: string}
 
 export type Comment = {
     id: CommentId,
@@ -57,3 +58,20 @@ export type Vote = 'pro' | 'against'
 
 export type Comments = { comments: Array<Comment> }
 export type Page = 'dashboard' | 'forums' | 'resolutions';
+
+export type Issues = { issues: Array<Issue> }
+
+export type Issue = {
+    id: IssueId,
+    subject: string,
+    description: string,
+    attachments: string,
+    createdBy: IssueCreator,
+    status: 'new' | 'received'| 'in_progress' | 'closed' | 'reopened'
+}
+
+export type IssueCreator = {
+    id: OwnerId,
+    username: string,
+    profileImageUrl?: string,
+}

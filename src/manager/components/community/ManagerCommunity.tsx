@@ -4,6 +4,7 @@ import {CommunityUsers} from "./CommunityUsers";
 import {ManagerResolutions} from "../../resolutions/Resolutions";
 import {TabItem, TabsComponent} from "../../../common/components/TabsComponent";
 import {CreateNewResolution} from "../../resolutions/CreateNewResolution";
+import { IssuesCommunities } from "../issues/CommunityIssues";
 
 export type OwnerSearch = {
     email: string,
@@ -28,7 +29,8 @@ export const ManagerCommunity = () => {
                    render={() => <CreateNewResolution communityId={{id: communityId}}/>}/>
             <Route exact path={'/m/communities/:communityId/resolutions'}
                    render={() => <ManagerResolutions communityId={{id: communityId}}/>}/>
+            <Route exact path={'/m/issues'}
+                   render={() => <IssuesCommunities/>}/>
         </Switch>
     </div>
 }
-

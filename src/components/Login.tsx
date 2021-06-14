@@ -1,31 +1,31 @@
 import React, {useState} from "react";
 import {api} from "../common/network/Api";
-import {useStyles} from "../styles/UseStyles";
 import {useHistory} from "react-router-dom";
-import {Box, Button, Card, Container, TextField} from "@material-ui/core";
+import {Button, TextField} from "@material-ui/core";
 import {persistToken, persistUser} from "../common/persistance/Persistance";
 import {useTranslation} from "../common/i18n/UseTranslation";
+import './Login.css';
 
 export const Login: React.FC<{ }> = () => {
 
     const {t} = useTranslation();
-    const classes = useStyles();
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const history = useHistory();
 
     return (
-        <Container className={classes.login}>
-            <Card style={
-                {
-                    marginLeft: 'auto',
-                    marginRight: 'auto',
-                    maxWidth: '400px',
-                    padding: '0 30px',
-                }
-            }>
-                <form onSubmit={
-                    (e) => {
+        <body>
+            <div className="leftBox">
+                </div>
+        <section>
+            <div className="imgBox">
+                <img src="bg.jpg"/>
+            </div>
+            <div className="contentBox">
+                <div className="formBox">
+                    <h2>Login</h2>
+                        <form onSubmit={
+                        (e) => {
                         e.preventDefault();
                         login(username, password)
                             .then((o) => {
@@ -39,7 +39,6 @@ export const Login: React.FC<{ }> = () => {
                                 } else if (o.userType === "owner") {
                                     history.push("/o/dashboard");
                                 }
-
                             })
                             .catch((e) => {
                                 console.log(e);
@@ -48,32 +47,37 @@ export const Login: React.FC<{ }> = () => {
                         console.log("submitting");
                     }
                 }>
-                    <TextField
+                <span>E-mail</span>
+                <div className="inputBox">
+                    <input
                         id="email"
-                        label={t.common.login.email}
-                        margin={'normal'}
-                        fullWidth={true}
                         type={'string'}
                         onChange={(e) => setUsername(e.target.value)}
                         required
                     />
-                    <TextField
+                    </div>
+                    <span>Password</span>
+                    <div className="inputBox">
+                    <input
                         id="password"
-                        label={t.common.login.password}
-                        margin={'normal'}
-                        fullWidth={true}
                         onChange={(e) => setPassword(e.target.value)}
                         type={'password'}
                         required
                     />
-                    <Box className={classes.cardButtonControl}>
-                        <Button variant={'outlined'} type={'submit'}>
+                    </div>
+                    <div className="rememberMe">
+                        <label><input type="checkbox" name="my"/> Remember me</label>
+                        </div>
+                    <div className="loginBox">
+                    <Button type={'submit'}>
                             {t.common.login.loginButton}
                         </Button>
-                    </Box>
-                </form>
-            </Card>
-        </Container>
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </section>
+        </body>
     )
 }
 
