@@ -15,6 +15,7 @@ import {ManagerCommunity} from "./components/community/ManagerCommunity";
 import {ManagerResolutions} from "./resolutions/Resolutions";
 import { IssuesCommunities } from "./components/issues/CommunityIssues";
 import { getToken, getUser } from "../App";
+import {FaToolbox, FaVoteYea, IoDocuments, MdDashboard, RiCommunityFill, RiCommunityLine} from "react-icons/all";
 
 export const ManagerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}})
@@ -45,18 +46,18 @@ export const ManagerPortal: FC<{}> = () => {
             overflow: 'hidden',
         }}>
             <CustomAppBar menuClicked={() => setShowDrawer((state) => !state)}/>
-            {showDrawer && <SideDrawer community={community} ownerProfile={undefined}>
-                <NavigationItem key='docs' icon={InsertDriveFile} name={t.common.navigation.documents}
-                                url={'/m/documents'}/>
-                <NavigationItem key='dash' icon={DashboardIcon} name={t.common.navigation.dashboard}
-                                url={'/m/dashboard'}/>
-                <NavigationItem key='communities' icon={HowToVote} name={t.common.navigation.communities}
-                                url={'/m/communities'}/>
-                <NavigationItem key='resolutions' icon={HowToVote} name={t.common.navigation.resolutions}
-                                url={'/m/resolutions'}/>
-                <NavigationItem key='issues' icon={DashboardIcon} name={t.common.navigation.issues}
-                                url={'/m/issues'}/>
-            </SideDrawer>}
+            <SideDrawer community={community} ownerProfile={undefined}>
+                <NavigationItem key='dash' icon={MdDashboard} name={t.common.navigation.dashboard}
+                                url={'/m/dashboard'} expanded={showDrawer}/>
+                <NavigationItem key='docs' icon={IoDocuments} name={t.common.navigation.documents}
+                                url={'/m/documents'} expanded={showDrawer}/>
+                <NavigationItem key='communities' icon={RiCommunityFill} name={t.common.navigation.communities}
+                                url={'/m/communities'} expanded={showDrawer}/>
+                <NavigationItem key='resolutions' icon={FaVoteYea} name={t.common.navigation.resolutions}
+                                url={'/m/resolutions'} expanded={showDrawer}/>
+                <NavigationItem key='issues' icon={FaToolbox} name={t.common.navigation.issues}
+                                url={'/m/issues'} expanded={showDrawer}/>
+            </SideDrawer>
             <Switch>
                 <Route exact path={'/m/dashboard'} render={() => <ManagerDashboard/>}/>
                 <Route exact path={'/m/resolutions'} render={() => <ManagerResolutions communityId={community.id}/>}/>

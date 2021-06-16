@@ -15,6 +15,7 @@ import {Forums} from "../../components/Forum/Forums";
 import {OwnerIssues} from "../components/issues/OwnerIssues";
 import {TopicComponent} from "../../components/Forum/TopicComponent";
 import { getToken, getUser } from "../../App";
+import {FaToolbox, FaVoteYea, IoDocuments, MdDashboard, MdForum} from "react-icons/all";
 
 
 export const OwnerPortal: FC<{}> = () => {
@@ -22,6 +23,7 @@ export const OwnerPortal: FC<{}> = () => {
     const [owner, setOwner] = useState<UserProfile>();
     const history = useHistory();
     const {t} = useTranslation();
+    const showDrawer = true
 
     useEffect(
         () => {
@@ -47,14 +49,14 @@ export const OwnerPortal: FC<{}> = () => {
         }}>
             <CustomAppBar/>
             <SideDrawer community={community} ownerProfile={owner}>
-                <NavigationItem key='docs' icon={InsertDriveFile} url={'/o/documents'}
-                                name={t.common.navigation.documents}/>
-                <NavigationItem key='forums' icon={Forum} url={'/o/topics'} name={t.common.navigation.topics}/>
-                <NavigationItem key='dash' icon={DashboardIcon} url={'/o/dashboard'}
-                                name={t.common.navigation.dashboard}/>
-                <NavigationItem key='resolutions' icon={HowToVote} url={'/o/resolutions'}
-                                name={t.common.navigation.resolutions}/>
-                <NavigationItem key='issues' icon={HowToVote} url={'/o/issues'} name={t.common.navigation.issues}/>
+                <NavigationItem key='docs' icon={IoDocuments} url={'/o/documents'}
+                                name={t.common.navigation.documents} expanded={showDrawer}/>
+                <NavigationItem key='forums' icon={MdForum} url={'/o/topics'} name={t.common.navigation.topics} expanded={showDrawer}/>
+                <NavigationItem key='dash' icon={MdDashboard} url={'/o/dashboard'}
+                                name={t.common.navigation.dashboard} expanded={showDrawer}/>
+                <NavigationItem key='resolutions' icon={FaVoteYea} url={'/o/resolutions'}
+                                name={t.common.navigation.resolutions} expanded={showDrawer}/>
+                <NavigationItem key='issues' icon={FaToolbox} url={'/o/issues'} name={t.common.navigation.issues} expanded={showDrawer}/>
             </SideDrawer>
             <Switch>
                 <Route exact path={Pages.dahshboard.url} render={() => <Dashboard profile={owner}/>}/>
