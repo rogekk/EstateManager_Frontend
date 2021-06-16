@@ -1,19 +1,29 @@
 import React from 'react'
+import {IssuesResponse} from "../../models/responses/Responses";
 
-export default function IssuesHeader({issues}) {
-    const columns = issues[0] && Object.keys(issues)
+export default function IssuesHeader({issues}: { issues: IssuesResponse }) {
 
     return (
         <table cellPadding={0} cellSpacing={0}>
             <thead>
-                <tr>{issues[0] && columns.map((heading) => <th>{heading}</th>)}</tr>
+            <td>Subject</td>
+            <td>Author</td>
+            <td>Created At</td>
+            <td>Status</td>
+            <td>CommentCount</td>
             </thead>
             <tbody>
-                {issues.map((row) => <tr>
-                   {
-                    columns.map((column) => <td>{row[column]}</td>)        
-                   }
-                </tr>)}
+            {
+                issues.issues.map((issue) =>
+                    <tr>
+                        <td>{issue.subject}</td>
+                        <td>{issue.createdBy.username}</td>
+                        <td>{issue.createdAt}</td>
+                        <td>{issue.status}</td>
+                        <td>{issue.commentCount}</td>
+                    </tr>
+                )
+            }
             </tbody>
         </table>
     )

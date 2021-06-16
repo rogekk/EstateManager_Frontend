@@ -6,17 +6,13 @@ import IssuesHeader from "./IssuesHeader";
 import { IssueListItem } from "./IssuesListCommunity";
 
 export const IssuesCommunities = () => {
-    const [issues, setIssues] = useState<IssuesResponse>()
-    
-    const [issue] = useState<IssueResponse>()
-
+    const [issues, setIssues] = useState<IssuesResponse>({issues: []})
 
     useEffect(() => {
         getIssues().then(setIssues);
     }, []);
 
-    return  <div>
+    return  <div className={'page-appbar'}>
         <IssuesHeader issues={issues}/>
     </div>
-    
 }
