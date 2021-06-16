@@ -1,9 +1,9 @@
 import React, {Dispatch, FC, SetStateAction, useState} from "react";
-import {Translation} from "../common/i18n/Translations";
-import {CommunityId} from "../common/models/Types";
+import {Translation} from "../../common/Translator/Translations";
+import {CommunityId} from "../../common/models/Types";
 import {Button, Dialog, DialogTitle, TextField} from "@material-ui/core";
-import {postTopic} from "../owners/services/TopicsService";
-import {useTranslation} from "../common/i18n/UseTranslation";
+import {postTopic} from "../../owners/services/TopicsService";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 
 export const CreateNewTopic: FC<{
     open: boolean,

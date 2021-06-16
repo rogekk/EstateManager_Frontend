@@ -1,6 +1,6 @@
 import {FC} from "react";
 import {Container} from "@material-ui/core";
-import {BackgroundIcon} from "./BackgroundIcon";
+import {BackgroundIcon} from "../DashboardTSX/BackgroundIcon";
 import {HowToVote, InsertDriveFile} from "@material-ui/icons";
 
 export const Documents: FC<{}> = () => {

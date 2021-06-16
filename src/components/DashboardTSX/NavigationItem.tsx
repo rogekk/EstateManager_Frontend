@@ -1,9 +1,7 @@
-import React, {FC, SetStateAction} from "react";
+import React, {FC} from "react";
 import {ListItem, ListItemIcon, ListItemText, SvgIcon} from "@material-ui/core";
-import {Page} from "../common/models/Types";
 import {useHistory, useLocation} from "react-router-dom";
-import {NavigationPage} from "../common/components/SideDrawer";
-import {useTranslation} from "../common/i18n/UseTranslation";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 
 export const NavigationItem: FC<{
     icon: typeof SvgIcon,
@@ -13,7 +11,7 @@ export const NavigationItem: FC<{
     const location = useLocation();
     const history = useHistory();
     const {t} = useTranslation();
-    // const [p, path, name] = page
+    
 
     return (<ListItem selected={location.pathname === url} button onClick={() => {
         history.push(url);

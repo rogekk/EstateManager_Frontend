@@ -1,6 +1,6 @@
 import {Dispatch, FC, SetStateAction, useState} from "react";
 import {CommunityId, TopicId} from "../../../common/models/Types";
-import {useTranslation} from "../../../common/i18n/UseTranslation";
+import {useTranslation} from "../../../common/Translator/UseTranslation";
 import {Button, Dialog, DialogTitle, TextField} from "@material-ui/core";
 import {postComment} from "../../services/TopicsService";
 import {createNewIssue} from "../../services/IssuesService";

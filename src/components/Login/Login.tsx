@@ -1,9 +1,9 @@
 import React, {useState} from "react";
-import {api} from "../common/network/Api";
+import {api} from "../../common/network/Api";
 import {useHistory} from "react-router-dom";
 import {Button, TextField} from "@material-ui/core";
-import {persistToken, persistUser} from "../common/persistance/Persistance";
-import {useTranslation} from "../common/i18n/UseTranslation";
+import {persistToken, persistUser} from "../../common/persistance/Persistance";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 import './Login.css';
 
 export const Login: React.FC<{}> = () => {

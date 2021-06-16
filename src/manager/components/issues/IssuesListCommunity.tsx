@@ -1,9 +1,9 @@
-import {ButtonBase, Typography} from "@material-ui/core";
-import {useHistory} from "react-router-dom";
-import {IssueResponse} from "../../models/responses/Responses";
+import { ButtonBase, Typography } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import { IssueResponse } from "../../models/responses/Responses";
 
 
-export const IssueListItem = ({issue}: { issue: IssueResponse }) => {
+export const IssueListItem = ({ issue }: { issue: IssueResponse }) => {
     const history = useHistory();
 
     return <ButtonBase key={issue.id} className={'air row'} onClick={() => history.push(`/m/issues/${issue.id}`)}>

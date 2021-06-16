@@ -2,9 +2,9 @@ import {Route, Switch, useParams} from "react-router-dom";
 import './ManagerCommunity.css'
 import {CommunityUsers} from "./CommunityUsers";
 import {ManagerResolutions} from "../../resolutions/Resolutions";
-import {TabItem, TabsComponent} from "../../../common/components/TabsComponent";
 import {CreateNewResolution} from "../../resolutions/CreateNewResolution";
 import { IssuesCommunities } from "../issues/CommunityIssues";
+import { TabItem, TabsComponent} from "../../../components/DashboardTSX/TabsComponent";
 
 export type OwnerSearch = {
     email: string,

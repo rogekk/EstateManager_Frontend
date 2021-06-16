@@ -24,7 +24,7 @@ section {
 
 section .imgBox {
   position: relative;
-  flex:1;
+  flex: 1;
   height: 100%;
 }
 
@@ -163,7 +163,7 @@ section .contentBox .formBox .rememberMe {
 body .leftBox {
   position: relative;
   width: 50vw;
-  height: 1000px;
+  height: 100vh;
   background: linear-gradient(225deg, #03a9f4, #666);
   left: 0;
   bottom: 0;

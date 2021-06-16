@@ -1,10 +1,9 @@
 import {FC} from "react";
 import {Avatar, ListItem, ListItemAvatar, ListItemText, Typography} from "@material-ui/core";
-import {Comment} from "../common/models/Types";
+import {Comment} from "../../common/models/Types";
 import {useHistory} from "react-router-dom";
-import {timeAgo} from "../common/tools/TimeAgo";
-import {Translation} from "../common/i18n/Translations";
-import {useTranslation} from "../common/i18n/UseTranslation";
+import {timeAgo} from "../../common/tools/TimeAgo";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 
 export const CommentListItem: FC<{comment: Comment }> = ({comment}) => {
     const history = useHistory();
