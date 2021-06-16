@@ -1,20 +1,21 @@
 import React, {FC, useEffect, useState} from "react";
 import {Community, UserProfile} from "../../common/models/Types";
 import {Route, Switch, useHistory} from "react-router-dom";
-import {useTranslation} from "../../common/i18n/UseTranslation";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 import {getProfile} from "../services/TopicsService";
 import {Box} from "@material-ui/core";
-import {CustomAppBar} from "../../components/CustomAppBar";
-import {Pages, SideDrawer} from "../../common/components/SideDrawer";
-import {NavigationItem} from "../../components/NavigationItem";
+import {CustomAppBar} from "../../components/DashboardTSX/CustomAppBar";
+import {Pages, SideDrawer} from "../../components/DashboardTSX/SideDrawer";
+import {NavigationItem} from "../../components/DashboardTSX/NavigationItem";
 import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@material-ui/icons";
-import {Dashboard} from "../../components/Dashboard";
-import {ResolutionComponent, ResolutionsComponent} from "../../components/Resolutions";
-import {Documents} from "../../components/Documents";
-import {Forums} from "../../components/Forums";
+import {Dashboard} from "../../components/DashboardTSX/Dashboard";
+import {ResolutionComponent, ResolutionsComponent} from "../../components/Resolutions/Resolutions";
+import {Documents} from "../../components/Documents/Documents";
+import {Forums} from "../../components/Forum/Forums";
 import {OwnerIssues} from "../components/issues/OwnerIssues";
-import {TopicComponent} from "../../components/TopicComponent";
-import {getToken, getUser} from "../../App";
+import {TopicComponent} from "../../components/Forum/TopicComponent";
+import { getToken, getUser } from "../../App";
+
 
 export const OwnerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});

@@ -1,15 +1,14 @@
 import React, {FC, useEffect, useState} from "react";
-import {Translation} from "../common/i18n/Translations";
-import {useStyles} from "../styles/UseStyles";
+import {useStyles} from "../../styles/UseStyles";
 import {useParams} from "react-router-dom";
-import {Comments} from "../common/models/Types";
-import {getComments} from "../owners/services/TopicsService";
+import {Comments} from "../../common/models/Types";
+import {getComments} from "../../owners/services/TopicsService";
 import {Container, Fab, List, Paper, Typography} from "@material-ui/core";
 import {CreateNewComment} from "./CreateNewComment";
 import {Add, Forum} from "@material-ui/icons";
 import {CommentListItem} from "./CommentListItem";
-import {BackgroundIcon} from "./BackgroundIcon";
-import {useTranslation} from "../common/i18n/UseTranslation";
+import {BackgroundIcon} from "../DashboardTSX/BackgroundIcon";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 
 export const TopicComponent: FC<{
     communityId: string

@@ -4,7 +4,7 @@ import {getCommunities} from "../../services/ManagerCommunitiesService";
 import {CommunityListItem} from "./CommunityListItem";
 import {Fab} from "@material-ui/core";
 import {Add} from "@material-ui/icons";
-import {useTranslation} from "../../../common/i18n/UseTranslation";
+import {useTranslation} from "../../../common/Translator/UseTranslation";
 import "../../../styles/Common.css"
 
 export const ManagerCommunities = () => {

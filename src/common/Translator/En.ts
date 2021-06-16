@@ -18,14 +18,15 @@ export const en = {
             attempts: (n: number) => plural(`You have one attempt remaining|You have ${n} attempts remaining|You have no more attempts remaining, please contact admin`, n)
         },
         navigation: {
-            topics: "Topics",
-            login: "Login",
-            documents: "Documents",
             dashboard: "Dashboard",
             issues: "Issues",
             resolutions: "Resolutions",
             communities: "Communities",
             resolution: "Resolution",
+            documents: "Documents",
+            topics: "Topics",
+            login: "Login",
+            
         },
         timeAgo: {
             seconds: (n: number) => plural(`a second ago|${n} seconds ago`, n),

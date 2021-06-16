@@ -1,9 +1,9 @@
 import {FC, useEffect, useState} from "react";
-import {Button, ButtonBase, Container, List, ListItem, Paper, Typography} from "@material-ui/core";
-import {BackgroundIcon} from "./BackgroundIcon";
+import {Button, ButtonBase, Container, Paper, Typography} from "@material-ui/core";
+import {BackgroundIcon} from "../DashboardTSX/BackgroundIcon";
 import {HowToVote} from "@material-ui/icons";
-import {getResolution, getResolutions, postVote} from "../owners/services/ResolutionsService";
-import {CommunityId, Resolution, ResolutionId, Resolutions, Vote} from "../common/models/Types";
+import {getResolution, getResolutions, postVote} from "../../owners/services/ResolutionsService";
+import {CommunityId, Resolution, Resolutions,} from "../../common/models/Types";
 import {useHistory, useParams} from "react-router-dom";
 
 export const ResolutionsComponent: React.FC<{

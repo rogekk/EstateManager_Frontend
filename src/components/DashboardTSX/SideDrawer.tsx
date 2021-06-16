@@ -1,12 +1,12 @@
 import React, {FC, SetStateAction} from "react";
-import {Translation} from "../i18n/Translations";
+import {Translation} from "../../common/Translator/Translations";
 import {List, Paper, Typography} from "@material-ui/core";
 import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@material-ui/icons";
-import {Community, UserProfile} from "../models/Types";
-import {NavigationItem} from "../../components/NavigationItem";
+import {Community, UserProfile} from "../../common/models/Types";
+import {NavigationItem} from "./NavigationItem";
 import {useHistory, useLocation} from "react-router-dom";
 import {LogoutButton} from "./LogoutButton";
-import {useTranslation} from "../i18n/UseTranslation";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 
 export type SetPage = React.Dispatch<SetStateAction<NavigationPage>>
 

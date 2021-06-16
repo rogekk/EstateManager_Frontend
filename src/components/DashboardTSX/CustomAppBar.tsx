@@ -1,11 +1,9 @@
-import React, {Dispatch, FC, SetStateAction} from "react";
-import {useStyles} from "../styles/UseStyles";
+import React, {FC} from "react";
+import {useStyles} from "../../styles/UseStyles";
 import {AppBar, Button, Drawer, IconButton, Menu, Toolbar, Typography} from "@material-ui/core";
-import {Debugger} from "inspector";
-import {NavigationPage} from "../common/components/SideDrawer";
-import {useTranslation} from "../common/i18n/UseTranslation";
-import {en} from "../common/i18n/En";
-import {it} from "../common/i18n/It";
+import {useTranslation} from "../../common/Translator/UseTranslation";
+import {en} from "../../common/Translator/En";
+import {it} from "../../common/Translator/It";
 import {MenuBook} from "@material-ui/icons";
 
 

@@ -1,14 +1,14 @@
 import React, {useEffect, useState} from "react";
-import {useStyles} from "../styles/UseStyles";
+import {useStyles} from "../../styles/UseStyles";
 import {Container, Fab, List, ListItem} from "@material-ui/core";
 import {Add, Forum} from "@material-ui/icons";
 import {TopicListItem} from "./TopicListItem";
 import {CreateNewTopic} from "./CreateNewTopic";
-import {BackgroundIcon} from "./BackgroundIcon";
-import {Translation} from "../common/i18n/Translations";
-import {Community, Topics} from "../common/models/Types";
-import {getTopics} from "../owners/services/TopicsService";
-import {useTranslation} from "../common/i18n/UseTranslation";
+import {BackgroundIcon} from "../DashboardTSX/BackgroundIcon";
+import {Translation} from "../../common/Translator/Translations";
+import {Community, Topics} from "../../common/models/Types";
+import {getTopics} from "../../owners/services/TopicsService";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 
 export const Forums: React.FC<{
     community: Community

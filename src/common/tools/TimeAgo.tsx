@@ -1,4 +1,4 @@
-import {Translation} from "../i18n/Translations";
+import {Translation} from "../Translator/Translations";
 
 export const timeAgo = (t: Translation, prevDate: number) => {
     const diff = Number(new Date()) - prevDate;

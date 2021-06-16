@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {useTranslation} from "../i18n/UseTranslation";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 import {Typography} from "@material-ui/core";
 
 export const Footer: FC<{}> = () => {

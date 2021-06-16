@@ -1,17 +1,16 @@
-import React from 'react';
+
 import './App.css';
-import {Box} from '@material-ui/core';
 import {BrowserRouter, Route, Switch} from "react-router-dom";
-import {useStyles} from "./styles/UseStyles";
-import {Login} from "./components/Login";
-import {OwnerId} from "./common/models/Types";
-import {Pages} from "./common/components/SideDrawer";
-import {getPersistedToken, getPersistedUser} from "./common/persistance/Persistance";
-import {TranslationProvider} from "./common/i18n/UseTranslation";
-import {ManagerPortal} from "./manager/ManagerPortal";
-import {OwnerPortal} from "./owners/requests/OwnerPortal";
-import {Footer} from "./common/components/Footer";
-import {AdminPortal} from "./admin/components/AdminPortal";
+import { getPersistedToken, getPersistedUser } from './common/persistance/Persistance';
+import { OwnerId } from './common/models/Types';
+import { TranslationProvider } from './common/Translator/UseTranslation';
+import { Pages } from './components/DashboardTSX/SideDrawer';
+import { Login } from './components/Login/Login';
+import { OwnerPortal } from './owners/requests/OwnerPortal';
+import { AdminPortal } from './admin/components/AdminPortal';
+import { ManagerPortal } from './manager/ManagerPortal';
+
+
 
 export const getToken = () => getPersistedToken()
 export const getUser: () => OwnerId = () => {

@@ -1,12 +1,13 @@
 import {InputAdornment, TextField, Typography} from "@material-ui/core";
 import {FilterList} from "@material-ui/icons";
-import {OwnerSearch} from "./community/ManagerCommunity";
+import { OwnerSearch } from "./ManagerCommunity";
+
 
 export const ListHeader = (
     {
         name,
         column,
-        setSearch
+        setSearch,
     }: {
         name: string,
         column: keyof OwnerSearch,

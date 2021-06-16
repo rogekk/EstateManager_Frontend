@@ -1,10 +1,8 @@
 import React, {FC} from "react";
-import {Translation} from "../i18n/Translations";
 import {ListItem, ListItemIcon, ListItemText} from "@material-ui/core";
-import {removePersistedToken, removePersistedUser} from "../persistance/Persistance";
+import {removePersistedToken, removePersistedUser} from "../../common/persistance/Persistance";
 import {ExitToApp} from "@material-ui/icons";
-import {Pages, SetPage} from "./SideDrawer";
-import {useTranslation} from "../i18n/UseTranslation";
+import {useTranslation} from "../../common/Translator/UseTranslation";
 import {useHistory} from "react-router-dom";
 
 export const LogoutButton: FC<{}> = ({}) => {

@@ -4,8 +4,8 @@ import {Forum} from "@material-ui/icons";
 import {getIssues} from "../../../manager/services/ManagerDashboardServices";
 import {IssuesResponse} from "../../../manager/models/responses/Responses";
 import {Container, Fab, List, Paper, Typography} from "@material-ui/core";
-import {useTranslation} from "../../../common/i18n/UseTranslation";
-import {BackgroundIcon} from "../../../components/BackgroundIcon";
+import {useTranslation} from "../../../common/Translator/UseTranslation";
+import {BackgroundIcon} from "../../../components/DashboardTSX/BackgroundIcon";
 import {CreateNewIssue} from "./CreateNewIssue";
 import {OwnerIssueListItem} from "./OwnerIssueListItem";
 
