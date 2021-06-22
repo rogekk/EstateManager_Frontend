@@ -2,10 +2,10 @@ import {FC, useEffect, useState} from "react";
 import {Button, ButtonBase, Container, Fab, List, ListItem, Paper, Typography} from "@material-ui/core";
 import {Add, HowToVote} from "@material-ui/icons";
 import {useHistory, useParams} from "react-router-dom";
-import {BackgroundIcon} from "../../components/DashboardTSX/BackgroundIcon";
-import {getResolution, getResolutions, postVote} from "../../owners/services/ResolutionsService";
-import {CommunityId, Resolution, Resolutions} from "../../common/models/Types";
-import {useTranslation} from "../../common/Translator/UseTranslation";
+import {BackgroundIcon} from "../../../components/DashboardTSX/BackgroundIcon";
+import {getResolution, getResolutions, postVote} from "../../../owners/services/ResolutionsService";
+import {CommunityId, Resolution, Resolutions} from "../../../common/models/Types";
+import {useTranslation} from "../../../common/Translator/UseTranslation";
 import {CreateNewResolution} from "./CreateNewResolution";
 import moment from "moment";
 

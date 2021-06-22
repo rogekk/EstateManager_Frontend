@@ -2,11 +2,11 @@ import { Divider} from "@material-ui/core";
 import { useEffect, useState } from "react";
 import { IssuesResponse } from "../../models/responses/Responses";
 import { getIssues } from "../../services/ManagerCommunitiesService";
-import { IssueSearch } from "../community/ManagerCommunity";
+import { IssueSearch } from "../communities/ManagerCommunity";
 import { IssueListHeader } from "./IssueListHeader";
-import { IssueListItem } from "./IssuesListCommunity";
+import { IssueListItem } from "./IssuesList";
 
-export const IssuesCommunities = () => {
+export const Issues = () => {
     const [issues, setIssues] = useState<IssuesResponse>()
 
     const [issueSearch, setIssueSearch] = useState<IssueSearch>({} as IssueSearch);

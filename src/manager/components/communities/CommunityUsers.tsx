@@ -6,7 +6,7 @@ import {getOwners} from "../../services/ManagerCommunitiesService";
 import {Divider} from "@material-ui/core";
 import {OwnerListItem} from "./OwnerListItem";
 import {OwnerSearch} from "./ManagerCommunity";
-import { ListHeader } from "./ListHeader";
+import { UsersListHeader } from "./UsersListHeader";
 
 export const CommunityUsers = ({communityId}: { communityId: CommunityId }) => {
     const [owners, setOwners] = useState<OwnersResponse>()
@@ -30,11 +30,11 @@ export const CommunityUsers = ({communityId}: { communityId: CommunityId }) => {
 
     return <div className={'page-appbar'}>
         <div className={'wrapper'}>
-            <ListHeader name={'Username'} column={'username'} setSearch={setSearch}/>
-            <ListHeader name={'Email'} column={'email'} setSearch={setSearch}/>
-            <ListHeader name={'Full name'} column={'fullName'} setSearch={setSearch}/>
-            <ListHeader name={'Address'} column={'address'} setSearch={setSearch}/>
-            <ListHeader name={'Phone number'} column={'phoneNumber'} setSearch={setSearch}/>
+            <UsersListHeader name={'Username'} column={'username'} setSearch={setSearch}/>
+            <UsersListHeader name={'Email'} column={'email'} setSearch={setSearch}/>
+            <UsersListHeader name={'Full name'} column={'fullName'} setSearch={setSearch}/>
+            <UsersListHeader name={'Address'} column={'address'} setSearch={setSearch}/>
+            <UsersListHeader name={'Phone number'} column={'phoneNumber'} setSearch={setSearch}/>
         </div>
         {owners
             ?.users

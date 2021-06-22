@@ -7,15 +7,15 @@ import {Box} from "@material-ui/core";
 import {CustomAppBar} from "../components/DashboardTSX/CustomAppBar";
 import {SideDrawer} from "../components/DashboardTSX/SideDrawer";
 import {NavigationItem} from "../components/DashboardTSX/NavigationItem";
-import {Dashboard as DashboardIcon, HowToVote, InsertDriveFile} from "@material-ui/icons";
 import {Documents} from "../components/Documents/Documents";
-import {ManagerDashboard} from "./components/Dashboard/ManagerDashboard";
-import {ManagerCommunities} from "./components/community/ManagerCommunities";
-import {ManagerCommunity} from "./components/community/ManagerCommunity";
-import {ManagerResolutions} from "./resolutions/Resolutions";
-import { IssuesCommunities } from "./components/issues/CommunityIssues";
+import {ManagerDashboard} from "./components/dashboard/ManagerDashboard";
+import {ManagerCommunities} from "./components/communities/ManagerCommunities";
+import {ManagerCommunity} from "./components/communities/ManagerCommunity";
+import {ManagerResolutions} from "./components/resolutions/Resolutions";
+import { Issues } from "./components/issues/Issues";
 import { getToken, getUser } from "../App";
 import {FaToolbox, FaVoteYea, IoDocuments, MdDashboard, RiCommunityFill, RiCommunityLine} from "react-icons/all";
+import { IssuesDetails } from "./components/issues/IssuesDetails";
 
 export const ManagerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}})
@@ -55,17 +55,20 @@ export const ManagerPortal: FC<{}> = () => {
                                 url={'/m/resolutions'} />
                 <NavigationItem key='issues' icon={FaToolbox} name={t.common.navigation.issues}
                                 url={'/m/issues'} />
+                <NavigationItem key='newsletters' icon={IoDocuments} name={t.common.navigation.documents}
+                                url={'/m/newsletter'}/>                
                 <NavigationItem key='docs' icon={IoDocuments} name={t.common.navigation.documents}
                                 url={'/m/documents'}/>
     
             </SideDrawer>
             <Switch>
                 <Route exact path={'/m/dashboard'} render={() => <ManagerDashboard/>}/>
-                <Route exact path={'/m/resolutions'} render={() => <ManagerResolutions communityId={community.id}/>}/>
-                <Route exact path={'/m/documents'} render={() => <Documents/>}/>
                 <Route exact path={'/m/communities'} render={() => <ManagerCommunities/>}/>
                 <Route exact path={'/m/communities/:communityId/*'} render={() => <ManagerCommunity/>}/>
-                <Route exact path={'/m/issues'} render={() => <IssuesCommunities/>}/>
+                <Route exact path={'/m/resolutions'} render={() => <ManagerResolutions communityId={community.id}/>}/>
+                <Route exact path={'/m/issues'} render={() => <Issues/>}/>
+                <Route exact path={'/m/issues/: issue.id/*'} render={() => <IssuesDetails communityId={community.id}/>}/>
+                <Route exact path={'/m/documents'} render={() => <Documents/>}/>
             </Switch>
         </Box>
     )

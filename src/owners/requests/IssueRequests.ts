@@ -3,3 +3,4 @@ export type CreateIssueRequest = {
   description: string,
   attachments: string
 }
+

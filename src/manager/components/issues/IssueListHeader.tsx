@@ -1,6 +1,6 @@
 import { InputAdornment, TextField, Typography } from "@material-ui/core"
 import { FilterList } from "@material-ui/icons"
-import { IssueSearch } from "../community/ManagerCommunity"
+import { IssueSearch } from "../communities/ManagerCommunity"
 
 export const IssueListHeader = (
     {
