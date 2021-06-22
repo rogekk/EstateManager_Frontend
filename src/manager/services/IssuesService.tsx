@@ -2,8 +2,8 @@ import { CommunityId, Issue, IssueId, Resolution } from "../../common/models/Typ
 import { get } from "../../common/network/Api";
 import { IssueResponse } from "../models/responses/Responses";
 
-export async function getIssue(communityId: CommunityId, issueId: IssueId): Promise<Issue> {
-    const issueResponse: IssueResponse = await get<IssueResponse>(`/communities/${communityId.id}/issues/${issueId.id}`)
+export async function getIssue(issueId: IssueId): Promise<Issue> {
+    const issueResponse: IssueResponse = await get<IssueResponse>(`/communities/issues/${issueId.id}`)
 
     return {
         id: issueResponse.id,

@@ -8,14 +8,11 @@ import { IssueListItem } from "./IssuesList";
 
 export const Issues = () => {
     const [issues, setIssues] = useState<IssuesResponse>()
-
     const [issueSearch, setIssueSearch] = useState<IssueSearch>({} as IssueSearch);
 
-
     useEffect(() => {
-        getIssues( issueSearch).then(setIssues)
+        getIssues(issueSearch).then(setIssues)
     }, [])
-
 
     function setSearch(key: keyof IssueSearch, value: string) {
         setIssueSearch((v) => {

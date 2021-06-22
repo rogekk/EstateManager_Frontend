@@ -67,7 +67,7 @@ export const ManagerPortal: FC<{}> = () => {
                 <Route exact path={'/m/communities/:communityId/*'} render={() => <ManagerCommunity/>}/>
                 <Route exact path={'/m/resolutions'} render={() => <ManagerResolutions communityId={community.id}/>}/>
                 <Route exact path={'/m/issues'} render={() => <Issues/>}/>
-                <Route exact path={'/m/issues/: issue.id/*'} render={() => <IssuesDetails communityId={community.id}/>}/>
+                <Route exact path={'/m/issues/:issueId'} render={() => <IssuesDetails />}/>
                 <Route exact path={'/m/documents'} render={() => <Documents/>}/>
             </Switch>
         </Box>
