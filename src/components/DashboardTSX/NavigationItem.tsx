@@ -8,8 +8,7 @@ export const NavigationItem: FC<{
     icon: IconType,
     name: string,
     url: string,
-    expanded: boolean
-}> = ({icon, name, url, expanded}) => {
+}> = ({icon, name, url}) => {
     const location = useLocation();
     const history = useHistory();
     const {t} = useTranslation();
@@ -18,7 +17,7 @@ export const NavigationItem: FC<{
             history.push(url);
         }}>
             {React.createElement(icon)}
-            {expanded && <ListItemText> {name} </ListItemText>}
+            {<ListItemText> {name} </ListItemText>}
         </ListItem>
     )
 }

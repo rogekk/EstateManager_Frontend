@@ -1,7 +1,7 @@
 import {FC, useEffect, useState} from "react";
 import {Grid, GridList, GridListTile, Paper, Typography} from "@material-ui/core";
-import {getIssues} from "../services/ManagerDashboardServices";
-import {IssuesResponse} from "../models/responses/Responses";
+import {getIssues} from "../../services/ManagerDashboardServices";
+import {IssuesResponse} from "../../models/responses/Responses";
 
 export const ManagerDashboard: FC<{}> = () => {
     const [issues, setIssues] = useState<IssuesResponse>();

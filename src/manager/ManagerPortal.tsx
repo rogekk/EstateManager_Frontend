@@ -9,7 +9,7 @@ import {SideDrawer} from "../components/DashboardTSX/SideDrawer";
 import {NavigationItem} from "../components/DashboardTSX/NavigationItem";
 import {Dashboard as DashboardIcon, HowToVote, InsertDriveFile} from "@material-ui/icons";
 import {Documents} from "../components/Documents/Documents";
-import {ManagerDashboard} from "./components/ManagerDashboard";
+import {ManagerDashboard} from "./components/Dashboard/ManagerDashboard";
 import {ManagerCommunities} from "./components/community/ManagerCommunities";
 import {ManagerCommunity} from "./components/community/ManagerCommunity";
 import {ManagerResolutions} from "./resolutions/Resolutions";
@@ -48,15 +48,16 @@ export const ManagerPortal: FC<{}> = () => {
             <CustomAppBar menuClicked={() => setShowDrawer((state) => !state)}/>
             <SideDrawer community={community} ownerProfile={undefined}>
                 <NavigationItem key='dash' icon={MdDashboard} name={t.common.navigation.dashboard}
-                                url={'/m/dashboard'} expanded={showDrawer}/>
-                <NavigationItem key='docs' icon={IoDocuments} name={t.common.navigation.documents}
-                                url={'/m/documents'} expanded={showDrawer}/>
+                                url={'/m/dashboard'}/>
                 <NavigationItem key='communities' icon={RiCommunityFill} name={t.common.navigation.communities}
-                                url={'/m/communities'} expanded={showDrawer}/>
+                                url={'/m/communities'} />
                 <NavigationItem key='resolutions' icon={FaVoteYea} name={t.common.navigation.resolutions}
-                                url={'/m/resolutions'} expanded={showDrawer}/>
+                                url={'/m/resolutions'} />
                 <NavigationItem key='issues' icon={FaToolbox} name={t.common.navigation.issues}
-                                url={'/m/issues'} expanded={showDrawer}/>
+                                url={'/m/issues'} />
+                <NavigationItem key='docs' icon={IoDocuments} name={t.common.navigation.documents}
+                                url={'/m/documents'}/>
+    
             </SideDrawer>
             <Switch>
                 <Route exact path={'/m/dashboard'} render={() => <ManagerDashboard/>}/>

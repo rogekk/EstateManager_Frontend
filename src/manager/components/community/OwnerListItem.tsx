@@ -1,4 +1,4 @@
-import {OwnerResponse} from "../models/responses/Responses";
+import {OwnerResponse} from "../../models/responses/Responses";
 import {ButtonBase, Typography} from "@material-ui/core";
 
 export const OwnerListItem = ({owner}: { owner: OwnerResponse }) => {

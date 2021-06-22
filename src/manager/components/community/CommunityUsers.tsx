@@ -4,7 +4,7 @@ import {OwnersResponse} from "../../models/responses/Responses";
 import {getOwners} from "../../services/ManagerCommunitiesService";
 
 import {Divider} from "@material-ui/core";
-import {OwnerListItem} from "../OwnerListItem";
+import {OwnerListItem} from "./OwnerListItem";
 import {OwnerSearch} from "./ManagerCommunity";
 import { ListHeader } from "./ListHeader";
 

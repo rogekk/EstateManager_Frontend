@@ -7,6 +7,7 @@ import {getResolution, getResolutions, postVote} from "../../owners/services/Res
 import {CommunityId, Resolution, Resolutions} from "../../common/models/Types";
 import {useTranslation} from "../../common/Translator/UseTranslation";
 import {CreateNewResolution} from "./CreateNewResolution";
+import moment from "moment";
 
 export const ManagerResolutions = ({communityId}: { communityId: CommunityId }) => {
     const [resolutions, setResolutions] = useState<Resolutions>({resolutions: []})
@@ -52,7 +53,7 @@ export const ManagerResolutions = ({communityId}: { communityId: CommunityId }) 
                         {r.result}
                     </Typography>
                     <Typography className={'column air air-padding'} noWrap>
-                        {r.createdAt}
+                        {moment(r.createdAt).format('DD/MM/YYYY')}
                     </Typography>
                 </div>
             </ButtonBase>

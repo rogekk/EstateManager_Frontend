@@ -13,7 +13,7 @@ export type IssueResponse = {
     subject: string,
     description: string,
     attachments: string,
-    createdAt: string,
+    createdAt: any,
     createdBy: CreatedBy,
     status: 'new' | 'received' | 'in_progress' | 'closed' | 're_opened',
     commentCount: 0
