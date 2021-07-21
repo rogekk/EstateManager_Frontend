@@ -10,8 +10,7 @@ export const Dashboard: React.FC<{
     profile: UserProfile | null | undefined
 }> = ({profile}) => {
     const {t} = useTranslation();
-    return <Container style={{marginTop: '100px', display: 'flex'}}>
-        <BackgroundIcon icon={DashboardIcon}/>
+    return <Container>
         {profile ? (<Typography> {t.common.dashboard.title(profile.username)} </Typography>) : <div/>}
     </Container>
 }

@@ -2,7 +2,7 @@ import React, {FC} from "react";
 import {ListItem, ListItemIcon, ListItemText, SvgIcon} from "@material-ui/core";
 import {useHistory, useLocation} from "react-router-dom";
 import {IconType} from "react-icons";
-import './NavigationItem.css';
+
 import { useTranslation } from "../common/Translator/UseTranslation";
 
 export const NavigationItem: FC<{

@@ -1,29 +1,26 @@
-import React, {FC} from "react";
+import {FC} from "react";
 import {useStyles} from "../../styles/UseStyles";
-import {AppBar, Button, Drawer, IconButton, Menu, Toolbar, Typography} from "@material-ui/core";
+import {Button} from "@material-ui/core";
 import {useTranslation} from "../../common/Translator/UseTranslation";
 import {en} from "../../common/Translator/En";
 import {it} from "../../common/Translator/It";
-import {MenuBook} from "@material-ui/icons";
+import {FaBars} from "react-icons/all";
+import "./CustomAppBar.css";
 
 
 export const CustomAppBar: FC<{
     menuClicked?: () => void
 }> = ({menuClicked}) => {
-    const classes = useStyles();
     const {t, setT} = useTranslation();
     return (
-        <AppBar position="fixed" style={{
-            color: "#333",
-            background: "#eeeeeedd"
-        }}>
-            <Toolbar>
-                <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu"
-                            onClick={() => menuClicked ? menuClicked() : null }
-                >
-                    <MenuBook></MenuBook>
-                </IconButton>
-                <Button color="inherit" onClick={() => {
+        <div className="top-bar">
+            <div>
+                <Button  onClick={() => menuClicked ? menuClicked() : null }>
+                    <FaBars className="top-bar__icon"/>
+                </Button>
+                </div>
+                <div >
+                <Button className="top-bar__translation" onClick={() => {
                     if (t === en) {
                         setT(it);
                     } else {
@@ -31,7 +28,7 @@ export const CustomAppBar: FC<{
                     }
                 }
                 }>{t.common.toggleLanguage}</Button>
-            </Toolbar>
-        </AppBar>
+                </div>
+        </div>
     );
 };

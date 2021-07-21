@@ -1,7 +1,7 @@
 import { ButtonBase, Typography } from "@material-ui/core";
 import { useHistory } from "react-router-dom";
 import { IssueResponse } from "../../models/responses/Responses";
-
+import "./IssuesList.css"
 import moment from "moment/moment.js";
 
 
@@ -9,21 +9,21 @@ import moment from "moment/moment.js";
 export const IssueListItem = ({ issue }: { issue: IssueResponse }) => {
     const history = useHistory();
 
-    return <ButtonBase key={issue.id} className={'air row'} onClick={() => history.push(`/m/issues/${issue.id}`)}>
-        <div className={'wrapper'}>
-            <Typography className={'column air air-padding'} noWrap>
+    return <ButtonBase  key={issue.id}  onClick={() => history.push(`/m/communities/${issue.communityId}/issues/${issue.id}`)}>
+        <div className= "list__issues">
+            <Typography >
                 {issue.subject}
             </Typography>
-            <Typography className={'column air air-padding'} noWrap>
+            <Typography  >
                 {issue.createdBy.username}
             </Typography>
-            <Typography className={'column air air-padding'} noWrap>
+            <Typography>
                 {moment(issue.createdAt).format('DD/MM/YYYY')}
             </Typography>
-            <Typography className={'column air air-padding'} noWrap>
+            <Typography >
                 {issue.status}
             </Typography>
-            <Typography className={'column air air-padding'} noWrap>
+            <Typography >
                 {issue.commentCount}
             </Typography>
         </div>

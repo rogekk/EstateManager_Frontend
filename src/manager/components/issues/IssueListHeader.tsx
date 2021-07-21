@@ -1,6 +1,7 @@
 import { InputAdornment, TextField, Typography } from "@material-ui/core"
 import { FilterList } from "@material-ui/icons"
 import { IssueSearch } from "../communities/ManagerCommunity"
+import "./IssuesList.css"
 
 export const IssueListHeader = (
     {
@@ -13,8 +14,8 @@ export const IssueListHeader = (
         setSearch: (key: keyof IssueSearch, value: string) => void
     }
 ) => {
-    return <div className={'column air'}>
-        <Typography>
+    return <div >
+        <Typography className="list__name">
             {name}
         </Typography>
         <TextField

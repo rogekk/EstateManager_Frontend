@@ -16,6 +16,7 @@ import { Issues } from "./components/issues/Issues";
 import { getToken, getUser } from "../App";
 import {FaToolbox, FaVoteYea, IoDocuments, MdDashboard, RiCommunityFill, RiCommunityLine} from "react-icons/all";
 import { IssuesDetails } from "./components/issues/IssuesDetails";
+import "./ManagerPortal.css"
 
 export const ManagerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}})
@@ -38,14 +39,12 @@ export const ManagerPortal: FC<{}> = () => {
         , [])
 
     return (
-        <Box style={{
-            height: '100%',
-            display: 'flex',
-            width: '100%',
-            maxHeight: '100%',
-            overflow: 'hidden',
-        }}>
+        <Box className="manager">
+            <div className="manager__top">
             <CustomAppBar menuClicked={() => setShowDrawer((state) => !state)}/>
+           </div>
+           <div className="manager__bottom">
+            <div className="manager__side-bar">
             <SideDrawer community={community} ownerProfile={undefined}>
                 <NavigationItem key='dash' icon={MdDashboard} name={t.common.navigation.dashboard}
                                 url={'/m/dashboard'}/>
@@ -61,15 +60,19 @@ export const ManagerPortal: FC<{}> = () => {
                                 url={'/m/documents'}/>
     
             </SideDrawer>
+            </div>
+            <div className="manager__content">
             <Switch>
                 <Route exact path={'/m/dashboard'} render={() => <ManagerDashboard/>}/>
                 <Route exact path={'/m/communities'} render={() => <ManagerCommunities/>}/>
+                <Route exact path={'/m/communities/:communityId/issues/:issueId'} render={() => <IssuesDetails />}/>
                 <Route exact path={'/m/communities/:communityId/*'} render={() => <ManagerCommunity/>}/>
                 <Route exact path={'/m/resolutions'} render={() => <ManagerResolutions communityId={community.id}/>}/>
                 <Route exact path={'/m/issues'} render={() => <Issues/>}/>
-                <Route exact path={'/m/issues/:issueId'} render={() => <IssuesDetails />}/>
                 <Route exact path={'/m/documents'} render={() => <Documents/>}/>
             </Switch>
+            </div>
+            </div>
         </Box>
     )
 }

@@ -4,6 +4,7 @@ import {useHistory, useLocation} from "react-router-dom";
 import {useTranslation} from "../../common/Translator/UseTranslation";
 import {IconType} from "react-icons";
 
+
 export const NavigationItem: FC<{
     icon: IconType,
     name: string,
@@ -15,9 +16,10 @@ export const NavigationItem: FC<{
 
     return (<ListItem selected={location.pathname === url} button onClick={() => {
             history.push(url);
-        }}>
+        }}><i className="navigation__icon">
             {React.createElement(icon)}
-            {<ListItemText> {name} </ListItemText>}
+            </i>
+            {<ListItemText className="navigation__name"> { name } </ListItemText>}
         </ListItem>
     )
 }

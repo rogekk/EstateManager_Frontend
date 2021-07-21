@@ -1,12 +1,11 @@
 import React, {FC, SetStateAction} from "react";
 import {Translation} from "../../common/Translator/Translations";
-import {List, Paper, Typography} from "@material-ui/core";
-import {Dashboard as DashboardIcon, Forum, HowToVote, InsertDriveFile} from "@material-ui/icons";
+import {List,  Typography} from "@material-ui/core";
 import {Community, UserProfile} from "../../common/models/Types";
-import {NavigationItem} from "./NavigationItem";
 import {useHistory, useLocation} from "react-router-dom";
 import {LogoutButton} from "./LogoutButton";
 import {useTranslation} from "../../common/Translator/UseTranslation";
+import "./SideDrawer.css"
 
 export type SetPage = React.Dispatch<SetStateAction<NavigationPage>>
 
@@ -17,17 +16,7 @@ export const SideDrawer: FC<{
     const {t} = useTranslation();
 
     return (
-        <Paper style={{
-            marginTop: 72,
-            flexShrink: 0,
-            height: '100%',
-            width: "200px",
-            padding: "16px"
-        }}>
-            <Typography variant={"h4"}>
-                {ownerProfile?.username}
-            </Typography>
-
+        <div className="side-bar">
             <Typography>
                 {!!ownerProfile && ownerProfile.communities[0].name.value}
             </Typography>
@@ -35,19 +24,11 @@ export const SideDrawer: FC<{
             <List>
                 {children}
             </List>
-            <div style={{
-                display: "flex",
-                width: "100%",
-                flexFlow: "row",
-                height: "100%",
-            }}>
-                <div style={{flexShrink: 1}}>
-
-                </div>
+            <div>
                 <LogoutButton>
                 </LogoutButton>
             </div>
-        </Paper>
+        </div>
     );
 }
 

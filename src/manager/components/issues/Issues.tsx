@@ -5,6 +5,7 @@ import { getIssues } from "../../services/ManagerCommunitiesService";
 import { IssueSearch } from "../communities/ManagerCommunity";
 import { IssueListHeader } from "./IssueListHeader";
 import { IssueListItem } from "./IssuesList";
+import "./IssuesList.css"
 
 export const Issues = () => {
     const [issues, setIssues] = useState<IssuesResponse>()
@@ -23,14 +24,22 @@ export const Issues = () => {
         )
     }
 
-    return <div className={'page-appbar'}>
-        <div className={'wrapper'}>
+    return <div className="list">
+        <div>
             <IssueListHeader name={'Subject'} column={'subject'} setSearch={setSearch}/>
+            </div>
+            <div>
             <IssueListHeader name={'Author'} column={'createdBy'} setSearch={setSearch}/>
+            </div>
+            <div>
             <IssueListHeader name={'Create At'} column={'createdAt'} setSearch={setSearch}/>
+            </div>
+            <div>
             <IssueListHeader name={'Status'} column={'status'} setSearch={setSearch}/>
+            </div>
+            <div>
             <IssueListHeader name={'Comment Count'} column={'commentCount'} setSearch={setSearch}/>
-        </div>
+            </div>
         {issues
             ?.issues
             .flatMap((issue, i) =>

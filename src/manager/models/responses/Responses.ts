@@ -11,6 +11,7 @@ type CreatedBy = {
 export type IssueResponse = {
     id: string,
     subject: string,
+    communityId: string,
     description: string,
     attachments: string,
     createdAt: any,
