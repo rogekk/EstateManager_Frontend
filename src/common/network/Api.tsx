@@ -15,9 +15,8 @@ export async function api<T>(
     if (!response.ok && response.status === 401) {
         window.location.replace("/login")
     }
-    if (!response.ok && response.status >= 400) {
-        throw new Error("api request failed.");
-    }
+    
+    
     return (await response.json()) as Promise<T>;
 }
 

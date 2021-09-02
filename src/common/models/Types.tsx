@@ -17,6 +17,7 @@ export type CommentId = { id: string }
 export type ResolutionId = { id: string }
 export type IssueId = { id: string}
 
+
 export type Comment = {
     id: CommentId,
     content: string,

@@ -1,10 +1,10 @@
 import {Route, Switch, useParams} from "react-router-dom";
 import './ManagerCommunity.css'
 import {CommunityUsers} from "./CommunityUsers";
-import {ManagerResolutions} from "../../resolutions/Resolutions";
-import {CreateNewResolution} from "../../resolutions/CreateNewResolution";
-import { IssuesCommunities } from "../issues/CommunityIssues";
+import {ManagerResolutions} from "../resolutions/Resolutions";
+import {CreateNewResolution} from "../resolutions/CreateNewResolution";
 import { TabItem, TabsComponent} from "../../../components/DashboardTSX/TabsComponent";
+import { Issues } from "../issues/Issues";
 
 export type OwnerSearch = {
     email: string,
@@ -12,6 +12,14 @@ export type OwnerSearch = {
     fullName: string,
     address: string,
     phoneNumber: string,
+}
+
+export type IssueSearch = {
+    subject: string,
+    createdBy: string,
+    createdAt: string,
+    status: string,
+    commentCount: string,
 }
 
 export const ManagerCommunity = () => {
@@ -29,8 +37,7 @@ export const ManagerCommunity = () => {
                    render={() => <CreateNewResolution communityId={{id: communityId}}/>}/>
             <Route exact path={'/m/communities/:communityId/resolutions'}
                    render={() => <ManagerResolutions communityId={{id: communityId}}/>}/>
-            <Route exact path={'/m/issues'}
-                   render={() => <IssuesCommunities/>}/>
+            <Route exact path={'/m/issues'} render={() => <Issues/>}/>
         </Switch>
     </div>
 }

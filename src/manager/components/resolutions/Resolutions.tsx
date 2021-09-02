@@ -2,11 +2,12 @@ import {FC, useEffect, useState} from "react";
 import {Button, ButtonBase, Container, Fab, List, ListItem, Paper, Typography} from "@material-ui/core";
 import {Add, HowToVote} from "@material-ui/icons";
 import {useHistory, useParams} from "react-router-dom";
-import {BackgroundIcon} from "../../components/DashboardTSX/BackgroundIcon";
-import {getResolution, getResolutions, postVote} from "../../owners/services/ResolutionsService";
-import {CommunityId, Resolution, Resolutions} from "../../common/models/Types";
-import {useTranslation} from "../../common/Translator/UseTranslation";
+import {BackgroundIcon} from "../../../components/DashboardTSX/BackgroundIcon";
+import {getResolution, getResolutions, postVote} from "../../../owners/services/ResolutionsService";
+import {CommunityId, Resolution, Resolutions} from "../../../common/models/Types";
+import {useTranslation} from "../../../common/Translator/UseTranslation";
 import {CreateNewResolution} from "./CreateNewResolution";
+import moment from "moment";
 
 export const ManagerResolutions = ({communityId}: { communityId: CommunityId }) => {
     const [resolutions, setResolutions] = useState<Resolutions>({resolutions: []})
@@ -52,7 +53,7 @@ export const ManagerResolutions = ({communityId}: { communityId: CommunityId }) 
                         {r.result}
                     </Typography>
                     <Typography className={'column air air-padding'} noWrap>
-                        {r.createdAt}
+                        {moment(r.createdAt).format('DD/MM/YYYY')}
                     </Typography>
                 </div>
             </ButtonBase>

@@ -3,7 +3,7 @@ import {FilterList} from "@material-ui/icons";
 import { OwnerSearch } from "./ManagerCommunity";
 
 
-export const ListHeader = (
+export const UsersListHeader = (
     {
         name,
         column,

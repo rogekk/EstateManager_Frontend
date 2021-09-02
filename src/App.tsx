@@ -9,6 +9,7 @@ import { Login } from './components/Login/Login';
 import { OwnerPortal } from './owners/requests/OwnerPortal';
 import { AdminPortal } from './admin/components/AdminPortal';
 import { ManagerPortal } from './manager/ManagerPortal';
+import 'antd/dist/antd.css'
 
 
 

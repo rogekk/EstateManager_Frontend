@@ -1,0 +1,20 @@
+.manager {
+  height: 100%;
+  display: flex;
+  width: 100%;
+  overflow: hidden;
+  flex-direction: column;
+}
+
+.manager__bottom {
+  display: flex;
+}
+
+.manager__content {
+  width: 89%;
+  height: 100%;
+}
+
+.manager__side-bar {
+  height: 100vh;
+}

@@ -1,9 +1,9 @@
-import {CommunityId} from "../../common/models/Types";
+import {CommunityId} from "../../../common/models/Types";
 import {Dispatch, SetStateAction, useState} from "react";
-import {useTranslation} from "../../common/Translator/UseTranslation";
+import {useTranslation} from "../../../common/Translator/UseTranslation";
 import {Button, Dialog, DialogTitle, TextField} from "@material-ui/core";
-import {postTopic} from "../../owners/services/TopicsService";
-import {createResolution, VoteCountingMethod} from "../services/ManagerRepositoryService";
+import {postTopic} from "../../../owners/services/TopicsService";
+import {createResolution, VoteCountingMethod} from "../../services/ManagerRepositoryService";
 import {useHistory} from "react-router-dom";
 
 export const CreateNewResolution = ({communityId,}: {communityId: CommunityId,}) => {
