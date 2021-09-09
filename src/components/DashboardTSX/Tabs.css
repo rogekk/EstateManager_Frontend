@@ -3,12 +3,12 @@
 }
 
 .tab-item {
-    border: 1px solid black !important;
+    
     border-radius: 10px !important;
     padding: 16px !important;
 }
 
 .tab-item-selected {
     font-style: italic;
-    color: var(--accent);
+    color: rgba(43, 43, 43, 0.788);
 }

@@ -9,8 +9,8 @@ import moment from "moment/moment.js";
 export const IssueListItem = ({ issue }: { issue: IssueResponse }) => {
     const history = useHistory();
 
-    return <ButtonBase  key={issue.id}  onClick={() => history.push(`/m/communities/${issue.communityId}/issues/${issue.id}`)}>
-        <div className= "list__issues">
+    return <div className= "list__issues">
+        <ButtonBase  key={issue.id}  onClick={() => history.push(`/m/communities/${issue.communityId}/issues/${issue.id}`)}>
             <Typography >
                 {issue.subject}
             </Typography>
@@ -26,6 +26,7 @@ export const IssueListItem = ({ issue }: { issue: IssueResponse }) => {
             <Typography >
                 {issue.commentCount}
             </Typography>
-        </div>
+       
     </ButtonBase>
+</div>
 }

@@ -14,8 +14,8 @@ export const IssueListHeader = (
         setSearch: (key: keyof IssueSearch, value: string) => void
     }
 ) => {
-    return <div >
-        <Typography className="list__name">
+    return <div className="list__searchbox">
+        <Typography className= "list__name">
             {name}
         </Typography>
         <TextField
