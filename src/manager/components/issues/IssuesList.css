@@ -1,4 +1,4 @@
-.list {
+.list__container {
   width: 95%;
   height: 80%;
   border-radius: 5px;
@@ -8,19 +8,41 @@
   margin-top: 40px;
   margin-left: auto;
   margin-right: auto;
-  display: flex; 
-  flex-direction: column;
+}
+
+.list__header_container {
+  display: flex;
+  align-items: center;
 }
 
 .list__searchbox {
   display: flex;
+  color: rgb(255, 255, 255) !important;
   border-radius: 5px solid white;
-  background-color: green;
+  flex-direction: column;
 }
 
-.list__issues {
-  justify-content: space-around;
-  
+.list__issue_item {
+  width: 100%;
+}
+
+.list__issue_button {
+  width: 100%;
+  display: flex !important;
+  align-items: flex-start !important;
+  justify-content: left !important;
+}
+
+.list__column {
+  padding: 16px !important;
+  text-align: left;
+}
+
+.list__large {
+  flex: 1.5
+}
+.list__small {
+  flex: 1 
 }
 
 .list__issues:hover {

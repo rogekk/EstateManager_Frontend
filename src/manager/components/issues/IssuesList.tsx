@@ -9,21 +9,21 @@ import moment from "moment/moment.js";
 export const IssueListItem = ({ issue }: { issue: IssueResponse }) => {
     const history = useHistory();
 
-    return <div className= "list__issues">
-        <ButtonBase  key={issue.id}  onClick={() => history.push(`/m/communities/${issue.communityId}/issues/${issue.id}`)}>
-            <Typography >
+    return <div className="list__issue_item">
+        <ButtonBase className= "list__issue_button" key={issue.id}  onClick={() => history.push(`/m/communities/${issue.communityId}/issues/${issue.id}`)}>
+            <Typography className="list__column list__large">
                 {issue.subject}
             </Typography>
-            <Typography  >
+            <Typography className="list__column list__small">
                 {issue.createdBy.username}
             </Typography>
-            <Typography>
+            <Typography className="list__column list__small">
                 {moment(issue.createdAt).format('DD/MM/YYYY')}
             </Typography>
-            <Typography >
+            <Typography className="list__column list__small">
                 {issue.status}
             </Typography>
-            <Typography >
+            <Typography className="list__column list__small">
                 {issue.commentCount}
             </Typography>
        

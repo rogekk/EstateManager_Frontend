@@ -14,12 +14,12 @@ export const IssueListHeader = (
         setSearch: (key: keyof IssueSearch, value: string) => void
     }
 ) => {
-    return <div className="list__searchbox">
-        <Typography className= "list__name">
-            {name}
-        </Typography>
-        <TextField
+    return <div >
+        <TextField className="list__searchbox"
+            color="primary"
+
             InputProps={{startAdornment: (<InputAdornment position={"start"}> <FilterList/> </InputAdornment>)}}
+            placeholder={`Search ${name}`}
             onChange={(e) => setSearch(column, e.target.value)}
         />
     </div>
