@@ -21,9 +21,8 @@ import {FaToolbox, FaVoteYea, IoDocuments, MdDashboard, MdForum} from "react-ico
 export const OwnerPortal: FC<{}> = () => {
     const [community, setCommunity] = useState<Community>({id: {id: ""}, name: {value: ""}});
     const [owner, setOwner] = useState<UserProfile>();
-    const history = useHistory();
     const {t} = useTranslation();
-    const showDrawer = true
+   
 
     useEffect(
         () => {
@@ -39,14 +38,7 @@ export const OwnerPortal: FC<{}> = () => {
         }
         , [])
 
-    return (
-        <Box style={{
-            height: '100%',
-            display: 'flex',
-            width: '100%',
-            maxHeight: '100%',
-            overflow: 'hidden',
-        }}>
+    return  <Box className="manager">
             <CustomAppBar/>
             <SideDrawer community={community} ownerProfile={owner}>
                 <NavigationItem key='dash' icon={MdDashboard} url={'/o/dashboard'} name={t.common.navigation.dashboard} />
@@ -67,7 +59,5 @@ export const OwnerPortal: FC<{}> = () => {
                 <Route exact path="/o/forums/:topicId"
                        render={() => <TopicComponent communityId={community.id.id}/>}/>
             </Switch>
-        </Box>
-    )
-
+            </Box>
 }

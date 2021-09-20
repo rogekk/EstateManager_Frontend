@@ -1,48 +1,32 @@
-import {FC, useEffect, useState} from "react";
-import {Community} from "../../../common/models/Types";
-import {Forum} from "@material-ui/icons";
-import {getIssues} from "../../../manager/services/ManagerDashboardServices";
-import {IssuesResponse} from "../../../manager/models/responses/Responses";
-import {Container, Fab, List, Paper, Typography} from "@material-ui/core";
-import {useTranslation} from "../../../common/Translator/UseTranslation";
-import {BackgroundIcon} from "../../../components/DashboardTSX/BackgroundIcon";
-import {CreateNewIssue} from "./CreateNewIssue";
-import {OwnerIssueListItem} from "./OwnerIssueListItem";
+import { ButtonBase, Typography } from "@material-ui/core";
+import { useHistory } from "react-router-dom";
+import "./IssuesList.css"
+import moment from "moment/moment.js";
+import { IssueResponse } from "../../../manager/models/responses/Responses";
 
-export const OwnerIssues: FC<{ community: Community }> = ({community}) => {
-    const [issues, setIssues] = useState<IssuesResponse>();
-    const [open, setOpen] = useState(false);
-    const {t} = useTranslation();
-    const handleClose = () => setOpen(false);
+export const OwnerIssues = ({ issue }: { issue: IssueResponse }) => {
+    const history = useHistory();
 
-    useEffect(() => {
-        getIssues()
-            .then(setIssues)
-
-    }, []);
-
-    return <Container style={{
-        maxHeight: "100%",
-        overflow: "auto",
-        paddingTop: '96px'
-    }}>
-
-        <BackgroundIcon icon={Forum}/>
-
-        <CreateNewIssue open={open} communityId={community.id} setOpen={setOpen} onCreated={() =>
-            getIssues().then(setIssues)} handleClose={handleClose}/>
-
-        <List style={{height: '100%', width: '100%'}}>
-
-            {issues?.issues.map((issue) => {
-                console.log(issue.description);
-                return <OwnerIssueListItem issue={issue} />
-            })}
-        </List>
-        <Fab variant='extended' onClick={() => setOpen(true)}>
-            Create Issue
-
-        </Fab>
-    </Container>
+    return <div className="list__issue_item">
+        <ButtonBase className= "list__issue_button" key={issue.id}  onClick={() => history.push(`/m/communities/${issue.communityId}/issues/${issue.id}`)}>
+            <Typography className="list__column list__large">
+                {issue.subject}
+            </Typography>
+            <Typography className="list__column list__small">
+                {issue.createdBy.username}
+            </Typography>
+            <Typography className="list__column list__small">
+                {moment(issue.createdAt).format('DD/MM/YYYY')}
+            </Typography>
+            <Typography className="list__column list__small">
+                {issue.status}
+            </Typography>
+            <Typography className="list__column list__small">
+                {issue.commentCount}
+            </Typography>
+       
+    </ButtonBase>
+</div>
+ 
 }
 
